@@ -1,0 +1,37 @@
+/** @format */
+
+.modal-dialog {
+  max-width: 750px !important;
+}
+.depature-details {
+  background-color: rgba(0, 39, 65, 0.942);
+  color: #e4e4e4;
+  padding: 10px 0px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.info-div {
+  border: 0.2px solid rgb(202, 202, 202);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.AirplanemodeActiveIcon {
+  transform: rotate(90deg);
+  color: #737373;
+}
+.single-line {
+  margin-left: 2px;
+  height: 0.8px;
+  width: 150px;
+  background-color: #737373;
+}
+.circle {
+  margin-left: 5px;
+  height: 10px;
+  min-width: 10px;
+  border: 0.7px solid #737373;
+  border-radius: 50%;
+}
+.carrier-img-model {
+  margin-top: -20px;
+}

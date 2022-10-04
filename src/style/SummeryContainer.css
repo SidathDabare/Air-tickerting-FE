@@ -1,0 +1,19 @@
+/** @format */
+:root {
+  --font-color: #e4e4e4;
+  --font-hover-color: #ffffff;
+}
+.summery-container {
+  position: relative;
+  background-color: #013457f0;
+  color: var(--font-color);
+}
+.show-summery-div {
+  width: 500px;
+  height: auto;
+  background-color: aqua;
+  position: absolute;
+  right: 0;
+  top: 65px;
+  z-index: 1;
+}

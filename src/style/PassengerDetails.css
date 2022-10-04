@@ -1,0 +1,50 @@
+/** @format */
+:root {
+  --font-color: #e4e4e4;
+  --font-hover-color: #ffffff;
+}
+.add-details-div {
+  position: relative;
+}
+.add-passeger-div {
+  width: 100%;
+  height: 45px;
+  background-color: #011b2cf0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-passenger-btn {
+  color: var(--font-color);
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+}
+.show-add-passenger-details {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  background-color: #ebebeb;
+  z-index: 1;
+}
+.passeneger-details-input {
+  color: var(--font-color);
+}
+.according-item {
+  width: 100%;
+  height: auto;
+  background-color: #011b2cf0;
+  color: var(--font-color);
+}
+.according-item-header h2 {
+  text-align: left !important;
+}
+.according-item-header button {
+  width: 100% !important;
+  background-color: rgba(0, 255, 255, 0);
+  border: none !important;
+  color: var(--font-color);
+}
+/* .passenger-input-edit {
+  max-width: 200px;
+} */

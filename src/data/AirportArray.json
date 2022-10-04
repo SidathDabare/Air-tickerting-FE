@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Goroka ",
+    "city": "Goroka",
+    "country": "Papua New Guinea",
+    "IATA": "GKA",
+    "ICAO": "AYGA",
+    "lat": "-6.081689834590001",
+    "lon": "145.391998291",
+    "timezone": "10"
+  },
+  {
+    "name": "Madang ",
+    "city": "Madang",
+    "country": "Papua New Guinea",
+    "IATA": "MAG",
+    "ICAO": "AYMD",
+    "lat": "-5.20707988739",
+    "lon": "145.789001465",
+    "timezone": "10"
+  },
+  {
+    "name": "Mount Hagen Kagamuga ",
+    "city": "Mount Hagen",
+    "country": "Papua New Guinea",
+    "IATA": "HGU",
+    "ICAO": "AYMH",
+    "lat": "-5.826789855957031",
+    "lon": "144.29600524902344",
+    "timezone": "10"
+  },
+  {
+    "name": "Nadzab ",
+    "city": "Nadzab",
+    "country": "Papua New Guinea",
+    "IATA": "LAE",
+    "ICAO": "AYNZ",
+    "lat": "-6.569803",
+    "lon": "146.725977",
+    "timezone": "10"
+  },
+  {
+    "name": "Port Moresby Jacksons Intl ",
+    "city": "Port Moresby",
+    "country": "Papua New Guinea",
+    "IATA": "POM",
+    "ICAO": "AYPY",
+    "lat": "-9.443380355834961",
+    "lon": "147.22000122070312",
+    "timezone": "10"
+  },
+  {
+    "name": "Wewak Intl ",
+    "city": "Wewak",
+    "country": "Papua New Guinea",
+    "IATA": "WWK",
+    "ICAO": "AYWK",
+    "lat": "-3.58383011818",
+    "lon": "143.669006348",
+    "timezone": "10"
+  },
+  {
+    "name": "Narsarsuaq ",
+    "city": "Narssarssuaq",
+    "country": "Greenland",
+    "IATA": "UAK",
+    "ICAO": "BGBW",
+    "lat": "61.1604995728",
+    "lon": "-45.4259986877",
+    "timezone": "-3"
+  },
+  {
+    "name": "Godthaab / Nuuk ",
+    "city": "Godthaab",
+    "country": "Greenland",
+    "IATA": "GOH",
+    "ICAO": "BGGH",
+    "lat": "64.19090271",
+    "lon": "-51.6781005859",
+    "timezone": "-3"
+  },
+  {
+    "name": "Kangerlussuaq ",
+    "city": "Sondrestrom",
+    "country": "Greenland",
+    "IATA": "SFJ",
+    "ICAO": "BGSF",
+    "lat": "67.0122218992",
+    "lon": "-50.7116031647",
+    "timezone": "-3"
+  }
+]

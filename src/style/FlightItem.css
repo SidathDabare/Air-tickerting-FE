@@ -1,0 +1,51 @@
+/** @format */
+:root {
+  --font-color: #e4e4e4;
+  --font-hover-color: #ffffff;
+  --dark-font-color: #6c6c6c;
+  --light-border-color: #c2c2c2;
+}
+.flight-item {
+  border-bottom: 0.1px solid #a2a2a2;
+  color: #494949;
+}
+.section01 {
+  border-top: 4px solid rgba(92, 78, 96, 0.942);
+  box-shadow: 0px 5px 10px -5px #a7a7a7;
+}
+.line {
+  height: 0.5px;
+  width: 100px;
+  background-color: #737373;
+}
+.carrier-img {
+  margin-top: -7px;
+}
+.connection {
+  color: #1959d0;
+  cursor: pointer;
+}
+.economy {
+  border-left: 0.1px solid #c3c3c3;
+  border-right: 0.1px solid #c3c3c3;
+}
+.economy div {
+  border-top: 4px solid green;
+  box-shadow: 0px 5px 10px -5px #a7a7a7;
+}
+.bussness {
+  /* border-left: 0.1px solid #c3c3c3; */
+  border-right: 0.1px solid #c3c3c3;
+}
+.bussness div {
+  border-top: 4px solid #1959d0;
+  box-shadow: 0px 5px 10px -5px #a7a7a7;
+}
+/* .first {
+  border-left: 0.1px solid #c3c3c3;
+  border-right: 0.1px solid #c3c3c3;
+} */
+.first div {
+  border-top: 4px solid #de510b;
+  box-shadow: 0px 5px 10px -5px #a7a7a7;
+}
