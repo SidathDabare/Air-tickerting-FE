@@ -45,6 +45,11 @@
   border: none !important;
   color: var(--font-color);
 }
+.passenger-flight-list-header1 {
+  background-color: #002741f0;
+  color: var(--font-color);
+  border-radius: 4px 4px 0 0;
+}
 /* .passenger-input-edit {
   max-width: 200px;
 } */

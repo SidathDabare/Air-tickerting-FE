@@ -37,7 +37,7 @@
   margin-right: 10px;
   color: var(--font-color);
 }
-.active,
+.active-btn,
 .header-btn:hover {
   background-color: #154a78;
   color: #001f4b;

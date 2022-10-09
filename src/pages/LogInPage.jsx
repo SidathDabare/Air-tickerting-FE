@@ -21,8 +21,6 @@ const LogInPage = () => {
   const [error, setError] = useState(false)
   const [message, setMessage] = useState("")
 
-  let alert = document.querySelector("#alert-paragrph")
-
   const logInUser = async () => {
     try {
       let response = await fetch(

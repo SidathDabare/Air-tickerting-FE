@@ -47,7 +47,7 @@ const SummeryContainer = () => {
             </div>
             <div>
               <span>
-                {selectedTicket.oneWay === true ? "One Way" : "Return"}
+                {selectedTicket.itineraries[1] ? "Return" : "One Way"}
               </span>
               <span>
                 {" "}
@@ -161,88 +161,95 @@ const SummeryContainer = () => {
                 </div>
               </Row>
             </Col>
-            <Col xs={12} className='bg-light text-dark'>
-              <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
-                <div className='pl-3'>
-                  <small className='font-weight-bold'>
-                    {selectedTicket.id}
-                    <span> </span>
-                  </small>
-                  <small>
-                    {Moment(
-                      selectedTicket.itineraries[1].segments[0].departure.at
-                    ).format("MMM Do YY")}{" "}
-                  </small>
-                </div>
-                <div className='d-flex align-items-center'>
-                  {selectedTicket.itineraries[1].segments.map((segment, i) => (
-                    <div key={i} className='px-1 mr-2'>
-                      <span>
-                        <img
-                          className='carrier-img'
-                          src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
-                          alt=''
-                        />
-                      </span>
-                      <small className='font-weight-bold'>
-                        <span className='ml-2'>{segment.carrierCode} </span>{" "}
-                        <span>{segment.number}</span>
+            {selectedTicket.itineraries[1] ? (
+              <Col xs={12} className='bg-light text-dark'>
+                <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
+                  <div className='pl-3'>
+                    <small className='font-weight-bold'>
+                      {selectedTicket.id}
+                      <span> </span>
+                    </small>
+                    <small>
+                      {Moment(
+                        selectedTicket.itineraries[1].segments[0].departure.at
+                      ).format("MMM Do YY")}{" "}
+                    </small>
+                  </div>
+                  <div className='d-flex align-items-center'>
+                    {selectedTicket.itineraries[1].segments.map(
+                      (segment, i) => (
+                        <div key={i} className='px-1 mr-2'>
+                          <span>
+                            <img
+                              className='carrier-img'
+                              src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
+                              alt=''
+                            />
+                          </span>
+                          <small className='font-weight-bold'>
+                            <span className='ml-2'>{segment.carrierCode} </span>{" "}
+                            <span>{segment.number}</span>
+                          </small>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </Row>
+                <Row
+                  xs={12}
+                  className='d-flex justify-content-between align-items-center px-3 mt-4 pb-3'>
+                  <div xs={3} className='w-25'>
+                    <p>
+                      {
+                        selectedTicket.itineraries[1].segments[0].departure
+                          .iataCode
+                      }
+                    </p>
+                    <h4>
+                      {Moment(
+                        selectedTicket.itineraries[1].segments[0].departure.at
+                      ).format("HH:mm")}
+                    </h4>
+                  </div>
+                  <div xs={6} className='w-50'>
+                    <div className='text-center'>
+                      <small>
+                        {getTime(selectedTicket.itineraries[1].duration)}
                       </small>
                     </div>
-                  ))}
-                </div>
-              </Row>
-              <Row
-                xs={12}
-                className='d-flex justify-content-between align-items-center px-3 mt-4 pb-3'>
-                <div xs={3} className='w-25'>
-                  <p>
-                    {
-                      selectedTicket.itineraries[1].segments[0].departure
-                        .iataCode
-                    }
-                  </p>
-                  <h4>
-                    {Moment(
-                      selectedTicket.itineraries[1].segments[0].departure.at
-                    ).format("HH:mm")}
-                  </h4>
-                </div>
-                <div xs={6} className='w-50'>
-                  <div className='text-center'>
-                    <small>
-                      {getTime(selectedTicket.itineraries[1].duration)}
-                    </small>
+                    <div className='d-flex justify-content-center align-items-center'>
+                      <div className='line'></div>
+                      <ConnectingAirportsOutlinedIcon />
+                      <div className='line'></div>
+                    </div>
+                    <div className='text-center'>
+                      <small className='connection'>
+                        {selectedTicket.itineraries[1].segments.length}{" "}
+                        connection
+                      </small>
+                    </div>
                   </div>
-                  <div className='d-flex justify-content-center align-items-center'>
-                    <div className='line'></div>
-                    <ConnectingAirportsOutlinedIcon />
-                    <div className='line'></div>
+                  <div xs={3} className='w-25 text-right'>
+                    <p>
+                      {
+                        selectedTicket.itineraries[1].segments[
+                          selectedTicket.itineraries[1].segments.length - 1
+                        ].arrival.iataCode
+                      }
+                    </p>
+                    <h4>
+                      {Moment(
+                        selectedTicket.itineraries[1].segments[
+                          selectedTicket.itineraries[1].segments.length - 1
+                        ].arrival.at
+                      ).format("HH:mm")}
+                    </h4>
                   </div>
-                  <div className='text-center'>
-                    <small className='connection'>
-                      {selectedTicket.itineraries[1].segments.length} connection
-                    </small>
-                  </div>
-                </div>
-                <div xs={3} className='w-25 text-right'>
-                  <p>
-                    {
-                      selectedTicket.itineraries[1].segments[
-                        selectedTicket.itineraries[1].segments.length - 1
-                      ].arrival.iataCode
-                    }
-                  </p>
-                  <h4>
-                    {Moment(
-                      selectedTicket.itineraries[1].segments[
-                        selectedTicket.itineraries[1].segments.length - 1
-                      ].arrival.at
-                    ).format("HH:mm")}
-                  </h4>
-                </div>
-              </Row>
-            </Col>
+                </Row>
+              </Col>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ) : (

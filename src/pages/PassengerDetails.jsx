@@ -13,10 +13,19 @@ import { MenuItem, TextField } from "@mui/material"
 import { DatePicker } from "@mui/x-date-pickers"
 import { format } from "date-fns"
 import { MuiTelInput } from "mui-tel-input"
-import { getAmadeusToken, setPassengerDetailsAction } from "../redux/actions"
+import {
+  getAmadeusToken,
+  setBookedTicket,
+  setPassengerDetailsAction,
+} from "../redux/actions"
 import { useDispatch, useSelector } from "react-redux"
 import PassengerDetailsEdit from "../components/PassengerDetailsEdit"
 import ClearIcon from "@mui/icons-material/Clear"
+import Moment from "moment"
+import { Col, Row } from "react-bootstrap"
+import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined"
+import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
+import { useNavigate } from "react-router-dom"
 
 const PassengerDetails = () => {
   const ticket = useSelector(
@@ -27,6 +36,8 @@ const PassengerDetails = () => {
   )
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [makeBooking, setMakeBooking] = useState(null)
   const [selectTicket, setSelectTicket] = useState(null)
   const [passengers, setPassengers] = useState([])
@@ -34,12 +45,12 @@ const PassengerDetails = () => {
   const [error, setError] = useState(false)
   const [disable, setDisable] = useState(false)
 
-  const [title, setTitle] = useState("Mr")
+  const [title, setTitle] = useState("MALE")
   const [firstName, setFirstName] = useState("Sidath")
   const [lastName, setLastName] = useState("Dabare")
-  const [birthday, setBirthDay] = useState("13-03-1984")
+  const [birthday, setBirthDay] = useState("1984-03-13")
   const [email, setEmail] = useState("sidath@email.com")
-  const [countryCode, setCountryCode] = useState("+39")
+  const [countryCode, setCountryCode] = useState("39")
   const [phoneNumber, setPhoneNumber] = useState("3154154151")
   const [passport, setPassport] = useState("x15151515")
   const [birthPlace, setBirthPlace] = useState("Italy")
@@ -77,7 +88,17 @@ const PassengerDetails = () => {
       },
     ],
   }
-
+  const getTime = (str) => {
+    let numbers = str.slice(2, str.length).toLowerCase()
+    let firstNumbers = numbers.slice(0, 2)
+    let secondNumbers = numbers.slice(2, 4)
+    //console.log(firstNumbers)
+    return (
+      firstNumbers +
+      " " +
+      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
+    )
+  }
   const addPassengerDetails = (e) => {
     e.preventDefault()
     dispatch(setPassengerDetailsAction(traveler))
@@ -91,7 +112,7 @@ const PassengerDetails = () => {
     }
     try {
       let res = await fetch(
-        `https://test.api.amadeus.com/v1/shopping/flight-offers/pricing`,
+        `https://test.api.amadeus.com/v1/booking/flight-orders`,
         {
           method: "POST",
           headers,
@@ -99,6 +120,48 @@ const PassengerDetails = () => {
             data: {
               type: "flight-offers-pricing",
               flightOffers: [ticket],
+              travelers: [...passengerDetails],
+              remarks: {
+                general: [
+                  {
+                    subType: "GENERAL_MISCELLANEOUS",
+                    text: "ONLINE BOOKING FROM INCREIBLE VIAJES",
+                  },
+                ],
+              },
+              ticketingAgreement: {
+                option: "DELAY_TO_CANCEL",
+                delay: "6D",
+              },
+              contacts: [
+                {
+                  addresseeName: {
+                    firstName: "PABLO",
+                    lastName: "RODRIGUEZ",
+                  },
+                  companyName: "INCREIBLE VIAJES",
+                  purpose: "STANDARD",
+                  phones: [
+                    {
+                      deviceType: "LANDLINE",
+                      countryCallingCode: "34",
+                      number: "480080071",
+                    },
+                    {
+                      deviceType: "MOBILE",
+                      countryCallingCode: "33",
+                      number: "480080072",
+                    },
+                  ],
+                  emailAddress: "support@increibleviajes.es",
+                  address: {
+                    lines: ["Calle Prado, 16"],
+                    postalCode: "28014",
+                    cityName: "Madrid",
+                    countryCode: "ES",
+                  },
+                },
+              ],
             },
           }),
         }
@@ -111,6 +174,8 @@ const PassengerDetails = () => {
         } else {
           setMakeBooking(true)
         }
+        dispatch(setBookedTicket(data))
+        navigate(`/payment`)
       } else {
         setError(true)
       }
@@ -295,117 +360,205 @@ const PassengerDetails = () => {
                 key={index}
                 setDisable={setDisable}
               />
-              // <Accordion.Item
-              //   key={index}
-              //   eventKey={index}
-              //   className='according-item my-1'>
-              //   <div className='d-flex justify-content-between px-3'>
-              //     <h6 className='d-flex align-items-center'>
-              //       <span> {index + 1}</span>
-              //       <span className='mx-2'> {passenger.gender}</span>
-              //       <span className='mr-2'> {passenger.name.firstName}</span>
-              //       <span> {passenger.name.lastName}</span>
-              //     </h6>
-              //     <Accordion.Header
-              //       className='according-item-header'
-              //       onClick={(e) => {
-              //         e.preventDefault()
-              //         setShowContent(!showContent)
-              //       }}>
-              //       {showContent ? (
-              //         <KeyboardArrowUpIcon />
-              //       ) : (
-              //         <KeyboardArrowDownIcon />
-              //       )}
-              //     </Accordion.Header>
-              //   </div>
-
-              //   <Accordion.Body className='px-3 pb-2'>
-              //     <div className='col-12'>
-              //       <div className='col-12 px-0'>
-              //         {/* <p>
-              //           <span className='mx-1'>
-              //             {passenger.contact.emailAddress}
-              //           </span>
-              //           <span className='mr-2'>
-              //             {" "}
-              //             {passenger.name.firstName}
-              //           </span>
-              //         </p> */}
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4'
-              //           defaultValue={title}
-              //         />
-              //       </div>
-              //       <div className='col-12 px-0 d-flex justify-content-between'>
-              //         {/* <p>
-              //           <span className='mx-1'>
-              //             {passenger.contact.emailAddress}
-              //           </span>
-              //           <span className='mr-2'>
-              //             {" "}
-              //             {passenger.name.firstName}
-              //           </span>
-              //         </p> */}
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={title}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={firstName}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={lastName}
-              //         />
-              //       </div>
-              //       <div className='col-12 px-0'>
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={birthday}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={email}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={countryCode}
-              //         />
-              //       </div>
-              //       <div className='col-12 px-0 d-flex justify-content-between'>
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={phoneNumber}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={passport}
-              //         />
-              //         <input
-              //           type='text'
-              //           className='col-6 col-xs-6 col-md-4 passenger-input-edit'
-              //           defaultValue={birthPlace}
-              //         />
-              //       </div>
-              //     </div>
-              //   </Accordion.Body>
-              // </Accordion.Item>
             ))
           ) : (
             <div>No data</div>
           )}
         </Accordion>
+        <div>
+          {ticket ? (
+            <>
+              <div className='d-flex justify-content-center mt-2 passenger-flight-list-header1 py-2'>
+                <FlightTakeoffSharpIcon />
+                <h6 className='mb-0 mx-2'>Outbound,</h6>
+              </div>
+
+              <Col xs={12} className='bg-light text-dark'>
+                <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
+                  <div className='pl-3'>
+                    <small className='font-weight-bold'>
+                      {ticket.id}
+                      <span> </span>
+                    </small>
+                    <small>
+                      {Moment(
+                        ticket.itineraries[0].segments[0].departure.at
+                      ).format("MMM Do YY")}{" "}
+                    </small>
+                  </div>
+                  <div className='d-flex align-items-center'>
+                    {ticket.itineraries[0].segments.map((segment, i) => (
+                      <div key={i} className='px-1 mr-2'>
+                        <span>
+                          <img
+                            className='carrier-img'
+                            src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
+                            alt=''
+                          />
+                        </span>
+                        <small className='font-weight-bold'>
+                          <span className='ml-2'>{segment.carrierCode} </span>{" "}
+                          <span>{segment.number}</span>
+                        </small>
+                      </div>
+                    ))}
+                  </div>
+                </Row>
+                <Row
+                  xs={12}
+                  className='d-flex justify-content-between align-items-center px-3 mt-4 pb-3'>
+                  <div xs={3} className='w-25'>
+                    <p>
+                      {ticket.itineraries[0].segments[0].departure.iataCode}
+                    </p>
+                    <h4>
+                      {Moment(
+                        ticket.itineraries[0].segments[0].departure.at
+                      ).format("HH:mm")}
+                    </h4>
+                  </div>
+                  <div xs={6} className='w-50'>
+                    <div className='text-center'>
+                      <small>{getTime(ticket.itineraries[0].duration)}</small>
+                    </div>
+                    <div className='d-flex justify-content-center align-items-center'>
+                      <div className='line'></div>
+                      <ConnectingAirportsOutlinedIcon />
+                      <div className='line'></div>
+                    </div>
+                    <div className='text-center'>
+                      <small className='connection'>
+                        {ticket.itineraries[0].segments.length} connection
+                      </small>
+                    </div>
+                  </div>
+                  <div xs={3} className='w-25 text-right'>
+                    <p>
+                      {
+                        ticket.itineraries[0].segments[
+                          ticket.itineraries[0].segments.length - 1
+                        ].arrival.iataCode
+                      }
+                    </p>
+                    <h4>
+                      {Moment(
+                        ticket.itineraries[0].segments[
+                          ticket.itineraries[0].segments.length - 1
+                        ].arrival.at
+                      ).format("HH:mm")}
+                    </h4>
+                  </div>
+                </Row>
+              </Col>
+              {ticket.itineraries[1] ? (
+                <>
+                  <div className='d-flex justify-content-center mt-2 passenger-flight-list-header1 py-2'>
+                    <FlightTakeoffSharpIcon />
+                    <h6 className='mb-0 mx-2'>Intbound,</h6>
+                  </div>
+                  <Col xs={12} className='bg-light text-dark'>
+                    <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
+                      <div className='pl-3'>
+                        <small className='font-weight-bold'>
+                          {ticket.id}
+                          <span> </span>
+                        </small>
+                        <small>
+                          {Moment(
+                            ticket.itineraries[1].segments[0].departure.at
+                          ).format("MMM Do YY")}{" "}
+                        </small>
+                      </div>
+                      <div className='d-flex align-items-center'>
+                        {ticket.itineraries[1].segments.map((segment, i) => (
+                          <div key={i} className='px-1 mr-2'>
+                            <span>
+                              <img
+                                className='carrier-img'
+                                src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
+                                alt=''
+                              />
+                            </span>
+                            <small className='font-weight-bold'>
+                              <span className='ml-2'>
+                                {segment.carrierCode}{" "}
+                              </span>{" "}
+                              <span>{segment.number}</span>
+                            </small>
+                          </div>
+                        ))}
+                      </div>
+                    </Row>
+                    <Row
+                      xs={12}
+                      className='d-flex justify-content-between align-items-center px-3 mt-4 pb-3'>
+                      <div xs={3} className='w-25'>
+                        <p>
+                          {ticket.itineraries[1].segments[0].departure.iataCode}
+                        </p>
+                        <h4>
+                          {Moment(
+                            ticket.itineraries[1].segments[0].departure.at
+                          ).format("HH:mm")}
+                        </h4>
+                      </div>
+                      <div xs={6} className='w-50'>
+                        <div className='text-center'>
+                          <small>
+                            {getTime(ticket.itineraries[1].duration)}
+                          </small>
+                        </div>
+                        <div className='d-flex justify-content-center align-items-center'>
+                          <div className='line'></div>
+                          <ConnectingAirportsOutlinedIcon />
+                          <div className='line'></div>
+                        </div>
+                        <div className='text-center'>
+                          <small className='connection'>
+                            {ticket.itineraries[1].segments.length} connection
+                          </small>
+                        </div>
+                      </div>
+                      <div xs={3} className='w-25 text-right'>
+                        <p>
+                          {
+                            ticket.itineraries[1].segments[
+                              ticket.itineraries[1].segments.length - 1
+                            ].arrival.iataCode
+                          }
+                        </p>
+                        <h4>
+                          {Moment(
+                            ticket.itineraries[1].segments[
+                              ticket.itineraries[1].segments.length - 1
+                            ].arrival.at
+                          ).format("HH:mm")}
+                        </h4>
+                      </div>
+                    </Row>
+                  </Col>
+                </>
+              ) : (
+                ""
+              )}
+            </>
+          ) : (
+            ""
+          )}
+          <div className='d-flex justify-content-end mt-2'>
+            <Button
+              variant='danger'
+              onClick={() => {
+                makeTicketBooking()
+              }}
+              className='d-flex align-items-center'>
+              <span className='mr-2 font-weight-bold'>
+                Confirm details to Continue
+              </span>
+              <FlightTakeoffSharpIcon />
+            </Button>
+          </div>
+        </div>
       </Container>
       <Footer />
     </>

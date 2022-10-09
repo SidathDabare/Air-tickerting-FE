@@ -1,0 +1,15 @@
+/** @format */
+.payment-page-main {
+  height: auto;
+  min-height: 40vh;
+}
+.show-stripe-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}

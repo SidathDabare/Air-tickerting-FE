@@ -9,6 +9,7 @@ import "./App.css"
 import RegisterPage from "./pages/RegisterPage"
 import DetailsPage from "./pages/DetailsPage"
 import PassengerDetails from "./pages/PassengerDetails"
+import PaymentPage from "./pages/PaymentPage"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/search-result' element={<SearchResultPage />} />
           <Route path='/passenger-details' element={<PassengerDetails />} />
+          <Route path='/payment' element={<PaymentPage />} />
           <Route path='/login' element={<LogInPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/details/:id' element={<DetailsPage />} />

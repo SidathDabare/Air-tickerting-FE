@@ -9,6 +9,9 @@ export const SET_LOGGED_IN_USER = "SET_LOGGED_IN_USER"
 export const SET_PASSENGER_DETAILS = "SET_PASSENGER_DETAILS"
 export const EDIT_PASSENGER_DETAILS = "EDIT_PASSENGER_DETAILS"
 export const DELETE_PASSENGER_DETAILS = "DELETE_PASSENGER_DETAILS"
+export const SET_BOOKED_TICKET = "SET_BOOKED_TICKET"
+
+export const TICKET_PAID = "TICKET_PAID"
 
 const clientId = process.env.REACT_APP_CLIENT_ID
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET
@@ -147,5 +150,17 @@ export const deletePassengerDetailsAction = (passenger) => {
   return {
     type: DELETE_PASSENGER_DETAILS,
     payload: passenger,
+  }
+}
+export const setBookedTicket = (ticket) => {
+  return {
+    type: SET_BOOKED_TICKET,
+    payload: ticket,
+  }
+}
+export const ticketPaidAction = (ticketPaid) => {
+  return {
+    type: TICKET_PAID,
+    payload: ticketPaid,
   }
 }

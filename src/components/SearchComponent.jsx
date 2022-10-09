@@ -65,7 +65,7 @@ const SearchComponent = () => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8'>
         <Row className='d-flex justify-content-between'>
-          <div className='col-3 header-btn active'>
+          <div className='col-3 header-btn active-btn'>
             <FlightTakeoffSharpIcon className='header-btn-icon' />
             <span>Book</span>
           </div>
@@ -124,7 +124,7 @@ const SearchComponent = () => {
                 <Stack spacing={1} className='col-6 px-0'>
                   <DatePicker
                     className='trxt-trunucate'
-                    label='Departure date'
+                    label='Departure'
                     value={departureDate}
                     onChange={(newValue) => {
                       setDepartureDate(format(newValue, "yyyy-MM-dd"))
@@ -135,7 +135,7 @@ const SearchComponent = () => {
                 <Stack spacing={1} className='col-6 px-0'>
                   <DatePicker
                     disabled={tripType === "One way" ? true : false}
-                    label='Arrival date'
+                    label='Arrival'
                     value={returnDate}
                     onChange={(newValue) => {
                       setReturnDate(format(newValue, "yyyy-MM-dd"))
