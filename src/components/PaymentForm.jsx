@@ -6,6 +6,8 @@ import React, { useState } from "react"
 import { Button } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import "../style/PaymentForm.css"
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
+import { useNavigate } from "react-router-dom"
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -27,15 +29,18 @@ const CARD_OPTIONS = {
   },
 }
 
-export default function PaymentForm() {
+export default function PaymentForm(props) {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
-  console.log(parseInt(bookedTicket.data.flightOffers[0].price.total))
+
+  // console.log(bookedTicket.data.flightOffers[0].price.total)
+  // console.log(parseInt(bookedTicket.data.flightOffers[0].price.total))
 
   const [success, setSuccess] = useState(false)
   const stripe = useStripe()
   const elements = useElements()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -60,6 +65,7 @@ export default function PaymentForm() {
         if (response.data.success) {
           console.log("Successful payment")
           setSuccess(true)
+          props.setPayment(true)
         }
       } catch (error) {
         console.log("Error", error)
@@ -73,6 +79,14 @@ export default function PaymentForm() {
     <>
       {!success ? (
         <form>
+          <div className='d-flex justify-content-center mt-5'>
+            <h5>
+              <span>Price : </span>
+              <span>{bookedTicket.data.flightOffers[0].price.currency}</span>
+              <span> {bookedTicket.data.flightOffers[0].price.total}</span>
+            </h5>
+          </div>
+
           <div className='mt-3'>
             <fieldset className='FormGroup'>
               <div className='FormRow'>
@@ -88,9 +102,20 @@ export default function PaymentForm() {
           </div>
         </form>
       ) : (
-        <div className='d-flex justify-content-center mt-5'>
-          <h2>Payment Succesfull..!</h2>
-        </div>
+        <>
+          <div className='d-flex justify-content-center align-items-center mt-5'>
+            <h4 className='mb-0'>Payment Succesfull..!</h4>
+            <CheckCircleOutlineIcon
+              className='text-success ml-2'
+              style={{ fontSize: "25px" }}
+            />
+          </div>
+          <div className='d-flex justify-content-center mt-3'>
+            <Button onClick={() => navigate("/booking-details")}>
+              Proceed
+            </Button>
+          </div>
+        </>
       )}
     </>
   )

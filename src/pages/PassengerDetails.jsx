@@ -237,7 +237,6 @@ const PassengerDetails = () => {
                   <MenuItem value='MALE'>Mr</MenuItem>
                   <MenuItem value='FEMALE'>Mrs</MenuItem>
                   <MenuItem value='FEMALE'>Miss</MenuItem>
-                  <MenuItem value='MALE'>Ms</MenuItem>
                 </TextField>
               </div>
               <div className='col-12 py-2 mt-1 d-flex'>

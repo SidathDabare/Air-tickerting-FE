@@ -9,10 +9,10 @@ const PUBLIC_KEY = process.env.REACT_APP_PUBLISHABLE_KEY
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
-const StripeContainer = () => {
+const StripeContainer = (props) => {
   return (
     <Elements stripe={stripeTestPromise}>
-      <PaymentForm />
+      <PaymentForm setPayment={props.setPayment} />
     </Elements>
   )
 }

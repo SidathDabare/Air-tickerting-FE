@@ -158,9 +158,9 @@ export const setBookedTicket = (ticket) => {
     payload: ticket,
   }
 }
-export const ticketPaidAction = (ticketPaid) => {
-  return {
-    type: TICKET_PAID,
-    payload: ticketPaid,
-  }
-}
+// export const ticketPaidAction = (ticketPaid) => {
+//   return {
+//     type: TICKET_PAID,
+//     payload: ticketPaid,
+//   }
+// }

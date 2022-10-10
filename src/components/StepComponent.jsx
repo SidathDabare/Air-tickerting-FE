@@ -15,13 +15,13 @@ const StepComponent = (props) => {
           <div className='d-flex align-items-end'>
             <h1
               className={
-                props.ticketSelect ? "mb-0 ml-2 text-danger" : "mb-0 ml-2"
+                props.ticketSelect ? "mb-0 ml-2 text-success" : "mb-0 ml-2"
               }>
               1
             </h1>
             <small
               className={
-                props.ticketSelect ? "mb-1 ml-2 text-danger" : "mb-1 ml-2"
+                props.ticketSelect ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
               }>
               Fights
             </small>
@@ -29,7 +29,7 @@ const StepComponent = (props) => {
           <div
             className={
               props.ticketSelect
-                ? "active bg-danger"
+                ? "active bg-success"
                 : "passenger-empty-div mr-1"
             }></div>
         </div>
@@ -37,51 +37,77 @@ const StepComponent = (props) => {
           <div className='d-flex align-items-end'>
             <h1
               className={
-                props.passenger ? "mb-0 ml-2 text-danger" : "mb-0 ml-2"
+                props.passenger ? "mb-0 ml-2 text-success" : "mb-0 ml-2"
               }>
               2
             </h1>
             <small
               className={
-                props.passenger ? "mb-1 ml-2 text-danger" : "mb-1 ml-2"
+                props.passenger ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
               }>
               Passengers
             </small>
           </div>
           <div
             className={
-              props.passenger ? "active bg-danger" : "passenger-empty-div"
+              props.passenger ? "active bg-success" : "passenger-empty-div"
             }></div>
         </div>
         <div className='step-container'>
           <div className='d-flex align-items-end'>
             <h1
-              className={props.option ? "mb-0 ml-2 text-danger" : "mb-0 ml-2"}>
+              className={props.option ? "mb-0 ml-2 text-success" : "mb-0 ml-2"}>
               2
             </h1>
             <small
-              className={props.option ? "mb-1 ml-2 text-danger" : "mb-1 ml-2"}>
+              className={props.option ? "mb-1 ml-2 text-success" : "mb-1 ml-2"}>
               options
             </small>
           </div>
           <div
             className={
-              props.option ? "active bg-danger" : "passenger-empty-div"
+              props.option ? "active bg-success" : "passenger-empty-div"
             }></div>
         </div>
         <div className='step-container'>
           <div className='d-flex align-items-end'>
-            <h1 className='mb-0 ml-2'>4</h1>
-            <small className='mb-1 ml-2'>payment</small>
+            <h1
+              className={
+                props.payment ? "mb-0 ml-2 text-success" : "mb-0 ml-2"
+              }>
+              4
+            </h1>
+            <small
+              className={
+                props.payment ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+              }>
+              payment
+            </small>
           </div>
-          <div className='passenger-empty-div'></div>
+          <div
+            className={
+              props.payment ? "active bg-success" : "passenger-empty-div"
+            }></div>
         </div>
         <div className='step-container'>
           <div className='d-flex align-items-end'>
-            <h1 className='mb-0 ml-2'>5</h1>
-            <small className='mb-1 ml-2'>Confirm</small>
+            <h1
+              className={
+                props.confirm ? "mb-0 ml-2 text-success" : "mb-0 ml-2"
+              }>
+              5
+            </h1>
+            <small
+              className={
+                props.confirm ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+              }>
+              Completed
+            </small>
           </div>
-          <div className='passenger-empty-div'></div>
+          <div
+            className={
+              props.confirm ? "active bg-success" : "passenger-empty-div"
+            }></div>
         </div>
       </div>
     </div>

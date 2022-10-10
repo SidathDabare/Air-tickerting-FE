@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage"
 import DetailsPage from "./pages/DetailsPage"
 import PassengerDetails from "./pages/PassengerDetails"
 import PaymentPage from "./pages/PaymentPage"
+import BookingDeatils from "./pages/BookingDeatils"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/payment' element={<PaymentPage />} />
           <Route path='/login' element={<LogInPage />} />
           <Route path='/register' element={<RegisterPage />} />
+          <Route path='/booking-details' element={<BookingDeatils />} />
           <Route path='/details/:id' element={<DetailsPage />} />
         </Routes>
       </BrowserRouter>{" "}

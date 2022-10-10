@@ -64,7 +64,7 @@ const SummeryContainer = () => {
               <span>{selectedTicket.price.currency} </span>
               <span>{selectedTicket.price.total}</span>
             </h6>
-            <div className='bg-danger'>
+            <div className='bg-info rounded'>
               <h6 className='mb-0 p-2'>
                 <span> View summary</span>
                 <span onClick={() => setShowSummery(!showSummery)}>

@@ -1,9 +1,9 @@
 /** @format */
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import "../style/PaymentPage.css"
 import { Button, Container } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import Footer from "../components/Footer"
 import MyNavbar from "../components/MyNavbar"
 import StepComponent from "../components/StepComponent"
@@ -18,9 +18,10 @@ const PaymentPage = () => {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
-  console.log(bookedTicket.data.flightOffers[0].price.total)
+  //console.log(bookedTicket.data.flightOffers[0].price.total)
 
   const [showItem, setShowItem] = useState(false)
+  const [payment, setPayment] = useState(false)
 
   const getTime = (str) => {
     let numbers = str.slice(2, str.length).toLowerCase()
@@ -38,7 +39,12 @@ const PaymentPage = () => {
       <MyNavbar />
       <Container>
         <SummeryContainer />
-        <StepComponent ticketSelect={true} passenger={true} option={true} />
+        <StepComponent
+          ticketSelect={true}
+          passenger={true}
+          option={true}
+          payment={payment}
+        />
         <div className='col-12 d-flex py-3 payment-page-main'>
           <div
             className={
@@ -312,7 +318,7 @@ const PaymentPage = () => {
             {showItem ? (
               <div className='show-stripe-container'>
                 <div className='col-12 col-md-6'>
-                  <StripeContainer />
+                  <StripeContainer setPayment={setPayment} />
                 </div>
               </div>
             ) : (
