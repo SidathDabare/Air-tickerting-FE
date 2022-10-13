@@ -14,6 +14,7 @@ import SmsFailedIcon from "@mui/icons-material/SmsFailed"
 import FirstPageIcon from "@mui/icons-material/FirstPage"
 import { useSelector } from "react-redux"
 import { getAmadeusToken } from "../redux/actions"
+import { getTime } from "../redux/actions"
 
 const FlightItemModel = (props) => {
   const ticket = useSelector(
@@ -26,17 +27,6 @@ const FlightItemModel = (props) => {
   const [available, setAvailable] = useState(false)
   const [error, setError] = useState(false)
 
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
   const checkTicketAvailable = async () => {
     let token = await getAmadeusToken()
     let headers = {

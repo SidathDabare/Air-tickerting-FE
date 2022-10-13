@@ -11,23 +11,12 @@ import FlightItemModel from "./FlightItemModel"
 import Loader from "./Loader"
 import { useDispatch } from "react-redux"
 import { selectedTicketAction } from "../redux/actions/index"
+import { getTime } from "../redux/actions"
 
 const FlightItemArrival = ({ listItem }) => {
   const [modalShow, setModalShow] = useState(false)
 
   const dispatch = useDispatch()
-
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
 
   useEffect(() => {
     //console.log(listItem)

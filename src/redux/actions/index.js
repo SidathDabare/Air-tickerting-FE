@@ -87,7 +87,7 @@ export const searchAction = (
       }
     } else {
       let response = await fetch(
-        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&max=3`,
+        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&max=5`,
         {
           method: "GET",
           headers,
@@ -116,6 +116,10 @@ export const searchAction = (
   }
 }
 
+export const getTime = (str) => {
+  let numbers = str.slice(2, str.length).toLowerCase()
+  return numbers
+}
 export const selectedTicketAction = (ticket) => {
   return {
     type: SELECTED_TICKET,

@@ -10,6 +10,7 @@ import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import Moment from "moment"
 import Loader from "./Loader"
 import AddPassengerDetails from "./AddPassengerDetails"
+import { getTime } from "../redux/actions"
 
 const DetailsComponent = () => {
   const userDetails = useSelector((state) => state.userReducer.loggedInUser)
@@ -21,17 +22,6 @@ const DetailsComponent = () => {
   const [passengerDetails, setPassengerDetails] = useState(null)
   const [modalShow, setModalShow] = useState(false)
 
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
   useEffect(() => {
     setSelectTicket(ticket)
   }, [])

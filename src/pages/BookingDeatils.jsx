@@ -8,7 +8,7 @@ import Footer from "../components/Footer"
 import MyNavbar from "../components/MyNavbar"
 import StepComponent from "../components/StepComponent"
 import SummeryContainer from "../components/SummeryContainer"
-import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
+
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive"
 import { Col, Row } from "react-bootstrap"
 import Moment from "moment"
@@ -19,6 +19,8 @@ const BookingDeatils = () => {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
+  console.log(bookedTicket.data)
+
   const getTime = (str) => {
     let numbers = str.slice(2, str.length).toLowerCase()
     let firstNumbers = numbers.slice(0, 2)
@@ -31,13 +33,14 @@ const BookingDeatils = () => {
     )
   }
   const details = {
-    travelers: [...bookedTicket.data.travelers],
-    price1: 20,
-    price2: 45,
-    receiptId: "bkvjbjvbvjb",
-    companyName: bookedTicket.data.contacts[0].companyName,
+    data: bookedTicket.data,
   }
-
+  const emailBody = {
+    email: "sidath2007@yahoo.com",
+    subject: "TICKET BOOKING",
+    text: "Your booking is confirmed",
+    html: "<p>hello Sir</p>",
+  }
   const createAndDownloadPdf = () => {
     axios
       .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
@@ -51,6 +54,16 @@ const BookingDeatils = () => {
 
         saveAs(pdfBlob, "newPdf.pdf")
       })
+  }
+
+  const sendEmailWithAttachmhment = async () => {
+    createAndDownloadPdf()
+    let res = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/users/register`,
+      emailBody
+    )
+
+    console.log(res.data)
   }
   return (
     <>
@@ -330,6 +343,7 @@ const BookingDeatils = () => {
           </div>
           <div>
             <Button onClick={createAndDownloadPdf}>PDF</Button>
+            <Button onClick={sendEmailWithAttachmhment}>Email</Button>
           </div>
         </div>
       </Container>

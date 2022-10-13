@@ -11,23 +11,12 @@ import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirpor
 import FlightItemModel from "./FlightItemModel"
 import Loader from "./Loader"
 import { selectedTicketAction } from "../redux/actions"
+import { getTime } from "../redux/actions"
 
 const FlightItemDeparture = ({ listItem }) => {
   const [modalShow, setModalShow] = useState(false)
   //const [details, setDetails] = useState({})
   const dispatch = useDispatch()
-
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
 
   useEffect(() => {
     // setDetails(listItem)

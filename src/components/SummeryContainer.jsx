@@ -8,6 +8,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import { useSelector } from "react-redux"
 import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined"
+import { getTime } from "../redux/actions"
 
 const SummeryContainer = () => {
   const selectedTicket = useSelector(
@@ -15,17 +16,7 @@ const SummeryContainer = () => {
   )
   //console.log(selectedTicket)
   const [showSummery, setShowSummery] = useState(false)
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
+
   return (
     <>
       {selectedTicket ? (
