@@ -4,7 +4,7 @@ import React from "react"
 import "../style/StepComponent.css"
 
 const StepComponent = (props) => {
-  console.log(props)
+  //console.log(props)
   return (
     <div className='py-2 step-container-main mt-1'>
       <div className='d-flex col-12'>

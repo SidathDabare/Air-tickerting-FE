@@ -2,8 +2,8 @@
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
-import React, { useState } from "react"
-import { Button } from "react-bootstrap"
+import React, { useEffect, useState } from "react"
+import { Button, Container } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import "../style/PaymentForm.css"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
@@ -30,6 +30,8 @@ const CARD_OPTIONS = {
 }
 
 export default function PaymentForm(props) {
+  const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
+
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
@@ -42,8 +44,30 @@ export default function PaymentForm(props) {
   const elements = useElements()
   const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const saveOrders = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BE_URL}/orders/${bookedTicket._id}/tickets`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            tickets: [...bookedTicket],
+          }),
+        }
+      )
+      if (res.ok) {
+        let data = await res.json()
+        console.log(data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubmit = async () => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -63,9 +87,12 @@ export default function PaymentForm(props) {
         )
 
         if (response.data.success) {
+          props.setLoader(false)
           console.log("Successful payment")
           setSuccess(true)
           props.setPayment(true)
+        } else {
+          props.setLoader(true)
         }
       } catch (error) {
         console.log("Error", error)
@@ -74,7 +101,7 @@ export default function PaymentForm(props) {
       console.log(error.message)
     }
   }
-
+  useEffect(() => {}, [props])
   return (
     <>
       {!success ? (
@@ -82,6 +109,7 @@ export default function PaymentForm(props) {
           <div className='d-flex justify-content-center mt-5'>
             <h5>
               <span>Price : </span>
+              <button onClick={saveOrders}>save Order</button>
               <span>{bookedTicket.data.flightOffers[0].price.currency}</span>
               <span> {bookedTicket.data.flightOffers[0].price.total}</span>
             </h5>
@@ -96,7 +124,13 @@ export default function PaymentForm(props) {
           </div>
 
           <div className='d-flex justify-content-center'>
-            <Button className='col-6 mx-auto' onClick={handleSubmit}>
+            <Button
+              className='col-6 mx-auto'
+              onClick={(e) => {
+                e.preventDefault()
+                handleSubmit()
+                props.setLoader(true)
+              }}>
               Pay Now
             </Button>
           </div>
@@ -111,7 +145,12 @@ export default function PaymentForm(props) {
             />
           </div>
           <div className='d-flex justify-content-center mt-3'>
-            <Button onClick={() => navigate("/booking-details")}>
+            <Button
+              onClick={(e) => {
+                e.preventDefault()
+                saveOrders(loggedUser._id)
+                navigate("/booking-details")
+              }}>
               Proceed
             </Button>
           </div>

@@ -2,13 +2,10 @@
 
 import React, { useEffect, useState } from "react"
 import { Button, Container, Dropdown, Form, Row, Stack } from "react-bootstrap"
-import { useDispatch } from "react-redux"
-import { searchAction } from "../redux/actions"
+import { useDispatch, useSelector } from "react-redux"
+import { searchAction, getAmadeusToken } from "../redux/actions"
 import "../style/SearchComponent.css"
-
-import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import DocumentScannerSharpIcon from "@mui/icons-material/DocumentScannerSharp"
 import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp"
@@ -23,11 +20,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { format, compareAsc } from "date-fns"
 
 const SearchComponent = () => {
-  //let defaultDate = Moment(new Date()).format("YYYY-MM-DD")
-  let defaultDate = format(new Date(2014, 1, 11), "MM/dd/yyyy")
-  let listItems = useSelector((state) => state.searchReducer.searchData)
-  let isLoading = useSelector((state) => state.searchReducer.loading)
-
   const [originLocationCode, setOriginLocationCode] = useState("")
   const [destinationLocationCode, setDestinationLocationCode] = useState("")
   const [departureDate, setDepartureDate] = useState(null)
@@ -35,168 +27,233 @@ const SearchComponent = () => {
   const [tripType, setTripType] = useState("")
   const [adults, setAdults] = useState("")
 
-  const navigate = useNavigate()
+  const [loader, setLoader] = useState(false)
+  const [searchDisabled, setSearchDisabled] = useState(false)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    const items = JSON.parse(localStorage.getItem("persist:root"))
-
-    //localStorage.clear()
-
-    dispatch(
-      searchAction(
-        originLocationCode,
-        destinationLocationCode,
-        departureDate,
-        tripType,
-        returnDate,
-        adults
-      )
-    )
-    navigate("/search-result")
+  const fetchData = async (url) => {
+    let token = await getAmadeusToken()
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    }
+    let res = await fetch(url, {
+      method: "GET",
+      headers,
+    })
+    if (res.ok) {
+      let data = await res.json()
+      setLoader(false)
+      dispatch(searchAction(data))
+      navigate("/search-result")
+    } else {
+      setLoader(true)
+    }
   }
+
+  const handleSearch = async (e) => {
+    e.preventDefault()
+    setLoader(true)
+
+    if (tripType === "One way") {
+      fetchData(
+        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&adults=${adults}&max=5`
+      )
+    } else {
+      fetchData(
+        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&max=5`
+      )
+    }
+  }
+  // const handleSearch = (e) => {
+  //   e.preventDefault()
+  //   // if (!ticketItem === {}) {
+  //   //   dispatch(deleteTicketDataAction({}))
+  //   // }
+  //   dispatch(
+  //     searchAction(
+  //       originLocationCode,
+  //       destinationLocationCode,
+  //       departureDate,
+  //       tripType,
+  //       returnDate,
+  //       adults
+  //     )
+  //   )
+
+  //   navigate("/search-result")
+  // }
   useEffect(() => {
-    console.log(adults)
-  }, [])
+    if (
+      originLocationCode &&
+      destinationLocationCode &&
+      departureDate &&
+      adults
+    ) {
+      setSearchDisabled(false)
+    } else {
+      setSearchDisabled(true)
+    }
+  }, [
+    originLocationCode,
+    destinationLocationCode,
+    departureDate,
+    adults,
+    searchDisabled,
+  ])
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8'>
-        <Row className='d-flex justify-content-between'>
-          <div className='col-3 header-btn active-btn'>
-            <FlightTakeoffSharpIcon className='header-btn-icon' />
-            <span>Book</span>
-          </div>
-          <div className='col-3 header-btn'>
-            <DocumentScannerSharpIcon className='header-btn-icon' />
-            <span className='text-truncate'>Manage booking</span>
-          </div>
-          <div className='col-3 header-btn'>
-            <CheckCircleOutlineSharpIcon className='header-btn-icon' />
-            <span>Check-in</span>
-          </div>
-          <div className='col-3 header-btn'>
-            <ModeOfTravelSharpIcon className='header-btn-icon' />
-            <span>Flight status</span>
-          </div>
-        </Row>
-        <Row className='mt-4 mx-2'>
-          <Form className='col-12'>
-            <Row xs={12} className='d-flex justify-content-between'>
-              <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <InputAutoComplete
-                  getInput={setOriginLocationCode}
-                  label={"Departure"}
-                />
-              </div>
-              <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <InputAutoComplete
-                  getInput={setDestinationLocationCode}
-                  label={"Arrival"}
-                />
-              </div>
-              <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <Stack spacing={2} className='border-0'>
-                  <TextField
-                    className='w-100 input-select'
-                    label='Trip type'
-                    select
-                    // SelectProps={{
-                    //   multiple: true,
-                    // }}
-                    size='large'
-                    color='info'
-                    // helperText='Please select your country'
-                    value={tripType}
-                    onChange={(e) => setTripType(e.target.value)}>
-                    <MenuItem value='returnDate'>Return</MenuItem>
-                    <MenuItem value='One way'>One way</MenuItem>
-                    <MenuItem value='3' disabled>
-                      Multi-city
-                    </MenuItem>
-                  </TextField>
-                </Stack>
-              </div>
-
-              <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <Stack spacing={1} className='col-6 px-0'>
-                  <DatePicker
-                    className='trxt-trunucate'
-                    label='Departure'
-                    value={departureDate}
-                    onChange={(newValue) => {
-                      setDepartureDate(format(newValue, "yyyy-MM-dd"))
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
+    <>
+      {loader ? (
+        <Container>
+          <Loader />
+        </Container>
+      ) : (
+        ""
+      )}
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8'>
+          <Row className='d-flex justify-content-between'>
+            <div className='col-3 header-btn active-btn'>
+              <FlightTakeoffSharpIcon className='header-btn-icon' />
+              <span>Book</span>
+            </div>
+            <div className='col-3 header-btn'>
+              <DocumentScannerSharpIcon className='header-btn-icon' />
+              <span className='text-truncate'>Manage booking</span>
+            </div>
+            <div className='col-3 header-btn'>
+              <CheckCircleOutlineSharpIcon className='header-btn-icon' />
+              <span>Check-in</span>
+            </div>
+            <div className='col-3 header-btn'>
+              <ModeOfTravelSharpIcon className='header-btn-icon' />
+              <span>Flight status</span>
+            </div>
+          </Row>
+          <Row className='mt-4 mx-2'>
+            <Form className='col-12'>
+              <Row xs={12} className='d-flex justify-content-between'>
+                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <InputAutoComplete
+                    getInput={setOriginLocationCode}
+                    label={"Departure"}
                   />
-                </Stack>
-                <Stack spacing={1} className='col-6 px-0'>
-                  <DatePicker
-                    disabled={tripType === "One way" ? true : false}
-                    label='Arrival'
-                    value={returnDate}
-                    onChange={(newValue) => {
-                      setReturnDate(format(newValue, "yyyy-MM-dd"))
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
+                </div>
+                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <InputAutoComplete
+                    getInput={setDestinationLocationCode}
+                    label={"Arrival"}
                   />
-                </Stack>
-              </div>
-              <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <Stack spacing={2} className='border-0 col-6 px-0 '>
-                  <TextField
-                    className='w-100 input-select'
-                    label='Passenger'
-                    select
-                    size='large'
-                    color='info'
-                    // helperText='Please select your country'
-                    value={adults}
-                    onChange={(e) => setAdults(e.target.value)}>
-                    <MenuItem value='1'>One</MenuItem>
-                    <MenuItem value='2'>Two</MenuItem>
-                    <MenuItem value='3'>Three</MenuItem>
-                  </TextField>
-                </Stack>
-                <Stack spacing={2} className='border-0 col-6 px-0'>
-                  <TextField
-                    className='w-100 input-select'
-                    label='Class'
-                    select
-                    disabled
-                    // SelectProps={{
-                    //   multiple: true,
-                    // }}
-                    size='large'
-                    color='info'
-                    // helperText='Please select your country'
-                  >
-                    <MenuItem value='returnDate'>Return</MenuItem>
-                    <MenuItem value='2'>One way</MenuItem>
-                    <MenuItem value='3' disabled>
-                      Multi-city
-                    </MenuItem>
-                  </TextField>
-                </Stack>
-              </div>
+                </div>
+                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <Stack spacing={2} className='border-0'>
+                    <TextField
+                      className='w-100 input-select'
+                      label='Trip type'
+                      select
+                      // SelectProps={{
+                      //   multiple: true,
+                      // }}
+                      size='large'
+                      color='info'
+                      // helperText='Please select your country'
+                      value={tripType}
+                      onChange={(e) => setTripType(e.target.value)}>
+                      <MenuItem value='returnDate'>Return</MenuItem>
+                      <MenuItem value='One way'>One way</MenuItem>
+                      <MenuItem value='3' disabled>
+                        Multi-city
+                      </MenuItem>
+                    </TextField>
+                  </Stack>
+                </div>
 
-              <div className='d-flex justify-content-center align-items-center col-6 col-xs-6 col-md-4 mb-3 px-1'>
-                <Button
-                  id='search-button'
-                  type='submit'
-                  className='w-100 h-100 bg-warning border-0 text-dark'
-                  onClick={handleSearch}>
-                  <span className='mr-2'>Show flights</span>
-                  <FlightTakeoffSharpIcon />
-                </Button>
-              </div>
-            </Row>
-          </Form>
-        </Row>
-      </Container>
-    </LocalizationProvider>
+                <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <Stack spacing={1} className='col-6 px-0'>
+                    <DatePicker
+                      className='trxt-trunucate'
+                      label='Departure'
+                      value={departureDate}
+                      onChange={(newValue) => {
+                        setDepartureDate(format(newValue, "yyyy-MM-dd"))
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </Stack>
+                  <Stack spacing={1} className='col-6 px-0'>
+                    <DatePicker
+                      disabled={tripType === "One way" ? true : false}
+                      label='Arrival'
+                      value={returnDate}
+                      onChange={(newValue) => {
+                        setReturnDate(format(newValue, "yyyy-MM-dd"))
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </Stack>
+                </div>
+                <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <Stack spacing={2} className='border-0 col-6 px-0 '>
+                    <TextField
+                      className='w-100 input-select'
+                      label='Passenger'
+                      select
+                      size='large'
+                      color='info'
+                      // helperText='Please select your country'
+                      value={adults}
+                      onChange={(e) => setAdults(e.target.value)}>
+                      <MenuItem value='1'>One</MenuItem>
+                      <MenuItem value='2'>Two</MenuItem>
+                      <MenuItem value='3'>Three</MenuItem>
+                    </TextField>
+                  </Stack>
+                  <Stack spacing={2} className='border-0 col-6 px-0'>
+                    <TextField
+                      className='w-100 input-select'
+                      label='Class'
+                      select
+                      disabled
+                      // SelectProps={{
+                      //   multiple: true,
+                      // }}
+                      size='large'
+                      color='info'
+                      // helperText='Please select your country'
+                    >
+                      <MenuItem value='returnDate'>Return</MenuItem>
+                      <MenuItem value='2'>One way</MenuItem>
+                      <MenuItem value='3' disabled>
+                        Multi-city
+                      </MenuItem>
+                    </TextField>
+                  </Stack>
+                </div>
+
+                <div className='d-flex justify-content-center align-items-center col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                  <Button
+                    disabled={searchDisabled ? true : false}
+                    id='search-button'
+                    type='submit'
+                    className={
+                      searchDisabled
+                        ? "w-100 h-100 bg-secondary border-0"
+                        : "w-100 h-100 bg-info font-weight-bold"
+                    }
+                    onClick={handleSearch}>
+                    <span className='mr-2'>Show flights</span>
+                    <FlightTakeoffSharpIcon />
+                  </Button>
+                </div>
+              </Row>
+            </Form>
+          </Row>
+        </Container>
+      </LocalizationProvider>
+    </>
   )
 }
 

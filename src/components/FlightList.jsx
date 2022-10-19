@@ -18,12 +18,7 @@ const FlightList = () => {
   const [flightData, setFlightData] = useState({})
 
   useEffect(() => {
-    //localStorage.clear()
-
     setFlightData(listItems)
-    //console.log(flightData)
-    // console.log(isLoading)
-    //console.log(isError)
   }, [listItems, flightData])
   return (
     <Container className='mt-3 bg-tranperent flight-list px-0'>
@@ -34,8 +29,10 @@ const FlightList = () => {
           <Loader />
         </div>
       )}
-      {isLoading ? (
-        <Alert variant='danger'>An error happened :(</Alert>
+      {isError ? (
+        <div className='h-50 w-100'>
+          <Alert variant='danger'>An error happened :(</Alert>
+        </div>
       ) : (
         <>
           {flightData.data &&

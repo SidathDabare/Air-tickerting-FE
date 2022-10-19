@@ -10,6 +10,7 @@ export const SET_PASSENGER_DETAILS = "SET_PASSENGER_DETAILS"
 export const EDIT_PASSENGER_DETAILS = "EDIT_PASSENGER_DETAILS"
 export const DELETE_PASSENGER_DETAILS = "DELETE_PASSENGER_DETAILS"
 export const SET_BOOKED_TICKET = "SET_BOOKED_TICKET"
+export const DELETE_TICKET_DATA = "DELETE_TICKET_DATA"
 
 export const TICKET_PAID = "TICKET_PAID"
 
@@ -45,74 +46,110 @@ export const getAmadeusToken = async () => {
   }
 }
 
-export const searchAction = (
-  originLocationCode,
-  destinationLocationCode,
-  departureDate,
-  tripType,
-  returnDate,
-  adults
-) => {
-  return async (dispatch) => {
-    let token = await getAmadeusToken()
-    //console.log(token)
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-type": "application/json",
-    }
+// export const searchAction = (
+//   originLocationCode,
+//   destinationLocationCode,
+//   departureDate,
+//   tripType,
+//   returnDate,
+//   adults
+// ) => {
+//   return async (dispatch) => {
+//     let token = await getAmadeusToken()
+//     //console.log(token)
+//     let headers = {
+//       Authorization: `Bearer ${token}`,
+//       "Content-type": "application/json",
+//     }
 
-    if (tripType === "One way") {
-      let response = await fetch(
-        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&adults=${adults}&max=5`,
-        {
-          method: "GET",
-          headers,
-        }
-      )
-      if (response.ok) {
-        let searchData = await response.json()
-        //console.log(searchData)
-        dispatch({
-          type: SEARCH_TICKET,
-          payload: searchData,
-        })
-        dispatch({
-          type: SET_LOADING,
-        })
-      } else {
-        console.log("Error")
-        dispatch({
-          type: GET_DATA_ERROR,
-        })
-      }
-    } else {
-      let response = await fetch(
-        `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&max=5`,
-        {
-          method: "GET",
-          headers,
-        }
-      )
-      if (response.ok) {
-        let searchData = await response.json()
-        //console.log(searchData)
-        dispatch({
-          type: SEARCH_TICKET,
-          payload: searchData,
-        })
-        dispatch({
-          type: SET_LOADING,
-        })
-      } else {
-        console.log("Error")
-        dispatch({
-          type: GET_DATA_ERROR,
-        })
-        dispatch({
-          type: SET_LOADING,
-        })
-      }
+//     if (tripType === "One way") {
+//       let response = await fetch(
+//         `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&adults=${adults}&max=5`,
+//         {
+//           method: "GET",
+//           headers,
+//         }
+//       )
+//       if (response.ok) {
+//         let searchData = await response.json()
+
+//         dispatch({
+//           type: SEARCH_TICKET,
+//           payload: searchData,
+//         })
+//         dispatch({
+//           type: SET_LOADING,
+//         })
+//       } else {
+//         console.log("Error")
+//         dispatch({
+//           type: GET_DATA_ERROR,
+//         })
+//       }
+//     } else {
+//       let response = await fetch(
+//         `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocationCode}&destinationLocationCode=${destinationLocationCode}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${adults}&max=5`,
+//         {
+//           method: "GET",
+//           headers,
+//         }
+//       )
+//       if (response.ok) {
+//         let searchData = await response.json()
+
+//         dispatch({
+//           type: SEARCH_TICKET,
+//           payload: searchData,
+//         })
+//         dispatch({
+//           type: SET_LOADING,
+//         })
+//       } else {
+//         console.log("Error")
+//         dispatch({
+//           type: GET_DATA_ERROR,
+//         })
+//         dispatch({
+//           type: SET_LOADING,
+//         })
+//       }
+//     }
+//   }
+// }
+export const searchAction = (data) => {
+  return async (dispatch) => {
+    try {
+      let ticketData = await data
+      dispatch({
+        type: SEARCH_TICKET,
+        payload: ticketData,
+      })
+      dispatch({
+        type: SET_LOADING,
+      })
+    } catch (error) {
+      dispatch({
+        type: GET_DATA_ERROR,
+      })
     }
+  }
+}
+// export const searchAction = (data) => {
+//   return {
+//     type: SEARCH_TICKET,
+//     payload: data,
+//   }
+// }
+export const isLoading = (data) => {
+  return {
+    type: SEARCH_TICKET,
+    payload: data,
+  }
+}
+export const deleteTicketDataAction = (data) => {
+  return {
+    type: DELETE_TICKET_DATA,
+    payload: data,
   }
 }
 

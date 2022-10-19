@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import "../style/PaymentPage.css"
 import { Button, Container } from "react-bootstrap"
 import { useSelector } from "react-redux"
+import { getTime } from "../redux/actions"
 import Footer from "../components/Footer"
 import MyNavbar from "../components/MyNavbar"
 import StepComponent from "../components/StepComponent"
@@ -13,8 +14,12 @@ import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirpor
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import { Col, Row } from "react-bootstrap"
 import Moment from "moment"
+import Loader from "../components/Loader"
 
 const PaymentPage = () => {
+  // const bookedTicket = useSelector(
+  //   (state) => state.selectedTicketReducer.selectedTicket
+  // )
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
@@ -22,20 +27,16 @@ const PaymentPage = () => {
 
   const [showItem, setShowItem] = useState(false)
   const [payment, setPayment] = useState(false)
-
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
+  const [loader, setLoader] = useState(false)
   return (
     <>
+      {loader ? (
+        <Container>
+          <Loader />
+        </Container>
+      ) : (
+        ""
+      )}
       <MyNavbar />
       <Container>
         <SummeryContainer />
@@ -318,7 +319,10 @@ const PaymentPage = () => {
             {showItem ? (
               <div className='show-stripe-container'>
                 <div className='col-12 col-md-6'>
-                  <StripeContainer setPayment={setPayment} />
+                  <StripeContainer
+                    setPayment={setPayment}
+                    setLoader={setLoader}
+                  />
                 </div>
               </div>
             ) : (

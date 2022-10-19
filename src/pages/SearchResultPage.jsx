@@ -12,7 +12,7 @@ const SearchResultPage = () => {
     <div>
       <MyNavbar />
       <Container>
-        <StepComponent />
+        <StepComponent ticketSelect={true} />
         <FlightList />
       </Container>
 

@@ -19,7 +19,7 @@ const BookingDeatils = () => {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
-  console.log(bookedTicket.data)
+  //console.log(bookedTicket.data)
 
   const getTime = (str) => {
     let numbers = str.slice(2, str.length).toLowerCase()
@@ -45,25 +45,32 @@ const BookingDeatils = () => {
     axios
       .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
       .then(() =>
-        axios.get(`${process.env.REACT_APP_BE_URL}/files/fetch-pdf`, {
-          responseType: "blob",
-        })
+        axios.get(
+          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${details.data.id}`,
+          {
+            responseType: "blob",
+          }
+        )
       )
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" })
 
-        saveAs(pdfBlob, "newPdf.pdf")
+        saveAs(pdfBlob, `${details.data.id}`)
       })
   }
 
   const sendEmailWithAttachmhment = async () => {
-    createAndDownloadPdf()
-    let res = await axios.post(
-      `${process.env.REACT_APP_BE_URL}/users/register`,
-      emailBody
-    )
+    //createAndDownloadPdf()
+    try {
+      let res = await axios.post(
+        `${process.env.REACT_APP_BE_URL}/files/email`,
+        emailBody
+      )
+    } catch (error) {
+      console.log(error)
+    }
 
-    console.log(res.data)
+    //console.log(res.data)
   }
   return (
     <>

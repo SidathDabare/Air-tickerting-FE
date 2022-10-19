@@ -52,13 +52,14 @@ const RegisterPage = () => {
   }
 
   const addImage = async (e) => {
-    const str = e.target.files[0]
-    let url = `${process.env.REACT_APP_BE_URL}/files`
+    let str = e.target.files[0]
+    let url = `${process.env.REACT_APP_BE_URL}/files/cloudinary`
     var formData = new FormData()
     formData.append("image", str)
     var requestOptions = {
       method: "POST",
       body: formData,
+      redirect: "follow",
     }
     try {
       let res = await fetch(url, requestOptions)
@@ -171,10 +172,7 @@ const RegisterPage = () => {
               <Form.Control
                 className='col-12 px-0 py-1'
                 type='file'
-                onChange={() => {
-                  addImage()
-                  setShowImageUrl(true)
-                }}
+                onChange={addImage}
               />
             </Form.Group>
           </div>

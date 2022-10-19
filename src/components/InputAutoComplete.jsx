@@ -5,6 +5,8 @@ import { Stack, Autocomplete, TextField } from "@mui/material"
 import Airport from "../data/Airport.json"
 import { useEffect } from "react"
 
+//console.log(Airport.map((x) => x.city === "London"))
+
 const InputAutoComplete = ({ getInput, label }) => {
   const airportOptions = Airport.map((item, index) => ({
     option: item,

@@ -11,6 +11,7 @@ import DetailsPage from "./pages/DetailsPage"
 import PassengerDetails from "./pages/PassengerDetails"
 import PaymentPage from "./pages/PaymentPage"
 import BookingDeatils from "./pages/BookingDeatils"
+import DashboardPage from "./pages/DashboardPage"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/booking-details' element={<BookingDeatils />} />
           <Route path='/details/:id' element={<DetailsPage />} />
+          <Route path='/dashboard' element={<DashboardPage />} />
         </Routes>
       </BrowserRouter>{" "}
     </LocalizationProvider>

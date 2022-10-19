@@ -4,7 +4,7 @@ import { SEARCH_TICKET, SET_LOADING, GET_DATA_ERROR } from "../actions"
 
 const initialState = {
   searchData: {},
-  loading: true,
+  loading: false,
   error: false,
 }
 
@@ -23,8 +23,14 @@ export const searchReducer = (state = initialState, action) => {
     case GET_DATA_ERROR:
       return {
         ...state,
-        error: true,
+        error: false,
       }
+    // case DELETE_TICKET_DATA:
+    //   return {
+    //     ...state,
+    //     searchData: {},
+    //     loading: true,
+    //   }
     default:
       return state
   }

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { Button, Container, Modal, Row } from "react-bootstrap"
+import { Alert, Button, Container, Modal, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../style/FlightItemModel.css"
 import Moment from "moment"
@@ -26,9 +26,11 @@ const FlightItemModel = (props) => {
   const [selectTicket, setSelectTicket] = useState(null)
   const [available, setAvailable] = useState(false)
   const [error, setError] = useState(false)
+  const [message, setMessage] = useState("")
 
   const checkTicketAvailable = async () => {
     let token = await getAmadeusToken()
+
     let headers = {
       Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
@@ -53,8 +55,11 @@ const FlightItemModel = (props) => {
         console.log(data)
         if (data.warnings) {
           setAvailable(false)
+          setError(true)
+          setMessage(data.warnings[0].detail)
         } else {
           setAvailable(true)
+          setError(false)
         }
       } else {
         setError(true)
@@ -226,6 +231,7 @@ const FlightItemModel = (props) => {
           ))}
       </Modal.Body>
       <Modal.Footer>
+        {message ? <Alert variant='danger'>{message}</Alert> : ""}
         {available ? (
           <Button
             variant='dark'

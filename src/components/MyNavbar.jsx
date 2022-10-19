@@ -156,15 +156,15 @@ const MyNavbar = () => {
                   </div>
                   <div className='col-12'>
                     <div className='col-7'>
-                      <Dropdown.Item href='#/action-1'>
-                        Hello,{loggedUser.firstName} {loggedUser.lastName}
+                      <Dropdown.Item>
+                        <Link to='/dashboard'>
+                          Hello,{loggedUser.firstName} {loggedUser.lastName}
+                        </Link>
                       </Dropdown.Item>
-                      <Dropdown.Item href='#/action-2'>
-                        Another action
+                      <Dropdown.Item>
+                        <Link to='/dashboard'>Dashboard</Link>
                       </Dropdown.Item>
-                      <Dropdown.Item href='#/action-3'>
-                        Something else
-                      </Dropdown.Item>
+
                       <div className='px-2'>
                         {loggedUser ? (
                           <Button

@@ -15,6 +15,7 @@ import { format } from "date-fns"
 import { MuiTelInput } from "mui-tel-input"
 import {
   getAmadeusToken,
+  getTime,
   setBookedTicket,
   setPassengerDetailsAction,
 } from "../redux/actions"
@@ -26,6 +27,7 @@ import { Col, Row } from "react-bootstrap"
 import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import { useNavigate } from "react-router-dom"
+import Loader from "../components/Loader"
 
 const PassengerDetails = () => {
   const ticket = useSelector(
@@ -44,6 +46,7 @@ const PassengerDetails = () => {
   const [showPassengerDetails, setShowPassengerDetails] = useState(false)
   const [error, setError] = useState(false)
   const [disable, setDisable] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   const [title, setTitle] = useState("MALE")
   const [firstName, setFirstName] = useState("Sidath")
@@ -88,22 +91,16 @@ const PassengerDetails = () => {
       },
     ],
   }
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
+
   const addPassengerDetails = (e) => {
     e.preventDefault()
     dispatch(setPassengerDetailsAction(traveler))
     setShowPassengerDetails(!showPassengerDetails)
   }
+
+  // const makeTicketBooking = async () => {
+  //   navigate(`/payment`)
+  // }
   const makeTicketBooking = async () => {
     let token = await getAmadeusToken()
     let headers = {
@@ -169,6 +166,7 @@ const PassengerDetails = () => {
       if (res.ok) {
         let data = await res.json()
         console.log(data)
+        setLoader(false)
         if (data.warnings) {
           setMakeBooking(false)
         } else {
@@ -177,6 +175,7 @@ const PassengerDetails = () => {
         dispatch(setBookedTicket(data))
         navigate(`/payment`)
       } else {
+        setLoader(true)
         setError(true)
       }
     } catch (error) {
@@ -197,7 +196,14 @@ const PassengerDetails = () => {
   }, [ticket, selectTicket, passengerDetails, disable])
 
   return (
-    <>
+    <div>
+      {loader ? (
+        <Container>
+          <Loader />
+        </Container>
+      ) : (
+        ""
+      )}
       <MyNavbar />
       <Container>
         <SummeryContainer />
@@ -546,9 +552,10 @@ const PassengerDetails = () => {
           )}
           <div className='d-flex justify-content-end mt-2'>
             <Button
-              variant='danger'
+              variant='info'
               onClick={() => {
                 makeTicketBooking()
+                setLoader(true)
               }}
               className='d-flex align-items-center'>
               <span className='mr-2 font-weight-bold'>
@@ -560,7 +567,7 @@ const PassengerDetails = () => {
         </div>
       </Container>
       <Footer />
-    </>
+    </div>
   )
 }
 
