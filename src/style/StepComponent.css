@@ -7,11 +7,14 @@
 .step-container-main {
   background-color: #013457f0;
   color: var(--font-color);
+  min-width: 565px;
 }
 .step-container {
   width: 19.5%;
   margin: 0 auto;
+  min-width: 100px;
   background-color: #011b2cf0;
+  overflow-x: hidden;
   border-radius: 4px 4px 0px 0px;
 }
 .passenger-empty-div {

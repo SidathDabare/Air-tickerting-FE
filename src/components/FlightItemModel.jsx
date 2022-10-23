@@ -15,15 +15,16 @@ import FirstPageIcon from "@mui/icons-material/FirstPage"
 import { useSelector } from "react-redux"
 import { getAmadeusToken } from "../redux/actions"
 import { getTime } from "../redux/actions"
+import { format, parseISO } from "date-fns"
 
 const FlightItemModel = (props) => {
   const ticket = useSelector(
     (state) => state.selectedTicketReducer.selectedTicket
   )
-
+  console.log(ticket)
   const navigate = useNavigate()
 
-  const [selectTicket, setSelectTicket] = useState(null)
+  const [selectTicket, setSelectTicket] = useState(ticket)
   const [available, setAvailable] = useState(false)
   const [error, setError] = useState(false)
   const [message, setMessage] = useState("")
@@ -84,13 +85,13 @@ const FlightItemModel = (props) => {
         </span>
       </Modal.Header>
       <Modal.Body className='show-grid'>
-        <div className='depature-details'>
+        <div className='depature-details rounded'>
           <h5>Departure Details</h5>
         </div>
-        {props.listitem.itineraries[0] &&
-          props.listitem.itineraries[0].segments.map((segment, i) => (
+        {selectTicket.itineraries[0] &&
+          selectTicket.itineraries[0].segments.map((segment, i) => (
             <Container key={i} xs={12} className='mb-3'>
-              <Row xs={12} className='d-flex flex-column px-1'>
+              {/* <Row xs={12} className='d-flex flex-column px-1'>
                 <h5 className='mb-0'>
                   <span>From </span>
                   <span>{segment.departure.iataCode} </span>
@@ -102,18 +103,27 @@ const FlightItemModel = (props) => {
                     Total duration: <span>{getTime(segment.duration)} </span>
                   </small>
                 </p>
-              </Row>
+              </Row> */}
               <Row xs={12} className='flex-column mt-2 info-div'>
                 <div xs={12} className='d-flex flex-column'>
-                  <small>
-                    {Moment(segment.departure.at).format("MMM Do YY")}{" "}
-                  </small>
+                  <p className='mb-0'>
+                    <small>
+                      {format(new Date(segment.departure.at), "MMM do yyyy")}{" "}
+                    </small>
+
+                    <small className='ml-4'>
+                      Total duration: <span>{getTime(segment.duration)} </span>
+                    </small>
+                  </p>
                   <h6>
-                    <span>{segment.departure.iataCode} </span>
-                    <span>to </span>
-                    <span>{segment.arrival.iataCode} </span>
+                    <p className='mb-0'>
+                      <span>{segment.departure.iataCode} </span>
+                      <span>to </span>
+                      <span>{segment.arrival.iataCode} </span>
+                    </p>
                   </h6>
                 </div>
+
                 <div xs={12} className='mt-2 px-0 d-flex'>
                   <div className='col-6 d-flex px-0'>
                     <div className='col-3 px-0'>
@@ -155,16 +165,16 @@ const FlightItemModel = (props) => {
               </Row>
             </Container>
           ))}
-        {props.listitem.itineraries[1] && (
-          <div className='depature-details'>
+        {selectTicket.itineraries[1] && (
+          <div className='depature-details rounded'>
             <h5>Arrival Details</h5>
           </div>
         )}
 
-        {props.listitem.itineraries[1] &&
-          props.listitem.itineraries[1].segments.map((segment, i) => (
+        {selectTicket.itineraries[1] &&
+          selectTicket.itineraries[1].segments.map((segment, i) => (
             <Container key={i} xs={12} className='mb-3'>
-              <Row xs={12} className='d-flex flex-column px-1'>
+              {/* <Row xs={12} className='d-flex flex-column px-1'>
                 <h5 className='mb-0'>
                   <span>From </span>
                   <span>{segment.departure.iataCode} </span>
@@ -176,12 +186,18 @@ const FlightItemModel = (props) => {
                     Total duration: <span>{getTime(segment.duration)} </span>
                   </small>
                 </p>
-              </Row>
+              </Row> */}
               <Row xs={12} className='flex-column mt-2 info-div'>
                 <div xs={12} className='d-flex flex-column'>
-                  <small>
-                    {Moment(segment.departure.at).format("MMM Do YY")}{" "}
-                  </small>
+                  <p className='mb-0'>
+                    <small>
+                      {Moment(segment.departure.at).format("MMM Do YY")}{" "}
+                    </small>
+
+                    <small className='ml-4'>
+                      Total duration: <span>{getTime(segment.duration)} </span>
+                    </small>
+                  </p>
                   <h6>
                     <span>{segment.departure.iataCode} </span>
                     <span>to </span>

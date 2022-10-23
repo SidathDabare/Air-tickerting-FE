@@ -114,7 +114,7 @@ const SearchComponent = () => {
         ""
       )}
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8'>
+        <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8 mt-3'>
           <Row className='d-flex justify-content-between'>
             <div className='col-3 header-btn active-btn'>
               <FlightTakeoffSharpIcon className='header-btn-icon' />

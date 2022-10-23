@@ -1,0 +1,39 @@
+/** @format */
+
+/* @-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    width: 125%;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+.animation {
+  display: block;
+  /* -webkit-animation: fadeIn 1s; */
+  animation: fadeIn 0.5s;
+}
+.order-item {
+  box-shadow: -1px 2px 22px 0px rgba(163, 161, 161, 0.75);
+  -webkit-box-shadow: -1px 2px 22px 0px rgba(163, 161, 161, 0.75);
+  -moz-box-shadow: -1px 2px 22px 0px rgba(163, 161, 161, 0.75);
+}
+.order-item-show {
+  border-radius: 5px;
+  box-shadow: -1px 7px 17px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 7px 17px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 7px 17px 0px rgba(0, 0, 0, 0.75);
+}

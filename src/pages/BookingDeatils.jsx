@@ -14,6 +14,10 @@ import { Col, Row } from "react-bootstrap"
 import Moment from "moment"
 import axios from "axios"
 import { saveAs } from "file-saver"
+import { getTime } from "../redux/actions"
+import { format, parseISO } from "date-fns"
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
+import AttachEmailIcon from "@mui/icons-material/AttachEmail"
 
 const BookingDeatils = () => {
   const bookedTicket = useSelector(
@@ -21,32 +25,40 @@ const BookingDeatils = () => {
   )
   //console.log(bookedTicket.data)
 
-  const getTime = (str) => {
-    let numbers = str.slice(2, str.length).toLowerCase()
-    let firstNumbers = numbers.slice(0, 2)
-    let secondNumbers = numbers.slice(2, 4)
-    //console.log(firstNumbers)
-    return (
-      firstNumbers +
-      " " +
-      (secondNumbers !== "" ? secondNumbers + "m" : secondNumbers + "00m")
-    )
-  }
   const details = {
     data: bookedTicket.data,
   }
   const emailBody = {
     email: "sidath2007@yahoo.com",
-    subject: "TICKET BOOKING",
+    subject: "TICKET BOOKING CONFIRMATION",
     text: "Your booking is confirmed",
-    html: "<p>hello Sir</p>",
+    html: `<div style="width:100%;height:100%;background-image: url('https://i.pinimg.com/736x/b4/fd/19/b4fd1931195476bd79231f76f915670c.jpg');background-size:cover">
+    <div style="width:30%;padding:10px;background-color:#ffffff96">
+      <h4>hello Sir/Madam</h4>    
+      <p>Your flight from <span><h5>${
+        details.data.flightOffers[0].itineraries[0].segments[0].departure
+          .iataCode
+      }</span> to <span>${
+      details.data.flightOffers[0].itineraries[0].segments[
+        details.data.flightOffers[0].itineraries[0].segments.length - 1
+      ].arrival.iataCode
+    }</h5></span> at <span><h5>${format(
+      parseISO(
+        details.data.flightOffers[0].itineraries[0].segments[0].departure.at
+      ),
+      "PPpp"
+    )}</h5></span> has been confirmed</p>
+      <p>Thank you</p>
+    </div>
+    </div> `,
+    id: details.data.queuingOfficeId,
   }
   const createAndDownloadPdf = () => {
     axios
       .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
       .then(() =>
         axios.get(
-          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${details.data.id}`,
+          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${details.data.queuingOfficeId}`,
           {
             responseType: "blob",
           }
@@ -55,7 +67,7 @@ const BookingDeatils = () => {
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" })
 
-        saveAs(pdfBlob, `${details.data.id}`)
+        saveAs(pdfBlob, `${details.data.queuingOfficeId}`)
       })
   }
 
@@ -98,7 +110,7 @@ const BookingDeatils = () => {
                       <small>
                         <span>{traveler.id}. </span>
                         <span>
-                          {traveler.gender === "MALE" ? "Mr" : "Mrs"}{" "}
+                          {traveler.gender === "MALE" ? "Mr" : "Miss"}{" "}
                         </span>
                         <span>{traveler.name.firstName} </span>
                         <span>{traveler.name.lastName}</span>
@@ -134,7 +146,7 @@ const BookingDeatils = () => {
                   bookedTicket.data.flightOffers[0].itineraries[0].segments.map(
                     (segment, i) => (
                       <Container key={i} xs={12} className='mb-3'>
-                        <Row xs={12} className='d-flex flex-column px-1'>
+                        {/* <Row xs={12} className='d-flex flex-column px-1'>
                           <h5 className='mb-0'>
                             <span>From </span>
                             <span>{segment.departure.iataCode} </span>
@@ -147,12 +159,21 @@ const BookingDeatils = () => {
                               <span>{getTime(segment.duration)} </span>
                             </small>
                           </p>
-                        </Row>
+                        </Row> */}
                         <Row xs={12} className='flex-column mt-2 info-div'>
                           <div xs={12} className='d-flex flex-column'>
-                            <small>
-                              {Moment(segment.departure.at).format("MMM Do YY")}{" "}
-                            </small>
+                            <p className='d-flex'>
+                              <small>
+                                {Moment(segment.departure.at).format(
+                                  "MMM Do YY"
+                                )}{" "}
+                              </small>
+                              <small className='ml-2'>
+                                Total duration:{" "}
+                                <span>{getTime(segment.duration)} </span>
+                              </small>
+                            </p>
+
                             <h6>
                               <span>{segment.departure.iataCode} </span>
                               <span>to </span>
@@ -174,6 +195,7 @@ const BookingDeatils = () => {
                                 <div className='single-line'></div>
                                 <div className='circle'></div>
                               </div>
+
                               <div className='col-3 px-0 text-right'>
                                 <p className='mb-1'>
                                   {segment.arrival.iataCode}
@@ -348,9 +370,19 @@ const BookingDeatils = () => {
               <div className='col-6'></div>
             </div>
           </div>
-          <div>
-            <Button onClick={createAndDownloadPdf}>PDF</Button>
-            <Button onClick={sendEmailWithAttachmhment}>Email</Button>
+          <div className='mt-3 d-flex justify-content-end bg-light py-3 rounded'>
+            <Button onClick={createAndDownloadPdf}>
+              <span>Download PDF </span>
+              <span>
+                <PictureAsPdfIcon />
+              </span>
+            </Button>
+            <Button className='mx-1' onClick={sendEmailWithAttachmhment}>
+              <span>Send email </span>
+              <span>
+                <AttachEmailIcon />
+              </span>
+            </Button>
           </div>
         </div>
       </Container>

@@ -7,6 +7,7 @@
   position: relative;
   background-color: #013457f0;
   color: var(--font-color);
+  margin-top: 70px;
 }
 .show-summery-div {
   width: 500px;

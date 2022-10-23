@@ -6,12 +6,13 @@ import FlightList from "../components/FlightList"
 import Footer from "../components/Footer"
 import StepComponent from "../components/StepComponent"
 import { Container } from "react-bootstrap"
+import "../style/SearchResultPage.css"
 
 const SearchResultPage = () => {
   return (
     <div>
       <MyNavbar />
-      <Container>
+      <Container className='flight-result-conatiner'>
         <StepComponent ticketSelect={true} />
         <FlightList />
       </Container>

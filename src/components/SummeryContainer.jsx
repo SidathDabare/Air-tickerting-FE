@@ -129,7 +129,7 @@ const SummeryContainer = () => {
                     <div className='line'></div>
                   </div>
                   <div className='text-center'>
-                    <small className='connection'>
+                    <small>
                       {selectedTicket.itineraries[0].segments.length} connection
                     </small>
                   </div>
@@ -214,7 +214,7 @@ const SummeryContainer = () => {
                       <div className='line'></div>
                     </div>
                     <div className='text-center'>
-                      <small className='connection'>
+                      <small>
                         {selectedTicket.itineraries[1].segments.length}{" "}
                         connection
                       </small>

@@ -31,6 +31,8 @@ const CARD_OPTIONS = {
 
 export default function PaymentForm(props) {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
+  const token = useSelector((state) => state.userReducer.token)
+  //console.log(token)
 
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
@@ -47,20 +49,63 @@ export default function PaymentForm(props) {
   const saveOrders = async () => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BE_URL}/orders/${bookedTicket._id}/tickets`,
+        `${process.env.REACT_APP_BE_URL}/orders/${loggedUser._id}/tickets`,
         {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            tickets: [...bookedTicket],
+            data: {
+              type: bookedTicket.data.type,
+              id: bookedTicket.data.id,
+              queuingOfficeId: bookedTicket.data.queuingOfficeId,
+              associatedRecords: [...bookedTicket.data.associatedRecords],
+              flightOffers: [...bookedTicket.data.flightOffers],
+              travelers: [...bookedTicket.data.travelers],
+              remarks: {
+                general: [bookedTicket.data.remarks.genaral],
+              },
+              ticketingAgreement: {
+                option: "DELAY_TO_CANCEL",
+                delay: "6D",
+              },
+              automatedProcess: [...bookedTicket.data.automatedProcess],
+              contacts: [...bookedTicket.data.contacts],
+            },
+            dictionaries: bookedTicket.dictionaries,
+            // dictionaries: {
+            //   locations: {
+            //     BOM: {
+            //       cityCode: "BOM",
+            //       countryCode: "IN",
+            //     },
+            //     FRA: {
+            //       cityCode: "FRA",
+            //       countryCode: "DE",
+            //     },
+            //     LHR: {
+            //       cityCode: "LON",
+            //       countryCode: "GB",
+            //     },
+            //     CMB: {
+            //       cityCode: "CMB",
+            //       countryCode: "LK",
+            //     },
+            //     BLR: {
+            //       cityCode: "BLR",
+            //       countryCode: "IN",
+            //     },
+            //   },
+            // },
           }),
         }
       )
       if (res.ok) {
         let data = await res.json()
         console.log(data)
+        navigate("/booking-details")
       }
     } catch (error) {
       console.log(error)
@@ -106,10 +151,10 @@ export default function PaymentForm(props) {
     <>
       {!success ? (
         <form>
-          <div className='d-flex justify-content-center mt-5'>
+          <div className='d-flex justify-content-center mt-5 px-0'>
             <h5>
               <span>Price : </span>
-              <button onClick={saveOrders}>save Order</button>
+
               <span>{bookedTicket.data.flightOffers[0].price.currency}</span>
               <span> {bookedTicket.data.flightOffers[0].price.total}</span>
             </h5>
@@ -148,8 +193,7 @@ export default function PaymentForm(props) {
             <Button
               onClick={(e) => {
                 e.preventDefault()
-                saveOrders(loggedUser._id)
-                navigate("/booking-details")
+                saveOrders()
               }}>
               Proceed
             </Button>

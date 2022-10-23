@@ -9,8 +9,7 @@
   height: 50vh;
   width: 100%;
   position: relative;
-  margin-top: 20px;
-  margin-bottom: auto;
+  top: 20px;
 }
 
 .footer-list-item h5 {

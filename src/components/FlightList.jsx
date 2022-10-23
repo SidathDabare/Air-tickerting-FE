@@ -34,7 +34,7 @@ const FlightList = () => {
           <Alert variant='danger'>An error happened :(</Alert>
         </div>
       ) : (
-        <>
+        <Container className='px-0'>
           {flightData.data &&
             flightData.data.length > 0 &&
             flightData.data[0].itineraries[0] &&
@@ -105,7 +105,7 @@ const FlightList = () => {
                 ))}
               </div>
             )}
-        </>
+        </Container>
       )}
     </Container>
   )

@@ -10,11 +10,16 @@ import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirpor
 import FlightItemModel from "./FlightItemModel"
 import Loader from "./Loader"
 import { useDispatch } from "react-redux"
-import { selectedTicketAction } from "../redux/actions/index"
+import {
+  selectedSegmentsAction,
+  selectedTicketAction,
+} from "../redux/actions/index"
 import { getTime } from "../redux/actions"
+import ConnectionComponents from "./ConnectionComponents"
 
 const FlightItemArrival = ({ listItem }) => {
   const [modalShow, setModalShow] = useState(false)
+  const [connectionModalShow, setConnectionModalShow] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -86,14 +91,21 @@ const FlightItemArrival = ({ listItem }) => {
                       <div className='text-center'>
                         <small
                           className='connection'
-                          onClick={() => setModalShow(true)}>
+                          onClick={() => {
+                            dispatch(
+                              selectedSegmentsAction(
+                                listItem.itineraries[1].segments
+                              )
+                            )
+                            setConnectionModalShow(true)
+                          }}>
                           {listItem.itineraries[1].segments.length} connection
                         </small>
-                        <FlightItemModel
-                          show={modalShow}
-                          listitem={listItem}
+                        <ConnectionComponents
+                          show={connectionModalShow}
+                          listitem={listItem.itineraries[1].segments}
                           key={listItem.id}
-                          onHide={() => setModalShow(false)}
+                          onHide={() => setConnectionModalShow(false)}
                         />
                       </div>
                     </div>
@@ -135,6 +147,12 @@ const FlightItemArrival = ({ listItem }) => {
                         className='py-1 px-4 mt-2'>
                         Select
                       </Button>
+                      <FlightItemModel
+                        show={modalShow}
+                        listitem={listItem}
+                        key={listItem.id}
+                        onHide={() => setModalShow(false)}
+                      />
                     </Col>
                     <Col xs={4} className='text-center bussness px-0'>
                       <div className='py-2'>

@@ -21,7 +21,9 @@ const StepComponent = (props) => {
             </h1>
             <small
               className={
-                props.ticketSelect ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+                props.ticketSelect
+                  ? "mb-1 ml-2 text-success text-truncate"
+                  : "mb-1 ml-2"
               }>
               Fights
             </small>
@@ -43,7 +45,9 @@ const StepComponent = (props) => {
             </h1>
             <small
               className={
-                props.passenger ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+                props.passenger
+                  ? "mb-1 ml-2 text-success text-truncate"
+                  : "mb-1 ml-2"
               }>
               Passengers
             </small>
@@ -60,7 +64,11 @@ const StepComponent = (props) => {
               2
             </h1>
             <small
-              className={props.option ? "mb-1 ml-2 text-success" : "mb-1 ml-2"}>
+              className={
+                props.option
+                  ? "mb-1 ml-2 text-success text-truncate"
+                  : "mb-1 ml-2"
+              }>
               options
             </small>
           </div>
@@ -79,7 +87,9 @@ const StepComponent = (props) => {
             </h1>
             <small
               className={
-                props.payment ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+                props.payment
+                  ? "mb-1 ml-2 text-success text-truncate"
+                  : "mb-1 ml-2"
               }>
               payment
             </small>
@@ -99,7 +109,9 @@ const StepComponent = (props) => {
             </h1>
             <small
               className={
-                props.confirm ? "mb-1 ml-2 text-success" : "mb-1 ml-2"
+                props.confirm
+                  ? "mb-1 ml-2 text-success text-truncate"
+                  : "mb-1 ml-2"
               }>
               Completed
             </small>

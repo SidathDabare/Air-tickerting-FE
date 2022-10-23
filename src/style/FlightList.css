@@ -4,9 +4,10 @@
   --font-hover-color: #ffffff;
 }
 .flight-list {
-  margin-top: 10px;
   border-radius: 10px;
-  min-width: 600px;
+  min-width: 565px;
+  position: relative;
+  margin-bottom: 70px;
 }
 .flight-list-header1 {
   background-color: #002741f0;

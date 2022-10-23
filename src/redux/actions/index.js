@@ -11,6 +11,7 @@ export const EDIT_PASSENGER_DETAILS = "EDIT_PASSENGER_DETAILS"
 export const DELETE_PASSENGER_DETAILS = "DELETE_PASSENGER_DETAILS"
 export const SET_BOOKED_TICKET = "SET_BOOKED_TICKET"
 export const DELETE_TICKET_DATA = "DELETE_TICKET_DATA"
+export const SELECTED_TICKET_SEGMENTS = "SELECTED_TICKET_SEGMENTS"
 
 export const TICKET_PAID = "TICKET_PAID"
 
@@ -161,6 +162,12 @@ export const selectedTicketAction = (ticket) => {
   return {
     type: SELECTED_TICKET,
     payload: ticket,
+  }
+}
+export const selectedSegmentsAction = (segments) => {
+  return {
+    type: SELECTED_TICKET_SEGMENTS,
+    payload: segments,
   }
 }
 export const setTokenAction = (token) => {
