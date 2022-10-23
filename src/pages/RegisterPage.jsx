@@ -1,26 +1,18 @@
 /** @format */
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Button, Container, Form } from "react-bootstrap"
-import { useSelector, useDispatch } from "react-redux"
 import "../style/RegisterPage.css"
-
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import Footer from "../components/Footer"
-import { setUsernameAction } from "../redux/actions"
-import { useNavigate } from "react-router-dom"
 
 const RegisterPage = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  //const username = useSelector((state) => state.userReducer.username)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState("")
   const [avatar, setAvatar] = useState("")
-  const [showImageUrl, setShowImageUrl] = useState(false)
 
   const addNewUser = async () => {
     let url = `${process.env.REACT_APP_BE_URL}/users`
@@ -145,21 +137,25 @@ const RegisterPage = () => {
               />
             </Form.Group>
             <Form.Group className='mb-3 col-12 col-xs-12 col-md-6'>
-              <Form.Label>Role</Form.Label>
-              <Form.Control
+              {/* <Form.Label>Role</Form.Label> */}
+              <Form.Select
+                size='lg'
+                className='w-100 py-2 rounded px-1 mt-2'
                 type='text'
                 placeholder='Role'
                 value={role}
-                onChange={(e) => setRole(e.target.value)}
-              />
+                onChange={(e) => setRole(e.target.value)}>
+                <option value='User'>User</option>
+                <option value='Admin'>Admin</option>
+              </Form.Select>
             </Form.Group>
 
             <Form.Group className='mb-3 col-12 col-xs-12 col-md-6'>
               <Form.Label className='col-12 d-flex'>
-                {showImageUrl ? (
+                {avatar ? (
                   <span className='text-truncate text-info'>{avatar}</span>
                 ) : (
-                  ""
+                  <span></span>
                 )}
               </Form.Label>
               {/* <Form.Control

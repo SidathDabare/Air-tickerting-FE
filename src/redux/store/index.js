@@ -10,6 +10,7 @@ import { selectedTicketReducer } from "../reducers/selectedTicketReducer"
 import { passengerDetailsReducer } from "../reducers/passengerDetailsReducer"
 import { bookedTicketReducer } from "../reducers/bookedTicketReducer"
 import { selectedTicketSegmentsReducer } from "../reducers/selectedTicketSegmentsReducer"
+import { selectedUserReducer } from "../reducers/selectedUserReducer"
 
 const persistConfig = {
   key: "root",
@@ -31,6 +32,7 @@ const combinedReducer = combineReducers({
   passengerDetailsReducer: passengerDetailsReducer,
   bookedTicketReducer: bookedTicketReducer,
   selectedTicketSegmentsReducer: selectedTicketSegmentsReducer,
+  selectedUserReducer: selectedUserReducer,
 })
 const persistedReducer = persistReducer(persistConfig, combinedReducer)
 

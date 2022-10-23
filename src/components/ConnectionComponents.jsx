@@ -10,6 +10,7 @@ import WhereToVoteOutlinedIcon from "@mui/icons-material/WhereToVoteOutlined"
 import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined"
 import "../style/ConnectionComponent.css"
 import { useSelector } from "react-redux"
+import moment from "moment"
 
 const ConnectionComponents = (props) => {
   const ticket = useSelector(
@@ -38,7 +39,10 @@ const ConnectionComponents = (props) => {
               </span>
               <span className='ml-3'>
                 <small>
-                  at {selectTicket[0].departure.at}
+                  at{" "}
+                  {moment(selectTicket[0].departure.at).format(
+                    "MMMM Do YYYY, h:mm:ss a"
+                  )}
                   {/* at {format(selectTicket[0].departure.at, "PPPPpppp")} */}
                 </small>
               </span>

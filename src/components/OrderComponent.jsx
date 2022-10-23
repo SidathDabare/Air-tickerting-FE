@@ -5,14 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import "../style/OrderComponent.css"
 import { format, parseISO } from "date-fns"
-import { Button, Container } from "react-bootstrap"
-import { useSelector } from "react-redux"
-import { getTime } from "../redux/actions"
-import Footer from "../components/Footer"
-import MyNavbar from "../components/MyNavbar"
-import StepComponent from "../components/StepComponent"
-import SummeryContainer from "../components/SummeryContainer"
-import StripeContainer from "../components/StripeContainer"
+
 import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import { Col, Row } from "react-bootstrap"
@@ -20,7 +13,7 @@ import Moment from "moment"
 import Loader from "../components/Loader"
 
 const OrderComponent = (props) => {
-  console.log(props.order)
+  //console.log(props.order)
   const [showInfo, setShowInfo] = useState(false)
   return (
     <>

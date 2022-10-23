@@ -112,7 +112,7 @@ const FlightItemModel = (props) => {
                     </small>
 
                     <small className='ml-4'>
-                      Total duration: <span>{getTime(segment.duration)} </span>
+                      Total duration : <span>{getTime(segment.duration)} </span>
                     </small>
                   </p>
                   <h6>
@@ -195,7 +195,7 @@ const FlightItemModel = (props) => {
                     </small>
 
                     <small className='ml-4'>
-                      Total duration: <span>{getTime(segment.duration)} </span>
+                      Total duration : <span>{getTime(segment.duration)} </span>
                     </small>
                   </p>
                   <h6>
