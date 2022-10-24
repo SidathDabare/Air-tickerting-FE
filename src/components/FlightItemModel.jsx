@@ -5,12 +5,10 @@ import { Alert, Button, Container, Modal, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../style/FlightItemModel.css"
 import Moment from "moment"
-
 import CloseIcon from "@mui/icons-material/Close"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive"
-import CheckIcon from "@mui/icons-material/Check"
-import SmsFailedIcon from "@mui/icons-material/SmsFailed"
+import PriorityHighIcon from "@mui/icons-material/PriorityHigh"
 import FirstPageIcon from "@mui/icons-material/FirstPage"
 import TaskAltIcon from "@mui/icons-material/TaskAlt"
 import UnpublishedIcon from "@mui/icons-material/Unpublished"
@@ -18,7 +16,6 @@ import { useSelector } from "react-redux"
 import { getAmadeusToken } from "../redux/actions"
 import { getTime } from "../redux/actions"
 import { format } from "date-fns"
-import Loader from "./Loader"
 
 const FlightItemModel = (props) => {
   const ticket = useSelector(
@@ -63,17 +60,28 @@ const FlightItemModel = (props) => {
       )
       if (res.ok) {
         let data = await res.json()
-        //console.log(data)
+        console.log(data)
+        setIsLoading(true)
+        setAvailable(true)
+      } else {
+        let data = await res.json()
         if (data.warnings) {
           setAvailable(false)
           setError(true)
           setMessage(data.warnings[0].detail)
+          setIsLoading(false)
         } else {
           setError(false)
         }
-        setIsLoading(true)
-        setAvailable(true)
-      } else {
+        if (data.errors) {
+          setAvailable(false)
+          setError(true)
+          setMessage(data.errors[0].detail)
+          console.log(data.errors[0].detail)
+          setIsLoading(false)
+        } else {
+          setError(false)
+        }
         setError(true)
         setAvailable(false)
         setIsLoading(false)
@@ -86,7 +94,7 @@ const FlightItemModel = (props) => {
   useEffect(() => {
     setSelectTicket(ticket)
     //console.log(selectTicket)
-  }, [ticket, selectTicket])
+  }, [ticket, selectTicket, message])
   //const changeTicket = (ticket) => setSelectTicket(ticket)
   return (
     <>
@@ -297,8 +305,15 @@ const FlightItemModel = (props) => {
             <FirstPageIcon />
           </Button>
         )} */}
-            {message ? <Alert variant='danger'>{message}</Alert> : ""}
-            <div className='col-12 d-flex justify-content-end px-0 py-3'>
+            {message ? (
+              <Alert variant='danger mx-auto'>
+                {message}
+                <PriorityHighIcon className='ml-1' />
+              </Alert>
+            ) : (
+              ""
+            )}
+            <div className='col-12 d-flex justify-content-end px-0 py-1'>
               {available ? (
                 <>
                   <Button
@@ -325,7 +340,7 @@ const FlightItemModel = (props) => {
                     <FlightTakeoffSharpIcon />
                   </Button>
                 </>
-              ) : isLoading ? (
+              ) : message ? (
                 <>
                   <Button
                     variant='transparent'

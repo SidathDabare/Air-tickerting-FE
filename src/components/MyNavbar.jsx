@@ -88,7 +88,7 @@ const MyNavbar = () => {
                   <Button
                     variant='outline-primary'
                     onClick={() => {
-                      userLogOut()
+                      navigate("../login")
                     }}>
                     Log In
                   </Button>
@@ -126,7 +126,7 @@ const MyNavbar = () => {
                 <Button
                   variant='outline-primary'
                   onClick={() => {
-                    userLogOut()
+                    navigate("../login")
                   }}>
                   Log In
                 </Button>
@@ -182,7 +182,7 @@ const MyNavbar = () => {
                             className='btn-block mt-2'
                             variant='outline-primary'
                             onClick={() => {
-                              userLogOut()
+                              navigate("../login")
                             }}>
                             Log In
                           </Button>
