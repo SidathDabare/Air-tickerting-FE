@@ -148,6 +148,7 @@ export const isLoading = (data) => {
     payload: data,
   }
 }
+
 export const deleteTicketDataAction = (data) => {
   return {
     type: DELETE_TICKET_DATA,

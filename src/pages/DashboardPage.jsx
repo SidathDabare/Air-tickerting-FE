@@ -104,17 +104,18 @@ const DashboardPage = () => {
           </div>
           {loggedUser.role === "Admin" ? (
             <div className='d-flex'>
-              <div className='col-6 bg-light text-dark py-2 rounded mb-2'>
+              <div className='col-6 col-xs-6 col-md-4 bg-light text-dark py-2 rounded mb-2'>
                 <div className='col-12 d-flex border-bottom'>
-                  <div className='col-4'>
+                  <h6>Users details</h6>
+                  {/* <div className='col-4'>
                     <h6>User</h6>
-                  </div>
-                  <div className='col-4 text-center'>
+                  </div> */}
+                  {/* <div className='col-4 text-center'>
                     <h6>Joined Date</h6>
                   </div>
                   <div className='col-4 text-right'>
                     <h6>Action</h6>
-                  </div>
+                  </div> */}
                 </div>
                 {allUsers.map((user, i) => (
                   <div key={i}>
@@ -126,7 +127,7 @@ const DashboardPage = () => {
                   </div>
                 ))}
               </div>
-              <div className='col-6'>
+              <div className='col-6 col-xs-6 col-md-8'>
                 <UserDisplayComponent />
               </div>
             </div>

@@ -11,20 +11,22 @@ import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined
 import "../style/ConnectionComponent.css"
 import { useSelector } from "react-redux"
 import moment from "moment"
+import Loader from "./Loader"
+import { Button } from "react-bootstrap"
 
 const ConnectionComponents = (props) => {
   const ticket = useSelector(
     (state) => state.selectedTicketSegmentsReducer.selectedTicketSegments
   )
   //console.log(props.listitem)
-  const [selectTicket, setSelectTicket] = useState(null)
+  const [selectTicket, setSelectTicket] = useState([])
   //console.log(item)
   useEffect(() => {
-    setSelectTicket([...ticket])
+    //setSelectTicket([...ticket])
   }, [ticket])
   return (
     <>
-      {selectTicket ? (
+      {ticket[0] ? (
         <Modal
           {...props}
           size='lg'
@@ -32,33 +34,29 @@ const ConnectionComponents = (props) => {
           centered>
           <Modal.Header>
             <Modal.Title id='contained-modal-title-vcenter'>
-              <span>From {selectTicket[0].departure.iataCode}</span>
-              <span>
-                {" "}
-                to {selectTicket[selectTicket.length - 1].arrival.iataCode}
-              </span>
+              <span>From {ticket[0].departure.iataCode}</span>
+              <span> to {ticket[ticket.length - 1].arrival.iataCode}</span>
               <span className='ml-3'>
-                <small>
+                <small style={{ fontSize: "14px" }}>
                   at{" "}
-                  {moment(selectTicket[0].departure.at).format(
+                  {moment(ticket[0].departure.at).format(
                     "MMMM Do YYYY, h:mm:ss a"
                   )}
-                  {/* at {format(selectTicket[0].departure.at, "PPPPpppp")} */}
                 </small>
               </span>
             </Modal.Title>
             <span onClick={props.onHide}>
               <CloseIcon />
             </span>
-          </Modal.Header>
+          </Modal.Header>{" "}
           <Modal.Body className='col-11 mx-auto d-flex justify-content-center px-4'>
-            {selectTicket.map((item, i) => (
+            {ticket.map((item, i) => (
               <div key={i} className='d-flex align-items-center'>
                 <div className='d-flex flex-column align-items-center mx-auto px-1'>
                   {" "}
                   <img
                     className='carrier-img'
-                    src={`https://content.airhex.com/content/logos/airlines_${item.carrierCode}_18_16_t.png?background=fffff`}
+                    src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${item.carrierCode}_18_16_t.png?background=fffff`}
                     alt=''
                   />{" "}
                   <h5 className='mt-2'>{item.departure.iataCode}</h5>
@@ -82,16 +80,16 @@ const ConnectionComponents = (props) => {
                 <WhereToVoteOutlinedIcon />
               </span>
               <h5 className='mb-1 mt-1'>
-                {selectTicket[selectTicket.length - 1].arrival.iataCode}
+                {ticket[ticket.length - 1].arrival.iataCode}
               </h5>{" "}
             </div>
           </Modal.Body>
           <Modal.Footer>
-            {/* <Button onClick={props.onHide}>Close</Button> */}
+            <Button onClick={props.onHide}>Close</Button>
           </Modal.Footer>
         </Modal>
       ) : (
-        <p>Loading</p>
+        ""
       )}
     </>
   )

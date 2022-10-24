@@ -109,7 +109,7 @@ const PassengerDetails = () => {
     }
     try {
       let res = await fetch(
-        `https://test.api.amadeus.com/v1/booking/flight-orders`,
+        `${process.env.REACT_APP_AMADEUS_URL}/v1/booking/flight-orders`,
         {
           method: "POST",
           headers,

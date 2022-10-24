@@ -3,13 +3,15 @@ import "../style/MyNavbar.css"
 import React, { useEffect } from "react"
 import { Container, Button, Dropdown, Row } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
+import { setLoggedInUserAction, setTokenAction } from "../redux/actions"
 
 const MyNavbar = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
   const navSlide = () => {
@@ -39,10 +41,10 @@ const MyNavbar = () => {
     })
   }
   const userLogOut = () => {
-    // const userDetails = JSON.parse(localStorage.getItem("persist:root"))
-    // console.log(userDetails)
-    localStorage.clear()
-    navigate("/login")
+    dispatch(setTokenAction(""))
+    dispatch(setLoggedInUserAction(""))
+
+    //navigate("/login")
   }
   useEffect(() => {
     navSlide()

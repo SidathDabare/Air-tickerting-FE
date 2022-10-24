@@ -210,7 +210,7 @@ const BookingDeatils = () => {
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img
                                     className='carrier-img-model'
-                                    src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_22_27_t.png?background=fffff`}
+                                    src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${segment.carrierCode}_22_27_t.png?background=fffff`}
                                     alt=''
                                   />
                                 </div>
@@ -295,7 +295,7 @@ const BookingDeatils = () => {
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img
                                     className='carrier-img-model'
-                                    src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_22_27_t.png?background=fffff`}
+                                    src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${segment.carrierCode}_22_27_t.png?background=fffff`}
                                     alt=''
                                   />
                                 </div>

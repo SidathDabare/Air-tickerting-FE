@@ -9,7 +9,7 @@ import Moment from "moment"
 import ConnectingAirportsOutlinedIcon from "@mui/icons-material/ConnectingAirportsOutlined"
 import FlightItemModel from "./FlightItemModel"
 import Loader from "./Loader"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   selectedSegmentsAction,
   selectedTicketAction,
@@ -18,6 +18,12 @@ import { getTime } from "../redux/actions"
 import ConnectionComponents from "./ConnectionComponents"
 
 const FlightItemArrival = ({ listItem }) => {
+  const selectedTicket = useSelector(
+    (state) => state.selectedTicketReducer.selectedTicket
+  )
+  const selectedTicketSegments = useSelector(
+    (state) => state.selectedTicketSegmentsReducer.selectedTicketSegments
+  )
   const [modalShow, setModalShow] = useState(false)
   const [connectionModalShow, setConnectionModalShow] = useState(false)
 
@@ -50,7 +56,7 @@ const FlightItemArrival = ({ listItem }) => {
                             <span>
                               <img
                                 className='carrier-img'
-                                src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
+                                src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
                                 alt=''
                               />
                             </span>
@@ -101,12 +107,14 @@ const FlightItemArrival = ({ listItem }) => {
                           }}>
                           {listItem.itineraries[1].segments.length} connection
                         </small>
-                        <ConnectionComponents
-                          show={connectionModalShow}
-                          listitem={listItem.itineraries[1].segments}
-                          key={listItem.id}
-                          onHide={() => setConnectionModalShow(false)}
-                        />
+                        {selectedTicketSegments && (
+                          <ConnectionComponents
+                            show={connectionModalShow}
+                            listitem={listItem.itineraries[1].segments}
+                            key={listItem.id}
+                            onHide={() => setConnectionModalShow(false)}
+                          />
+                        )}
                       </div>
                     </div>
                     <div xs={3} className='w-25 text-right'>
@@ -147,12 +155,14 @@ const FlightItemArrival = ({ listItem }) => {
                         className='py-1 px-4 mt-2'>
                         Select
                       </Button>
-                      <FlightItemModel
-                        show={modalShow}
-                        listitem={listItem}
-                        key={listItem.id}
-                        onHide={() => setModalShow(false)}
-                      />
+                      {selectedTicket && (
+                        <FlightItemModel
+                          show={modalShow}
+                          listitem={listItem}
+                          key={listItem.id}
+                          onHide={() => setModalShow(false)}
+                        />
+                      )}
                     </Col>
                     <Col xs={4} className='text-center bussness px-0'>
                       <div className='py-2'>
