@@ -6,7 +6,7 @@
 }
 
 .dashboard-container {
-  min-width: 565px;
+  /* min-width: 565px; */
   background-color: #013457f0;
   color: var(--font-color);
   border-radius: 5px;

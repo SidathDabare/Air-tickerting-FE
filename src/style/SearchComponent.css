@@ -9,7 +9,7 @@
 }
 .search-componet {
   width: 70%;
-  min-width: 460px;
+  /* min-width: 460px; */
   height: auto;
   background-color: #ffffff;
   border-radius: 10px;

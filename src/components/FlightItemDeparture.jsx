@@ -39,7 +39,7 @@ const FlightItemDeparture = ({ listItem }) => {
       listItem.itineraries[0].segments[0].arrival ? (
         <>
           <>
-            <Col className='col-7 col-xs-7 col-md-8 bg-light'>
+            <Col className='col-12 col-xs-12 col-md-8 flight-item-section01'>
               <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                 <div className='pl-3'>
                   <small className='font-weight-bold'>{listItem.id}</small>
@@ -125,7 +125,7 @@ const FlightItemDeparture = ({ listItem }) => {
                 </div>
               </Row>
             </Col>
-            <Col className='col-5 col-xs-5 col-md-4 bg-light'>
+            <Col className='col-12 col-xs-12 col-md-4 bg-light'>
               <Row>
                 <Col className='col-12 text-center economy px-0 pb-4'>
                   <div className='py-2'>
