@@ -30,3 +30,21 @@
 .search-input {
   color: aliceblue !important;
 }
+
+.user-display-img {
+  height: 195px;
+  width: 195px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 768px) {
+  .user-display-item-div {
+    flex-direction: column;
+    justify-content: space-between !important;
+  }
+  .user-display-img {
+    width: 100%;
+    height: 100px;
+    width: 100px;
+  }
+}

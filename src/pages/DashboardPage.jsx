@@ -57,7 +57,7 @@ const DashboardPage = () => {
       if (res.ok) {
         let data = await res.json()
         console.log(data)
-        setAllUsers(data)
+        setAllUsers(data.users)
       } else {
         console.log("ORDER ERROR")
       }
@@ -77,7 +77,7 @@ const DashboardPage = () => {
       <MyNavbar />
 
       {bookingInfo.orders ? (
-        <Container className='w-100 h-100 dashboard-container py-3'>
+        <Container className='dashboard-container py-3'>
           <div className='col-12 d-flex py-3'>
             <div className='col-6 d-flex justify-content-start align-items-center text-light'>
               {/* <TextField
@@ -103,7 +103,7 @@ const DashboardPage = () => {
             </div>
           </div>
           {loggedUser.role === "Admin" ? (
-            <div className='d-flex'>
+            <div className='d-flex col-12 px-0'>
               <div className='col-6 col-xs-6 col-md-4 bg-light text-dark py-2 rounded mb-2'>
                 <div className='col-12 d-flex border-bottom'>
                   <h6>Users details</h6>
