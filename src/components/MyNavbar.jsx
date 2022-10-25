@@ -158,13 +158,20 @@ const MyNavbar = () => {
                   </div>
                   <div className='col-12'>
                     <div className='col-7'>
-                      <Dropdown.Item>
+                      {/* <Dropdown.Item>
                         <Link to='/dashboard'>
                           Hello,{loggedUser.firstName} {loggedUser.lastName}
                         </Link>
-                      </Dropdown.Item>
+                      </Dropdown.Item> */}
                       <Dropdown.Item>
-                        <Link to='/dashboard'>Dashboard</Link>
+                        <Link
+                          to={
+                            loggedUser.role === "Admin"
+                              ? "/admin"
+                              : "/dashboard"
+                          }>
+                          Dashboard
+                        </Link>
                       </Dropdown.Item>
 
                       <div className='px-2'>

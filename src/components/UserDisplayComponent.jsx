@@ -5,6 +5,21 @@ import { useSelector } from "react-redux"
 
 const UserDisplayComponent = () => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
+  const token = useSelector((state) => state.selectedUserReducer.token)
+
+  const deleteUser = async () => {
+    let headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    }
+    try {
+      let res = await fetch(`${process.env.REACT_APP_BE_URL}/users/`, {
+        method: "DELETE",
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className='user-display-div col-12'>
       {user ? (

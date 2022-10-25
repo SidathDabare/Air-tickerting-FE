@@ -102,20 +102,11 @@ const DashboardPage = () => {
               </p>
             </div>
           </div>
-          {loggedUser.role === "Admin" ? (
+          {/* {loggedUser.role === "Admin" ? (
             <div className='d-flex col-12 px-0'>
               <div className='col-6 col-xs-6 col-md-4 bg-light text-dark py-2 rounded mb-2'>
                 <div className='col-12 d-flex border-bottom'>
                   <h6>Users details</h6>
-                  {/* <div className='col-4'>
-                    <h6>User</h6>
-                  </div> */}
-                  {/* <div className='col-4 text-center'>
-                    <h6>Joined Date</h6>
-                  </div>
-                  <div className='col-4 text-right'>
-                    <h6>Action</h6>
-                  </div> */}
                 </div>
                 {allUsers.map((user, i) => (
                   <div key={i}>
@@ -133,41 +124,48 @@ const DashboardPage = () => {
             </div>
           ) : (
             ""
-          )}
-          <div className='col-12 bg-light text-dark py-2 rounded-top'>
-            <div className='col-12 d-flex justify-content-between text-light rounded-top'>
-              <div className='col-12 d-flex justify-content-between align-items-center text-dark px-0'>
-                <h5>Done trips</h5>
-                {/* <small className='font-weight-bold'>SEE ALL</small> */}
-              </div>
-              {/* <div className='col-12 d-flex justify-content-between align-items-center'>
+          )} */}
+          {loggedUser.role !== "Admin" ? (
+            <>
+              <div className='col-12 bg-light text-dark py-2 rounded-top'>
+                <div className='col-12 d-flex justify-content-between text-light rounded-top'>
+                  <div className='col-12 d-flex justify-content-between align-items-center text-dark px-0'>
+                    <h5>Done trips</h5>
+                    {/* <small className='font-weight-bold'>SEE ALL</small> */}
+                  </div>
+                  {/* <div className='col-12 d-flex justify-content-between align-items-center'>
               <h5>Upcoming trips</h5>
               <small className='font-weight-bold'>SEE ALL</small>
             </div> */}
-            </div>
-          </div>
-          <div className='col-12 bg-light text-dark d-flex rounded-bottom'>
-            <div className='col-12'>
-              <div className='col-12 d-flex py-2'>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Destination
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Date
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Price
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Action
                 </div>
               </div>
-              {bookingInfo.orders &&
-                bookingInfo.orders.map((order, i) => (
-                  <OrderComponent key={i} order={order} />
-                ))}
-            </div>
-          </div>
+
+              <div className='col-12 bg-light text-dark d-flex rounded-bottom'>
+                <div className='col-12'>
+                  <div className='col-12 d-flex py-2'>
+                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                      Destination
+                    </div>
+                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                      Date
+                    </div>
+                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                      Price
+                    </div>
+                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                      Action
+                    </div>
+                  </div>
+                  {bookingInfo.orders &&
+                    bookingInfo.orders.map((order, i) => (
+                      <OrderComponent key={i} order={order} />
+                    ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </Container>
       ) : (
         <Loader />
