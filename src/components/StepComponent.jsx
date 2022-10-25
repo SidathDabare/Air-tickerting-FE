@@ -1,12 +1,13 @@
 /** @format */
 
 import React from "react"
+import { Container } from "react-bootstrap"
 import "../style/StepComponent.css"
 
 const StepComponent = (props) => {
   //console.log(props)
   return (
-    <div className='py-2 step-container-main mt-1'>
+    <Container className='py-2 step-container-main mt-1'>
       <div className='d-flex col-12'>
         <h3>Make a booking</h3>
       </div>
@@ -122,7 +123,7 @@ const StepComponent = (props) => {
             }></div>
         </div>
       </div>
-    </div>
+    </Container>
   )
 }
 

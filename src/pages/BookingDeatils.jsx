@@ -160,7 +160,9 @@ const BookingDeatils = () => {
                             </small>
                           </p>
                         </Row> */}
-                        <Row xs={12} className='flex-column mt-2 info-div'>
+                        <Row
+                          xs={12}
+                          className='flex-column mt-2 info-div mx-auto'>
                           <div xs={12} className='d-flex flex-column'>
                             <p className='d-flex'>
                               <small>
@@ -180,8 +182,10 @@ const BookingDeatils = () => {
                               <span>{segment.arrival.iataCode} </span>
                             </h6>
                           </div>
-                          <div xs={12} className='mt-2 px-0 d-flex'>
-                            <div className='col-6 d-flex px-0'>
+                          <div
+                            xs={12}
+                            className='mt-2 px-0 d-flex info-div-section01'>
+                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
                               <div className='col-3 px-0'>
                                 <p className='mb-1'>
                                   {segment.departure.iataCode}{" "}
@@ -205,7 +209,7 @@ const BookingDeatils = () => {
                                 </h5>
                               </div>
                             </div>
-                            <div className='col-6 d-flex px-0'>
+                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
                               <div className='col-6 d-flex'>
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img
@@ -241,7 +245,7 @@ const BookingDeatils = () => {
                   bookedTicket.data.flightOffers[0].itineraries[1].segments.map(
                     (segment, i) => (
                       <Container key={i} xs={12} className='mb-3'>
-                        <Row xs={12} className='d-flex flex-column px-1'>
+                        {/* <Row xs={12} className='d-flex flex-column px-1'>
                           <h5 className='mb-0'>
                             <span>From </span>
                             <span>{segment.departure.iataCode} </span>
@@ -254,8 +258,10 @@ const BookingDeatils = () => {
                               <span>{getTime(segment.duration)} </span>
                             </small>
                           </p>
-                        </Row>
-                        <Row xs={12} className='flex-column mt-2 info-div'>
+                        </Row> */}
+                        <Row
+                          xs={12}
+                          className='flex-column mt-2 info-div mx-auto'>
                           <div xs={12} className='d-flex flex-column'>
                             <small>
                               {Moment(segment.departure.at).format("MMM Do YY")}{" "}
@@ -266,8 +272,10 @@ const BookingDeatils = () => {
                               <span>{segment.arrival.iataCode} </span>
                             </h6>
                           </div>
-                          <div xs={12} className='mt-2 px-0 d-flex'>
-                            <div className='col-6 d-flex px-0'>
+                          <div
+                            xs={12}
+                            className='mt-2 px-0 d-flex info-div-section01'>
+                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
                               <div className='col-3 px-0'>
                                 <p className='mb-1'>
                                   {segment.departure.iataCode}{" "}
@@ -281,6 +289,7 @@ const BookingDeatils = () => {
                                 <div className='single-line'></div>
                                 <div className='circle'></div>
                               </div>
+
                               <div className='col-3 px-0 text-right'>
                                 <p className='mb-1'>
                                   {segment.arrival.iataCode}
@@ -290,7 +299,7 @@ const BookingDeatils = () => {
                                 </h5>
                               </div>
                             </div>
-                            <div className='col-6 d-flex px-0'>
+                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
                               <div className='col-6 d-flex'>
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img

@@ -8,8 +8,8 @@ import "../style/Footer.css"
 const Footer = () => {
   return (
     <div className='footer'>
-      <Container className='d-flex pt-4'>
-        <div className='col-3 d-flex flex-column footer-list-item'>
+      <Container className='d-flex py-5 footer-div'>
+        <div className='col-6 col-xs-6 col-md-3 d-flex flex-column footer-list-item'>
           <h5>About us</h5>
           <Link to='/'>About us</Link>
           <Link to='/'>Careers</Link>
@@ -17,14 +17,14 @@ const Footer = () => {
           <Link to='/'>Our planet</Link>
           <Link to='/'>Our people</Link>
         </div>
-        <div className='col-3 d-flex flex-column footer-list-item'>
+        <div className='col-6 col-xs-6 col-md-3 d-flex flex-column footer-list-item'>
           <h5>Help</h5>
           <Link to='/'>Help and Contact</Link>
           <Link to='/'>Travel Updates</Link>
           <Link to='/'>Special assistance</Link>
           <Link to='/'>Frequently asked questions</Link>
         </div>
-        <div className='col-3 d-flex flex-column footer-list-item'>
+        <div className='col-6 col-xs-6 col-md-3 d-flex flex-column footer-list-item'>
           <h5>Book</h5>
           <Link to='/'>Book flights</Link>
           <Link to='/'>Travel services</Link>
@@ -32,7 +32,7 @@ const Footer = () => {
           <Link to='/'>Planning your trip</Link>
           <Link to='/'>Search for flights</Link>
         </div>
-        <div className='col-3 d-flex flex-column footer-list-item'>
+        <div className='col-6 col-xs-6 col-md-3 d-flex flex-column footer-list-item'>
           <h5>Manage</h5>
           <Link to='/'>Check-in</Link>
           <Link to='/'>Manage your booking</Link>

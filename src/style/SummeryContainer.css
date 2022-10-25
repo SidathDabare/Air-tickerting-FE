@@ -10,11 +10,16 @@
   margin-top: 70px;
 }
 .show-summery-div {
-  width: 500px;
+  width: 430px;
   height: auto;
   background-color: aqua;
   position: absolute;
-  right: 0;
-  top: 65px;
+  right: 10px;
+  top: 70px;
   z-index: 1;
+}
+@media only screen and (max-width: 565px) {
+  .summery-container {
+    padding: 0px !important;
+  }
 }

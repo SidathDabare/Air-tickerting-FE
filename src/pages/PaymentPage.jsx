@@ -46,10 +46,10 @@ const PaymentPage = () => {
           option={true}
           payment={payment}
         />
-        <div className='col-12 d-flex py-3 payment-page-main'>
+        <div className='col-12 d-flex py-3 payment-page-main px-0'>
           <div
             className={
-              showItem ? "d-none" : "col-6 col-xs-6 col-md-8 bg-light py-3"
+              showItem ? "d-none" : "col-12 col-xs-12 col-md-8 bg-light py-3"
             }
             style={{ height: "auto" }}>
             <div>
@@ -312,7 +312,7 @@ const PaymentPage = () => {
             className={
               showItem
                 ? "col-12 bg-light py-3"
-                : "col-6 col-xs-6 col-md-4 bg-light py-3"
+                : "col-12 col-xs-12 col-md-4 bg-light py-3 strive-div"
             }
             style={{ height: "auto" }}>
             {/* <h6>The Spatula Store</h6> */}

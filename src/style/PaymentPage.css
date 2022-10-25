@@ -13,3 +13,16 @@
   display: flex;
   justify-content: center;
 }
+@media only screen and (max-width: 768px) {
+  .payment-page-main {
+    flex-direction: column;
+  }
+  .strive-div {
+    order: -1;
+  }
+  .show-stripe-container {
+    height: auto !important;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 20px;
+  }
+}

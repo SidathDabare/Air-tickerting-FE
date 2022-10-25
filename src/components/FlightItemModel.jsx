@@ -114,7 +114,7 @@ const FlightItemModel = (props) => {
             </div>
             {selectTicket.itineraries[0] &&
               selectTicket.itineraries[0].segments.map((segment, i) => (
-                <Container key={i} xs={12} className='mb-3'>
+                <Container key={i} className='mb-3 col-12'>
                   {/* <Row xs={12} className='d-flex flex-column px-1'>
                 <h5 className='mb-0'>
                   <span>From </span>
@@ -128,8 +128,8 @@ const FlightItemModel = (props) => {
                   </small>
                 </p>
               </Row> */}
-                  <Row xs={12} className='flex-column mt-2 info-div'>
-                    <div xs={12} className='d-flex flex-column'>
+                  <Row className='col-12 flex-column mt-2 info-div mx-auto'>
+                    <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>
                         <small>
                           {format(
@@ -152,8 +152,8 @@ const FlightItemModel = (props) => {
                       </h6>
                     </div>
 
-                    <div xs={12} className='mt-2 px-0 d-flex'>
-                      <div className='col-6 d-flex px-0'>
+                    <div className='col-12 mt-2 px-0 d-flex info-div-section01'>
+                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 '>
                         <div className='col-3 px-0'>
                           <p className='mb-1'>{segment.departure.iataCode} </p>
                           <h5>
@@ -170,7 +170,7 @@ const FlightItemModel = (props) => {
                           <h5>{Moment(segment.arrival.at).format("HH:mm")} </h5>
                         </div>
                       </div>
-                      <div className='col-6 d-flex px-0'>
+                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 info-div-section02'>
                         <div className='col-6 d-flex'>
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img
@@ -203,7 +203,7 @@ const FlightItemModel = (props) => {
 
             {selectTicket.itineraries[1] &&
               selectTicket.itineraries[1].segments.map((segment, i) => (
-                <Container key={i} xs={12} className='mb-3'>
+                <Container key={i} className='col-12 mb-3'>
                   {/* <Row xs={12} className='d-flex flex-column px-1'>
                 <h5 className='mb-0'>
                   <span>From </span>
@@ -217,11 +217,14 @@ const FlightItemModel = (props) => {
                   </small>
                 </p>
               </Row> */}
-                  <Row xs={12} className='flex-column mt-2 info-div'>
-                    <div xs={12} className='d-flex flex-column'>
+                  <Row className='col-12 flex-column mt-2 info-div mx-auto'>
+                    <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>
                         <small>
-                          {Moment(segment.departure.at).format("MMM Do YY")}{" "}
+                          {format(
+                            new Date(segment.departure.at),
+                            "MMM do yyyy"
+                          )}{" "}
                         </small>
 
                         <small className='ml-4'>
@@ -230,13 +233,16 @@ const FlightItemModel = (props) => {
                         </small>
                       </p>
                       <h6>
-                        <span>{segment.departure.iataCode} </span>
-                        <span>to </span>
-                        <span>{segment.arrival.iataCode} </span>
+                        <p className='mb-0'>
+                          <span>{segment.departure.iataCode} </span>
+                          <span>to </span>
+                          <span>{segment.arrival.iataCode} </span>
+                        </p>
                       </h6>
                     </div>
-                    <div xs={12} className='mt-2 px-0 d-flex'>
-                      <div className='col-6 d-flex px-0'>
+
+                    <div className='col-12 mt-2 px-0 d-flex info-div-section01'>
+                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 '>
                         <div className='col-3 px-0'>
                           <p className='mb-1'>{segment.departure.iataCode} </p>
                           <h5>
@@ -253,7 +259,7 @@ const FlightItemModel = (props) => {
                           <h5>{Moment(segment.arrival.at).format("HH:mm")} </h5>
                         </div>
                       </div>
-                      <div className='col-6 d-flex px-0'>
+                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 info-div-section02'>
                         <div className='col-6 d-flex'>
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img

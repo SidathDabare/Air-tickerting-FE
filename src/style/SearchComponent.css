@@ -9,7 +9,7 @@
 }
 .search-componet {
   width: 70%;
-  min-width: 600px;
+  min-width: 460px;
   height: auto;
   background-color: #ffffff;
   border-radius: 10px;
@@ -24,6 +24,7 @@
   align-items: center;
   cursor: pointer;
 }
+
 .header-btn:first-child {
   border-radius: 10px 0 0 0;
 }
@@ -41,6 +42,14 @@
 .header-btn:hover {
   background-color: #154a78;
   color: #001f4b;
+}
+@media only screen and (max-width: 800px) {
+  .header-btn:first-child {
+    border-radius: 10px 0 0 0;
+  }
+  .header-btn:last-child {
+    border-radius: 0 0 0 0;
+  }
 }
 .input-div {
   border: 0.2px solid #c5c5c5;

@@ -36,7 +36,7 @@ const ConnectionComponents = (props) => {
             <Modal.Title id='contained-modal-title-vcenter'>
               <span>From {ticket[0].departure.iataCode}</span>
               <span> to {ticket[ticket.length - 1].arrival.iataCode}</span>
-              <span className='ml-3'>
+              <span className='ml-3 text-truncate'>
                 <small style={{ fontSize: "14px" }}>
                   at{" "}
                   {moment(ticket[0].departure.at).format(

@@ -116,19 +116,19 @@ const SearchComponent = () => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8 mt-3'>
           <Row className='d-flex justify-content-between'>
-            <div className='col-3 header-btn active-btn'>
+            <div className='col-6 col-xs-6 col-md-3 header-btn active-btn'>
               <FlightTakeoffSharpIcon className='header-btn-icon' />
               <span>Book</span>
             </div>
-            <div className='col-3 header-btn'>
+            <div className='col-6 col-xs-6 col-md-3 header-btn'>
               <DocumentScannerSharpIcon className='header-btn-icon' />
               <span className='text-truncate'>Manage booking</span>
             </div>
-            <div className='col-3 header-btn'>
+            <div className='col-6 col-xs-6 col-md-3 header-btn'>
               <CheckCircleOutlineSharpIcon className='header-btn-icon' />
               <span>Check-in</span>
             </div>
-            <div className='col-3 header-btn'>
+            <div className='col-6 col-xs-6 col-md-3 header-btn'>
               <ModeOfTravelSharpIcon className='header-btn-icon' />
               <span>Flight status</span>
             </div>
@@ -136,19 +136,19 @@ const SearchComponent = () => {
           <Row className='mt-4 mx-2'>
             <Form className='col-12'>
               <Row xs={12} className='d-flex justify-content-between'>
-                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <InputAutoComplete
                     getInput={setOriginLocationCode}
                     label={"Departure"}
                   />
                 </div>
-                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <InputAutoComplete
                     getInput={setDestinationLocationCode}
                     label={"Arrival"}
                   />
                 </div>
-                <div className='col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <Stack spacing={2} className='border-0'>
                     <TextField
                       className='w-100 input-select'
@@ -171,7 +171,7 @@ const SearchComponent = () => {
                   </Stack>
                 </div>
 
-                <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <Stack spacing={1} className='col-6 px-0'>
                     <DatePicker
                       className='trxt-trunucate'
@@ -195,7 +195,7 @@ const SearchComponent = () => {
                     />
                   </Stack>
                 </div>
-                <div className='d-flex justify-content-between px-0 col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <Stack spacing={2} className='border-0 col-6 px-0 '>
                     <TextField
                       className='w-100 input-select'
@@ -233,7 +233,7 @@ const SearchComponent = () => {
                   </Stack>
                 </div>
 
-                <div className='d-flex justify-content-center align-items-center col-6 col-xs-6 col-md-4 mb-3 px-1'>
+                <div className='d-flex justify-content-center align-items-center col-12 col-xs-12 col-md-4 mb-3 px-1'>
                   <Button
                     disabled={searchDisabled ? true : false}
                     id='search-button'

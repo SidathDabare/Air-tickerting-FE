@@ -21,7 +21,7 @@ const SummeryContainer = () => {
     <>
       {selectedTicket ? (
         <div className='d-flex col-12 py-2 summery-container'>
-          <div className='col-6'>
+          <div className='col-4 col-xs-4 col-md-6'>
             <div>
               <span>
                 {selectedTicket.itineraries[0].segments[0].departure.iataCode}
@@ -40,6 +40,7 @@ const SummeryContainer = () => {
               <span>
                 {selectedTicket.itineraries[1] ? "Return" : "One Way"}
               </span>
+              <br />
               <span>
                 {" "}
                 {selectedTicket.travelerPricings.length}{" "}
@@ -49,13 +50,13 @@ const SummeryContainer = () => {
               </span>
             </div>
           </div>
-          <div className='d-flex col-6 justify-content-end align-items-center'>
+          <div className='d-flex col-8 col-xs-8 col-md-6 justify-content-end align-items-center'>
             <h6 className='mr-2 mb-0'>
               <span>Cost </span>
               <span>{selectedTicket.price.currency} </span>
               <span>{selectedTicket.price.total}</span>
             </h6>
-            <div className='bg-info rounded'>
+            <div className='bg-info rounded' style={{ minWidth: "150px" }}>
               <h6 className='mb-0 p-2'>
                 <span> View summary</span>
                 <span onClick={() => setShowSummery(!showSummery)}>

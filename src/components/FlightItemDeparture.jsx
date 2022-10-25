@@ -39,7 +39,7 @@ const FlightItemDeparture = ({ listItem }) => {
       listItem.itineraries[0].segments[0].arrival ? (
         <>
           <>
-            <Col xs={5} className='bg-light'>
+            <Col className='col-7 col-xs-7 col-md-8 bg-light'>
               <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                 <div className='pl-3'>
                   <small className='font-weight-bold'>{listItem.id}</small>
@@ -125,9 +125,9 @@ const FlightItemDeparture = ({ listItem }) => {
                 </div>
               </Row>
             </Col>
-            <Col xs={7} className='bg-light'>
-              <Row xs={12}>
-                <Col xs={4} className='text-center economy px-0 pb-4'>
+            <Col className='col-5 col-xs-5 col-md-4 bg-light'>
+              <Row>
+                <Col className='col-12 text-center economy px-0 pb-4'>
                   <div className='py-2'>
                     <h6>Economy</h6>
                   </div>
@@ -143,8 +143,16 @@ const FlightItemDeparture = ({ listItem }) => {
                     className='py-1 px-4 mt-2'>
                     Select
                   </Button>
+                  {selectedTicket && (
+                    <FlightItemModel
+                      show={modalShow}
+                      listitem={listItem}
+                      key={listItem.id}
+                      onHide={() => setModalShow(false)}
+                    />
+                  )}
                 </Col>
-                <Col xs={4} className='text-center bussness px-0'>
+                {/* <Col xs={4} className='text-center bussness px-0'>
                   <div className='py-2'>
                     <h6>Business</h6>
                   </div>
@@ -159,14 +167,7 @@ const FlightItemDeparture = ({ listItem }) => {
                     className='py-1 px-4 mt-2'>
                     Select
                   </Button>
-                  {selectedTicket && (
-                    <FlightItemModel
-                      show={modalShow}
-                      listitem={listItem}
-                      key={listItem.id}
-                      onHide={() => setModalShow(false)}
-                    />
-                  )}
+             
                 </Col>
                 <Col xs={4} className='text-center first px-0'>
                   <div className='py-2'>
@@ -183,7 +184,7 @@ const FlightItemDeparture = ({ listItem }) => {
                     className='py-1 px-4 mt-2'>
                     Select
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
             </Col>
           </>
