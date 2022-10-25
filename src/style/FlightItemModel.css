@@ -2,7 +2,7 @@
 
 .modal-dialog {
   max-width: 850px !important;
-  min-width: 460px !important;
+  /* min-width: 460px !important; */
 }
 .depature-details {
   background-color: rgba(0, 39, 65, 0.942);

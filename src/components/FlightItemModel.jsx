@@ -99,7 +99,10 @@ const FlightItemModel = (props) => {
   return (
     <>
       {selectTicket ? (
-        <Modal {...props} aria-labelledby='contained-modal-title-vcenter'>
+        <Modal
+          {...props}
+          aria-labelledby='contained-modal-title-vcenter'
+          className='col-12'>
           <Modal.Header>
             <Modal.Title id='contained-modal-title-vcenter'>
               <h4>Flight details</h4>

@@ -31,7 +31,8 @@ const ConnectionComponents = (props) => {
           {...props}
           size='lg'
           aria-labelledby='contained-modal-title-vcenter'
-          centered>
+          centered
+          className='col-12'>
           <Modal.Header>
             <Modal.Title id='contained-modal-title-vcenter'>
               <span>From {ticket[0].departure.iataCode}</span>
