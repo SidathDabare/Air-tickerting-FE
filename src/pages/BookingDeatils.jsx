@@ -23,10 +23,14 @@ const BookingDeatils = () => {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
+  const newBookedTicketId = useSelector(
+    (state) => state.orderTicketIdReducer.orderTicketId
+  )
   //console.log(bookedTicket.data)
 
   const details = {
     data: bookedTicket.data,
+    orderId: newBookedTicketId._id,
   }
   const emailBody = {
     email: "sidath2007@yahoo.com",
@@ -51,14 +55,14 @@ const BookingDeatils = () => {
       <p>Thank you</p>
     </div>
     </div> `,
-    id: details.data.queuingOfficeId,
+    id: newBookedTicketId._id,
   }
   const createAndDownloadPdf = () => {
     axios
       .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
       .then(() =>
         axios.get(
-          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${details.data.queuingOfficeId}`,
+          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}`,
           {
             responseType: "blob",
           }
@@ -67,7 +71,7 @@ const BookingDeatils = () => {
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" })
 
-        saveAs(pdfBlob, `${details.data.queuingOfficeId}`)
+        saveAs(pdfBlob, `${newBookedTicketId._id}`)
       })
   }
 

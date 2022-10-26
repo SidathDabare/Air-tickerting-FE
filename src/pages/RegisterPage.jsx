@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Container, Form } from "react-bootstrap"
 import "../style/RegisterPage.css"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
@@ -13,6 +13,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("")
   const [role, setRole] = useState("")
   const [avatar, setAvatar] = useState("")
+  console.log(role)
 
   const addNewUser = async () => {
     let url = `${process.env.REACT_APP_BE_URL}/users`
@@ -67,7 +68,7 @@ const RegisterPage = () => {
     e.preventDefault()
     addNewUser()
   }
-
+  useEffect(() => {}, [role])
   return (
     <div>
       <div className='register-nav-div'>

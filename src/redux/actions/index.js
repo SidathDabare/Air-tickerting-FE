@@ -13,8 +13,8 @@ export const SET_BOOKED_TICKET = "SET_BOOKED_TICKET"
 export const DELETE_TICKET_DATA = "DELETE_TICKET_DATA"
 export const SELECTED_TICKET_SEGMENTS = "SELECTED_TICKET_SEGMENTS"
 export const SELECTED_USER = "SELECTED_USER"
-
 export const TICKET_PAID = "TICKET_PAID"
+export const SET_BOOKED_TICKET_ID = "SET_BOOKED_TICKET_ID"
 
 const clientId = process.env.REACT_APP_CLIENT_ID
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET
@@ -212,6 +212,12 @@ export const setBookedTicket = (ticket) => {
   return {
     type: SET_BOOKED_TICKET,
     payload: ticket,
+  }
+}
+export const setBookedTicketId = (id) => {
+  return {
+    type: SET_BOOKED_TICKET_ID,
+    payload: id,
   }
 }
 // export const ticketPaidAction = (ticketPaid) => {

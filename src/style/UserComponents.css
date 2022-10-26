@@ -3,7 +3,6 @@
 .user-item {
   cursor: pointer;
   border-radius: 4px;
-  box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -webkit-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -moz-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
+  -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
+  box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
 }

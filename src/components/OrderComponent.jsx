@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import "../style/OrderComponent.css"
@@ -15,9 +15,17 @@ import Loader from "../components/Loader"
 const OrderComponent = (props) => {
   //console.log(props.order)
   const [showInfo, setShowInfo] = useState(false)
+  useEffect(() => {
+    // setShowInfo(false)
+  }, [props, showInfo])
   return (
     <>
-      <div className='col-12 d-flex py-2 my-2 text-dark order-item'>
+      <div
+        className={
+          showInfo
+            ? "col-11 mx-auto d-flex py-2 my-2 px-0 text-dark order-item add-thick-border add-background"
+            : "col-11 mx-auto d-flex py-2 my-2 px-0 text-dark order-item border"
+        }>
         <div className='col-3 d-flex justify-content-center align-items-center'>
           <span>
             {
@@ -63,8 +71,8 @@ const OrderComponent = (props) => {
       <div
         className={
           showInfo
-            ? "col-12 animation py-2 order-item-show"
-            : "col-12 d-none animation"
+            ? "col-11 mx-auto animation py-2 order-item-show add-thick-border add-background "
+            : "col-11 mx-auto d-none animation"
         }
         style={{ height: "auto" }}>
         <div className='col-12'>

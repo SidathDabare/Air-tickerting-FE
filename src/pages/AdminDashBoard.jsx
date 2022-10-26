@@ -71,7 +71,7 @@ const AdminDashBoard = () => {
       getAllUsers()
       getOrdersData()
     }
-  }, [])
+  }, [loggedUser])
   return (
     <div className='d-flex col-12 bg-light px-0 admin-main'>
       <div className='col-4 col-xs-4 col-md-2 sidebar px-0'>
@@ -85,27 +85,27 @@ const AdminDashBoard = () => {
           <div
             className='col-12 sidebar-items'
             onClick={() => {
-              setShowDashboard(!showDashboard)
               setShowUserProfile(false)
+              setShowDashboard(!showDashboard)
             }}>
             <h5 className='d-flex align-items-center'>
               <span>
                 <DashboardIcon />
               </span>
-              <span className='px-1'>Dashboard</span>
+              <span className='pl-2'>Dashboard</span>
             </h5>
           </div>
           <div
             className='col-12 sidebar-items'
             onClick={() => {
-              setShowUserProfile(!showUserProfile)
               setShowDashboard(false)
+              setShowUserProfile(!showUserProfile)
             }}>
             <h5 className='d-flex align-items-center'>
               <span>
                 <AccountBoxIcon />
               </span>
-              <span className='px-1'>User profile</span>
+              <span className='pl-2'>User profile</span>
             </h5>
           </div>
           {/* <div className='col-12 sidebar-items'>
@@ -119,17 +119,17 @@ const AdminDashBoard = () => {
           </div> */}
         </div>
       </div>
-      <div className='col-8 col-xs-8 col-md-10 px-0'>
+      <div className='col-8 col-xs-8 col-md-10 px-0 admin-right-div'>
         <div className='col-12 admin-nav-div border-bottom'>
-          <div className='col-4 d-flex justify-content-end align-items-center'>
-            <InputGroup className='col-9' variant='dark'>
-              <InputGroup.Text id='basic-addon1'>
-                <SearchIcon />
-              </InputGroup.Text>
+          <div className='col-10 col-10 col-md-4 d-flex justify-content-end align-items-center'>
+            <InputGroup className='col-12 admin-search'>
+              {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
+              <SearchIcon className='admin-search-icon' />
               <Form.Control
                 placeholder='Search'
-                aria-label='Search'
+                // aria-label='Search'
                 aria-describedby='basic-addon1'
+                className='admin-search-input'
               />
             </InputGroup>
             <div className='col-3'>
@@ -155,22 +155,24 @@ const AdminDashBoard = () => {
           className={
             showUserProfile ? "col-12 admin-user-div d-flex bg-light" : "d-none"
           }>
-          <div className='col-5 col-xs-5 col-md-3 bg-info'>
+          <div className='col-5 col-xs-5 col-md-3'>
             <div className='col-12 d-flex border-bottom py-2'>
               <h6>Users</h6>
             </div>
-            {allUsers.map((user, i) => (
-              <div key={i}>
-                {user.role !== "Admin" ? (
-                  <UserComponents user={user} i={i} />
-                ) : (
-                  <div>{allUsers.slice(0, i)}</div>
-                )}
-              </div>
-            ))}
+            <div className='user-name-display'>
+              {allUsers.map((user, i) => (
+                <div key={i}>
+                  {user.role !== "Admin" ? (
+                    <UserComponents user={user} i={i} />
+                  ) : (
+                    <div>{allUsers.slice(0, i)}</div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className='col-7 col-xs-7 col-md-9 bg-secondary pt-4'>
-            <div className='col-6 col-xs-6 col-md-9'>
+          <div className='col-7 col-xs-7 col-md-9 admin-users-display'>
+            <div className='col-12 px-0'>
               <UserDisplayComponent />
             </div>
           </div>

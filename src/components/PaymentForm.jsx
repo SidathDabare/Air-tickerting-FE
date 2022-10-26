@@ -4,10 +4,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Button, Container } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "../style/PaymentForm.css"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import { useNavigate } from "react-router-dom"
+import { setBookedTicketId } from "../redux/actions"
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -37,7 +38,7 @@ export default function PaymentForm(props) {
   const bookedTicket = useSelector(
     (state) => state.bookedTicketReducer.bookedTicket
   )
-
+  const dispatch = useDispatch()
   // console.log(bookedTicket.data.flightOffers[0].price.total)
   // console.log(parseInt(bookedTicket.data.flightOffers[0].price.total))
 
@@ -105,6 +106,7 @@ export default function PaymentForm(props) {
       if (res.ok) {
         let data = await res.json()
         console.log(data)
+        dispatch(setBookedTicketId(data))
         navigate("/booking-details")
       }
     } catch (error) {

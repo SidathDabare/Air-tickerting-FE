@@ -1,0 +1,30 @@
+/** @format */
+.user-display-div {
+  height: 92vh;
+}
+.user-display-section01 {
+  height: 25%;
+}
+.user-display-section02 {
+  height: 70%;
+}
+.users-orders-display {
+  overflow-y: auto;
+  height: 100%;
+
+  max-height: 55vh;
+}
+div.users-orders-display::-webkit-scrollbar {
+  width: 6px;
+}
+div.users-orders-display::-webkit-scrollbar-track {
+  background: #a6a6a6;
+}
+div.users-orders-display::-webkit-scrollbar-thumb {
+  background-color: #002741f0;
+  /* border: 3px solid rgb(55, 55, 55); */
+}
+.user-display-img {
+  height: 100px;
+  width: 100px;
+}

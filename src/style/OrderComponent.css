@@ -28,13 +28,21 @@
 }
 .order-item {
   border-radius: 4px;
-  box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -webkit-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -moz-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
+  /* -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
+  box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8); */
 }
 .order-item-show {
   border-radius: 5px;
-  box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -webkit-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
-  -moz-box-shadow: 0px 1px 10px 0px rgba(102, 102, 102, 0.75);
+  /* -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
+  box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8); */
+}
+.add-box-shadow {
+  -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
+  box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
+}
+.add-thick-border {
+  border: 1.5px solid rgb(130, 130, 130);
+}
+.add-background {
+  background-color: rgb(235, 243, 247);
 }
