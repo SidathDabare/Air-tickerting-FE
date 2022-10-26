@@ -169,6 +169,12 @@ const SearchComponent = () => {
                       </MenuItem>
                     </TextField>
                   </Stack>
+                  {/* <Form.Select aria-label='Default select example'>
+                    <option>Open this select menu</option>
+                    <option value='1'>One</option>
+                    <option value='2'>Two</option>
+                    <option value='3'>Three</option>
+                  </Form.Select> */}
                 </div>
 
                 <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-4 mb-3 px-1'>

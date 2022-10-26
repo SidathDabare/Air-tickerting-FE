@@ -5,7 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers"
 import HomePage from "./pages/HomePage"
 import SearchResultPage from "./pages/SearchResultPage"
 import LogInPage from "./pages/LogInPage"
-import "./App.css"
+
 import RegisterPage from "./pages/RegisterPage"
 import DetailsPage from "./pages/DetailsPage"
 import PassengerDetails from "./pages/PassengerDetails"
