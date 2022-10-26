@@ -1,0 +1,64 @@
+/** @format */
+
+:root {
+  --font-color: #e4e4e4;
+  --font-hover-color: #ffffff;
+  --dark-font-color: #6c6c6c;
+  --light-border-color: #c2c2c2;
+}
+.admin-main {
+  overflow-y: hidden;
+}
+.sidebar {
+  height: 100vh;
+  min-height: 100%;
+  background-color: #002741f0;
+  color: var(--font-color);
+}
+.sidebar-logo {
+  height: 8vh;
+}
+.sidebar-items {
+  padding: 10px 0 10px 5px;
+  margin: 3px 0;
+  background-color: #e4e4e4;
+  cursor: pointer;
+  color: var(--dark-font-color);
+}
+
+.admin-nav-div {
+  height: 8vh;
+  color: var(--font-color);
+  background-color: #002741f0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.admin-profile-div {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.admin-profile-pic {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.admin-dashboard-div {
+  height: 100vh;
+  min-height: 100%;
+}
+.admin-user-div {
+  height: 100vh;
+  min-height: 100%;
+}

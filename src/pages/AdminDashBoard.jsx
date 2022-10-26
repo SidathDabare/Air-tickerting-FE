@@ -1,11 +1,16 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { Container } from "react-bootstrap"
+import { Container, InputGroup } from "react-bootstrap"
 import { useSelector } from "react-redux"
-import OrderComponent from "../components/OrderComponent"
 import UserComponents from "../components/UserComponents"
 import UserDisplayComponent from "../components/UserDisplayComponent"
+import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
+import DashboardIcon from "@mui/icons-material/Dashboard"
+import AccountBoxIcon from "@mui/icons-material/AccountBox"
+import SearchIcon from "@mui/icons-material/Search"
+import Form from "react-bootstrap/Form"
+import "../style/AdminDashBoard.css"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
@@ -13,6 +18,10 @@ const AdminDashBoard = () => {
 
   const [bookingInfo, setBookingInfo] = useState({})
   const [allUsers, setAllUsers] = useState([])
+
+  const [showDashboard, setShowDashboard] = useState(false)
+  const [showUserProfile, setShowUserProfile] = useState(false)
+
   const getOrdersData = async () => {
     try {
       const res = await fetch(
@@ -57,27 +66,98 @@ const AdminDashBoard = () => {
     }
   }
   useEffect(() => {
+    setShowDashboard(true)
     if (loggedUser.role === "Admin") {
       getAllUsers()
       getOrdersData()
     }
   }, [])
   return (
-    <Container>
-      {loggedUser.role === "Admin" ? (
-        <div className='d-flex col-12 px-0'>
-          <div className='col-6 col-xs-6 col-md-4 bg-light text-dark py-2 rounded mb-2'>
-            <div className='col-12 d-flex border-bottom'>
-              <h6>Users details</h6>
-              {/* <div className='col-4'>
-                    <h6>User</h6>
-                  </div> */}
-              {/* <div className='col-4 text-center'>
-                    <h6>Joined Date</h6>
-                  </div>
-                  <div className='col-4 text-right'>
-                    <h6>Action</h6>
-                  </div> */}
+    <div className='d-flex col-12 bg-light px-0 admin-main'>
+      <div className='col-4 col-xs-4 col-md-2 sidebar px-0'>
+        <div className='col-12 px-3 d-flex justify-content-left align-items-center sidebar-logo'>
+          <h4>TICKETING </h4>
+          <span className='pb-2 ml-2'>
+            <FlightTakeoffSharpIcon />
+          </span>
+        </div>
+        <div className='col-12'>
+          <div
+            className='col-12 sidebar-items'
+            onClick={() => {
+              setShowDashboard(!showDashboard)
+              setShowUserProfile(false)
+            }}>
+            <h5 className='d-flex align-items-center'>
+              <span>
+                <DashboardIcon />
+              </span>
+              <span className='px-1'>Dashboard</span>
+            </h5>
+          </div>
+          <div
+            className='col-12 sidebar-items'
+            onClick={() => {
+              setShowUserProfile(!showUserProfile)
+              setShowDashboard(false)
+            }}>
+            <h5 className='d-flex align-items-center'>
+              <span>
+                <AccountBoxIcon />
+              </span>
+              <span className='px-1'>User profile</span>
+            </h5>
+          </div>
+          {/* <div className='col-12 sidebar-items'>
+            <h5>Dashboard</h5>
+          </div>
+          <div className='col-12 sidebar-items'>
+            <h5>Dashboard</h5>
+          </div>
+          <div className='col-12 sidebar-items'>
+            <h5>Dashboard</h5>
+          </div> */}
+        </div>
+      </div>
+      <div className='col-8 col-xs-8 col-md-10 px-0'>
+        <div className='col-12 admin-nav-div border-bottom'>
+          <div className='col-4 d-flex justify-content-end align-items-center'>
+            <InputGroup className='col-9' variant='dark'>
+              <InputGroup.Text id='basic-addon1'>
+                <SearchIcon />
+              </InputGroup.Text>
+              <Form.Control
+                placeholder='Search'
+                aria-label='Search'
+                aria-describedby='basic-addon1'
+              />
+            </InputGroup>
+            <div className='col-3'>
+              <div className='admin-profile-div'>
+                <img
+                  src={loggedUser.avatar}
+                  alt='admin-user-pic'
+                  className='admin-profile-pic px-0'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={
+            showDashboard ? "col-12 admin-dashboard-div" : "col-12 d-none"
+          }>
+          <h1>Dashboard</h1>
+        </div>
+
+        <div
+          className={
+            showUserProfile ? "col-12 admin-user-div d-flex bg-light" : "d-none"
+          }>
+          <div className='col-5 col-xs-5 col-md-3 bg-info'>
+            <div className='col-12 d-flex border-bottom py-2'>
+              <h6>Users</h6>
             </div>
             {allUsers.map((user, i) => (
               <div key={i}>
@@ -89,55 +169,14 @@ const AdminDashBoard = () => {
               </div>
             ))}
           </div>
-          <div className='col-6 col-xs-6 col-md-8'>
-            <UserDisplayComponent />
+          <div className='col-7 col-xs-7 col-md-9 bg-secondary pt-4'>
+            <div className='col-6 col-xs-6 col-md-9'>
+              <UserDisplayComponent />
+            </div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
-      {loggedUser.orders.length > 0 ? (
-        <>
-          <div className='col-12 bg-light text-dark py-2 rounded-top'>
-            <div className='col-12 d-flex justify-content-between text-light rounded-top'>
-              <div className='col-12 d-flex justify-content-between align-items-center text-dark px-0'>
-                <h5>Done trips</h5>
-                {/* <small className='font-weight-bold'>SEE ALL</small> */}
-              </div>
-              {/* <div className='col-12 d-flex justify-content-between align-items-center'>
-              <h5>Upcoming trips</h5>
-              <small className='font-weight-bold'>SEE ALL</small>
-            </div> */}
-            </div>
-          </div>
-
-          <div className='col-12 bg-light text-dark d-flex rounded-bottom'>
-            <div className='col-12'>
-              <div className='col-12 d-flex py-2'>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Destination
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Date
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Price
-                </div>
-                <div className='col-3 d-flex justify-content-center align-items-center'>
-                  Action
-                </div>
-              </div>
-              {bookingInfo.orders &&
-                bookingInfo.orders.map((order, i) => (
-                  <OrderComponent key={i} order={order} />
-                ))}
-            </div>
-          </div>
-        </>
-      ) : (
-        ""
-      )}
-    </Container>
+      </div>
+    </div>
   )
 }
 
