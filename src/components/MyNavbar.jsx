@@ -51,7 +51,7 @@ const MyNavbar = () => {
   }, [])
 
   return (
-    <div className='nav-div'>
+    <div className='nav-div mui-fixed'>
       <Container className='d-flex justify-content-between align-items-center nav-container'>
         <div className='nav-left-div'>
           <h4>TICKETING </h4>

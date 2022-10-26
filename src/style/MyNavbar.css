@@ -12,6 +12,7 @@
   left: 0;
   top: 0;
   z-index: 2;
+  padding: 0 !important;
 }
 .nav-container {
   width: 100%;

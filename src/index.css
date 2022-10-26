@@ -16,10 +16,12 @@
  * @format
  */
 body {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   background-image: url("./assets/Bg-image.png");
   background-size: cover;
   min-height: 100vh;
   min-width: 100%;
   overflow-x: hidden;
+  overflow-y: auto !important;
 }

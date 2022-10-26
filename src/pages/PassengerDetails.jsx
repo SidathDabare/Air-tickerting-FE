@@ -214,7 +214,7 @@ const PassengerDetails = () => {
             <button
               //disabled={disable === true ? true : false}
               className={
-                disable === true ? "add-passenger-btn bg-danger" : "d-none"
+                disable === true ? "add-passenger-btn bg-info" : "d-none"
               }
               onClick={() => setShowPassengerDetails(!showPassengerDetails)}>
               <span className='align-items-center'>
@@ -241,7 +241,6 @@ const PassengerDetails = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}>
                   <MenuItem value='MALE'>Mr</MenuItem>
-                  <MenuItem value='FEMALE'>Mrs</MenuItem>
                   <MenuItem value='FEMALE'>Miss</MenuItem>
                 </TextField>
               </div>
