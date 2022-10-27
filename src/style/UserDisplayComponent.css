@@ -1,18 +1,32 @@
 /** @format */
 .user-display-div {
+  position: relative;
+  max-height: 95vh;
+  width: 100%;
+}
+.user-display-div-main {
+  display: flex;
   height: 92vh;
-  background-color: black;
+  background-color: aqua;
+  justify-content: space-between;
+  align-items: center;
 }
 .user-display-section01 {
-  height: 25%;
+  background-color: #716c6c;
+  height: 83vh;
+  width: 28%;
+  border-radius: 5px;
 }
 .user-display-section02 {
-  height: 70%;
+  background-color: #716c6c;
+  height: 83vh;
+  width: 70%;
+  border-radius: 5px;
 }
+
 .users-orders-display {
   overflow-y: auto;
   height: 100%;
-
   max-height: 55vh;
 }
 div.users-orders-display::-webkit-scrollbar {
@@ -26,11 +40,15 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   /* border: 3px solid rgb(55, 55, 55); */
 }
 .user-display-img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+  min-width: 150px;
+  object-fit: cover;
 }
-@media (min-width: 0px) and (max-width: 565px) {
-  .user-display-div {
+@media only screen and (max-width: 1000px) {
+}
+@media only screen and (max-width: 565px) {
+  /* .user-display-div {
     padding: 0px 0px !important;
     width: calc(100% - 200px) !important;
   }
@@ -42,7 +60,7 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   .user-display-section01 > div:nth-child(1) {
     width: 50vw !important;
     min-width: 100% !important;
-  }
+  } */
 }
 /* @media only screen and (min-width: 565px) {
   .user-display-div {

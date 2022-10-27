@@ -7,14 +7,20 @@
   --light-border-color: #c2c2c2;
 }
 .admin-main {
-  overflow-y: auto !important;
+  overflow-y: hidden;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
 }
 .sidebar {
   height: 100vh;
   min-height: 100%;
+  width: 250px;
+  min-width: 250px;
   background-color: #002741f0;
   color: var(--font-color);
   border-right: #e4e4e4;
+  transition: 0.8s;
 }
 .sidebar-logo {
   height: 8vh;
@@ -33,16 +39,21 @@
     min-width: 100%;
   }
 } */
+
 .admin-right-div {
-  height: 92vh;
-  max-height: 92vh;
+  background-color: aqua;
+  width: calc(100% - 250px) !important;
+  max-width: calc(100% - 250px) !important;
+  height: 100vh;
+  max-height: 100%;
+  /* width: calc(100%-200px) !important; */
 }
 .admin-nav-div {
   height: 8vh;
   color: var(--font-color);
-  background-color: #002741f0;
+  background-color: #f4f3ef;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
 }
 .admin-search {
@@ -50,7 +61,7 @@
 }
 .admin-search-icon {
   position: absolute;
-  color: var(--font-color) !important;
+  color: #797979;
   z-index: 1;
   top: 20%;
   right: 20px;
@@ -63,18 +74,19 @@
 }
 .admin-profile-div {
   position: relative;
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
+  border: 0.2px solid rgb(86, 86, 86);
 }
 .admin-profile-pic {
   position: absolute;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   margin: auto;
   left: 0;
   right: 0;
@@ -82,22 +94,23 @@
   bottom: 0;
 }
 .admin-dashboard-div {
-  min-height: 100%;
+  height: 92vh;
+  max-height: 92vh;
+  background-color: #6c6c6c;
 }
-.admin-user-div {
-  height: 75vh;
-  width: calc(100% - 200px) !important;
-  min-width: 100% !important;
+/* .admin-user-div {
+  height: 73vh;
   overflow-y: hidden;
   border: 0.5px solid rgba(128, 128, 128, 0.293);
   border-radius: 4px;
-}
+} */
 .user-name-display {
-  height: 100%;
+  height: 65vh;
   overflow-y: auto;
   max-height: 100%;
   color: #6c6c6c;
 }
+
 /* .admin-users-display {
   min-height: 100%;
   background-color: #6c6c6c;
@@ -113,33 +126,55 @@ div.user-name-display::-webkit-scrollbar-thumb {
   border-radius: 5px;
   /* border: 3px solid rgb(55, 55, 55); */
 }
+.menu-icon {
+  display: none;
+}
+
 @media only screen and (max-width: 1000px) {
-  .sidebar {
-    min-width: 200px;
-  }
-  .sidebar-items h5 span:nth-child(1) svg {
-    font-size: 20px;
-  }
-  .sidebar-items h5 span:nth-child(2) {
-    font-size: 19px;
-    margin-top: 4px;
-  }
   .user-display-section01 {
     flex-direction: column;
     width: 100% !important;
     min-width: 100% !important;
   }
+  .sidebar-move-left {
+    transform: translateX(-250px);
+    width: 350px;
+    transition: 0.8s ease-out;
+  }
+  .sidebar-move-right {
+    transform: translateX(0);
+    width: 250px;
+    transition: 0.8s ease-out;
+  }
+  /* .admin-right-div {
+    min-width: calc(100% - 250px) !important;
+  } */
+  .admin-right-div-expand {
+    min-width: 100%;
+    transform: translateX(-250px);
+    transition: 0.8s ease-out;
+  }
+  .admin-right-div-minimize {
+    min-width: calc(100% - 250px);
+    transform: translateX(0px);
+    transition: 0.8s ease-out;
+  }
+  .add-width {
+    width: calc(100% - 250px);
+    transition: width 0.9s;
+  }
+  .menu-icon {
+    display: block;
+    color: #6c6c6c;
+  }
+  .hide-menu-icon {
+    visibility: hidden;
+  }
+  .show-menu-icon {
+    visibility: visible;
+  }
 }
 @media only screen and (max-width: 565px) {
-  .sidebar-items {
-    padding: 10px 0 !important;
-  }
-  .sidebar-items h5 span:nth-child(1) svg {
-    font-size: 19px;
-  }
-  .sidebar-items h5 span:nth-child(2) {
-    font-size: 15px;
-  }
   .admin-right-div {
     background-color: aqua;
     padding: 0px 0px !important;

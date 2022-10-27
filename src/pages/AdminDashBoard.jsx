@@ -8,6 +8,7 @@ import UserDisplayComponent from "../components/UserDisplayComponent"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import DashboardIcon from "@mui/icons-material/Dashboard"
 import AccountBoxIcon from "@mui/icons-material/AccountBox"
+import WidgetsIcon from "@mui/icons-material/Widgets"
 import SearchIcon from "@mui/icons-material/Search"
 import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
@@ -18,9 +19,12 @@ const AdminDashBoard = () => {
 
   const [bookingInfo, setBookingInfo] = useState({})
   const [allUsers, setAllUsers] = useState([])
+  const [defaultUserId, setDefaultUserId] = useState("")
 
   const [showDashboard, setShowDashboard] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(false)
+  console.log(showSidebar)
 
   const getOrdersData = async () => {
     try {
@@ -58,6 +62,7 @@ const AdminDashBoard = () => {
         let data = await res.json()
         console.log(data)
         setAllUsers(data.users)
+        setDefaultUserId(data.users[0]._id)
       } else {
         console.log("ORDER ERROR")
       }
@@ -75,7 +80,12 @@ const AdminDashBoard = () => {
   }, [])
   return (
     <div className='d-flex col-12 bg-light px-0 admin-main'>
-      <div className='col-4 col-xs-4 col-md-2 sidebar px-0'>
+      <div
+        className={
+          showSidebar
+            ? "sidebar px-0 sidebar-move-right"
+            : "sidebar px-0 sidebar-move-left"
+        }>
         <div className='col-12 px-3 d-flex justify-content-left align-items-center sidebar-logo'>
           <h4>TICKETING </h4>
           <span className='pb-2 ml-2'>
@@ -89,12 +99,12 @@ const AdminDashBoard = () => {
               setShowUserProfile(false)
               setShowDashboard(!showDashboard)
             }}>
-            <h5 className='d-flex align-items-center'>
+            <h6 className='d-flex align-items-center'>
               <span>
                 <DashboardIcon />
               </span>
-              <span className='pl-2'>Dashboard</span>
-            </h5>
+              <span className='pl-2'>DASHBOARD</span>
+            </h6>
           </div>
           <div
             className='col-12 px-0 sidebar-items'
@@ -102,19 +112,19 @@ const AdminDashBoard = () => {
               setShowDashboard(false)
               setShowUserProfile(!showUserProfile)
             }}>
-            <h5 className='d-flex align-items-center'>
+            <h6 className='d-flex align-items-center'>
               <span>
                 <AccountBoxIcon />
               </span>
-              <span className='pl-2'>User profile</span>
-            </h5>
+              <span className='pl-2'>USER PROFILE</span>
+            </h6>
           </div>
           <div
             className={
               showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
             }>
             <div className='col-12 d-flex py-2'>
-              <h5>Users</h5>
+              <h6>USERS</h6>
             </div>
             <div className='user-name-display'>
               {/* {allUsers.map((user, i) => (
@@ -123,7 +133,11 @@ const AdminDashBoard = () => {
               {allUsers.map((user, i) => (
                 <div key={i}>
                   {user.role !== "Admin" ? (
-                    <UserComponents user={user} i={i} />
+                    <UserComponents
+                      user={user}
+                      i={i}
+                      defaultUserId={defaultUserId}
+                    />
                   ) : (
                     <div>{allUsers.slice(0, i)}</div>
                   )}
@@ -142,10 +156,21 @@ const AdminDashBoard = () => {
           </div> */}
         </div>
       </div>
-      <div className='col-md-10 px-0 admin-right-div'>
+      <div
+        className={
+          showSidebar
+            ? "px-0 admin-right-div admin-right-div-minimize"
+            : "px-0 admin-right-div admin-right-div-expand"
+        }>
         <div className='col-12 admin-nav-div border-bottom'>
-          <div className='col-10 col-10 col-md-4 d-flex justify-content-end align-items-center'>
-            <InputGroup className='col-12 admin-search'>
+          <div className='col-2'>
+            <WidgetsIcon
+              className='menu-icon'
+              onClick={() => setShowSidebar(!showSidebar)}
+            />
+          </div>
+          <div className='col-8 col-8 col-md-4 d-flex justify-content-end align-items-center'>
+            <InputGroup className='col-10 col-md-7 admin-search flex-grow-1'>
               {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
               <SearchIcon className='admin-search-icon' />
               <Form.Control
@@ -172,10 +197,7 @@ const AdminDashBoard = () => {
           <h1>Dashboard</h1>
         </div>
 
-        <div
-          className={
-            showUserProfile ? "col-12 admin-user-div bg-info" : "d-none"
-          }>
+        <div className={showUserProfile ? "col-12" : "d-none"}>
           <UserDisplayComponent />
           {/* <div className='col-12 admin-users-display'>
             <UserDisplayComponent />

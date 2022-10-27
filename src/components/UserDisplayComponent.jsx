@@ -6,7 +6,7 @@ import OrderComponent from "../components/OrderComponent"
 import PersonOffIcon from "@mui/icons-material/PersonOff"
 import "../style/UserDisplayComponent.css"
 
-const UserDisplayComponent = () => {
+const UserDisplayComponent = (props) => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
   const token = useSelector((state) => state.selectedUserReducer.token)
 
@@ -26,15 +26,38 @@ const UserDisplayComponent = () => {
   return (
     <>
       {" "}
-      <div className='user-display-div col-12'>
+      <div className='user-display-div'>
         {user ? (
-          <div className='d-flex user-display-section01 col-12 px-0'>
-            {" "}
-            <div className='col-12 col-sm-12 col-md-12 col-lg-3 px-0 d-flex align-items-center bg-info'>
-              <img className='user-display-img' src={user.avatar} alt='' />
+          <div className='col-12 user-display-div-main'>
+            <div className='user-display-section01 px-0'>
+              <div className='col-12'>
+                <div className='px-0 d-flex align-items-center justify-content-center bg-info'>
+                  <img className='user-display-img' src={user.avatar} alt='' />
+                </div>
+              </div>
+              <div className='col-12'>
+                <div className='px-0 d-flex align-items-center bg-success'>
+                  <div className='col-12'>
+                    <p>
+                      <span>
+                        {user.firstName} {user.lastName}
+                      </span>
+                    </p>
+                    <p>
+                      <span>{user.email}</span>
+                    </p>
+                    <Button
+                      variant='outline-danger'
+                      className='d-flex align-items-center'>
+                      <PersonOffIcon />
+                      <span className='mx-1'>Delete User</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className='col-12 col-sm-12 col-md-12 col-lg-9 px-0 d-flex align-items-center bg-success'>
-              <div>
+            <div className='px-0 d-flex align-items-center user-display-section02'>
+              <div className='col-12'>
                 <p>
                   <span>
                     {user.firstName} {user.lastName}
@@ -53,8 +76,11 @@ const UserDisplayComponent = () => {
             </div>
           </div>
         ) : (
-          ""
+          <div>
+            <h4>Please Select User...</h4>
+          </div>
         )}
+
         {/* {user.orders.length > 0 ? (
           <div className='user-display-section02 col-12 px-0'>
             <div className='col-12 bg-light text-dark py-2 rounded-top mt-3 border-top'>
