@@ -1,6 +1,7 @@
 /** @format */
 .user-display-div {
   height: 92vh;
+  background-color: black;
 }
 .user-display-section01 {
   height: 25%;
@@ -28,7 +29,7 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   height: 100px;
   width: 100px;
 }
-@media only screen and (max-width: 565px) {
+@media (min-width: 0px) and (max-width: 565px) {
   .user-display-div {
     padding: 0px 0px !important;
     width: calc(100% - 200px) !important;
@@ -38,4 +39,15 @@ div.users-orders-display::-webkit-scrollbar-thumb {
     flex-direction: column;
     align-items: center;
   }
+  .user-display-section01 > div:nth-child(1) {
+    width: 50vw !important;
+    min-width: 100% !important;
+  }
 }
+/* @media only screen and (min-width: 565px) {
+  .user-display-div {
+    padding: 0px 0px !important;
+    width: calc(100% - 200px) !important;
+    min-width: 100%;
+  }
+} */

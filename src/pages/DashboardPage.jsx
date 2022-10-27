@@ -102,41 +102,14 @@ const DashboardPage = () => {
               </p>
             </div>
           </div>
-          {/* {loggedUser.role === "Admin" ? (
-            <div className='d-flex col-12 px-0'>
-              <div className='col-6 col-xs-6 col-md-4 bg-light text-dark py-2 rounded mb-2'>
-                <div className='col-12 d-flex border-bottom'>
-                  <h6>Users details</h6>
-                </div>
-                {allUsers.map((user, i) => (
-                  <div key={i}>
-                    {user.role !== "Admin" ? (
-                      <UserComponents user={user} i={i} />
-                    ) : (
-                      <div>{allUsers.slice(0, i)}</div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className='col-6 col-xs-6 col-md-8'>
-                <UserDisplayComponent />
-              </div>
-            </div>
-          ) : (
-            ""
-          )} */}
+
           {loggedUser.role !== "Admin" ? (
             <>
               <div className='col-12 bg-light text-dark py-2 rounded-top'>
                 <div className='col-12 d-flex justify-content-between text-light rounded-top'>
                   <div className='col-12 d-flex justify-content-between align-items-center text-dark px-0'>
                     <h5>Done trips</h5>
-                    {/* <small className='font-weight-bold'>SEE ALL</small> */}
                   </div>
-                  {/* <div className='col-12 d-flex justify-content-between align-items-center'>
-              <h5>Upcoming trips</h5>
-              <small className='font-weight-bold'>SEE ALL</small>
-            </div> */}
                 </div>
               </div>
 

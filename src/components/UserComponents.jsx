@@ -9,8 +9,7 @@ import { selectedUser } from "../redux/actions"
 
 const UserComponents = (props) => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
-  console.log(user._id)
-  console.log(props.user._id)
+
   const dispatch = useDispatch()
   useEffect(() => {}, [props])
   return (

@@ -30,10 +30,10 @@ const UserDisplayComponent = () => {
         {user ? (
           <div className='d-flex user-display-section01 col-12 px-0'>
             {" "}
-            <div className='col-12 col-xs-12 col-md-3 px-0 d-flex align-items-center bg-info'>
+            <div className='col-12 col-sm-12 col-md-12 col-lg-3 px-0 d-flex align-items-center bg-info'>
               <img className='user-display-img' src={user.avatar} alt='' />
             </div>
-            <div className='col-12 col-xs-12 col-md-9 px-0 d-flex align-items-center bg-success'>
+            <div className='col-12 col-sm-12 col-md-12 col-lg-9 px-0 d-flex align-items-center bg-success'>
               <div>
                 <p>
                   <span>

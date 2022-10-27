@@ -176,11 +176,10 @@ const AdminDashBoard = () => {
           className={
             showUserProfile ? "col-12 admin-user-div bg-info" : "d-none"
           }>
-          <div className='col-12 admin-users-display'>
-            <div className='col-12 px-0'>
-              <UserDisplayComponent />
-            </div>
-          </div>
+          <UserDisplayComponent />
+          {/* <div className='col-12 admin-users-display'>
+            <UserDisplayComponent />
+          </div> */}
         </div>
       </div>
     </div>
