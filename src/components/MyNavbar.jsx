@@ -101,7 +101,7 @@ const MyNavbar = () => {
           <Link to='/'>About</Link>
           <Link to='/'>Tickets</Link>
           <Link to='/'>Travels</Link>
-          <Link to='/'>
+          <Link to='/admin'>
             <span>More</span>
             <span className='mb-n1 ml-1'>
               <i className='bi bi-chevron-down  down-btn'></i>

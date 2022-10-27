@@ -30,10 +30,10 @@ const UserDisplayComponent = () => {
         {user ? (
           <div className='d-flex user-display-section01 col-12 px-0'>
             {" "}
-            <div className='col-12 col-xs-12 col-md-3 px-0 d-flex align-items-center'>
+            <div className='col-12 col-xs-12 col-md-3 px-0 d-flex align-items-center bg-info'>
               <img className='user-display-img' src={user.avatar} alt='' />
             </div>
-            <div className='col-12 col-xs-12 col-md-9 px-0 d-flex align-items-center'>
+            <div className='col-12 col-xs-12 col-md-9 px-0 d-flex align-items-center bg-success'>
               <div>
                 <p>
                   <span>
@@ -55,18 +55,13 @@ const UserDisplayComponent = () => {
         ) : (
           ""
         )}
-        {user.orders.length > 0 ? (
+        {/* {user.orders.length > 0 ? (
           <div className='user-display-section02 col-12 px-0'>
             <div className='col-12 bg-light text-dark py-2 rounded-top mt-3 border-top'>
               <div className='col-12 d-flex justify-content-between text-light rounded-top'>
                 <div className='col-12 d-flex justify-content-between align-items-center text-dark px-0'>
                   <h5>Done trips</h5>
-                  {/* <small className='font-weight-bold'>SEE ALL</small> */}
                 </div>
-                {/* <div className='col-12 d-flex justify-content-between align-items-center'>
-              <h5>Upcoming trips</h5>
-              <small className='font-weight-bold'>SEE ALL</small>
-            </div> */}
               </div>
             </div>
 
@@ -97,7 +92,7 @@ const UserDisplayComponent = () => {
           </div>
         ) : (
           ""
-        )}
+        )} */}
       </div>
     </>
   )

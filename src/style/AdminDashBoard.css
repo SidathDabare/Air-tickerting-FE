@@ -26,15 +26,35 @@
   cursor: pointer;
   color: var(--font-color);
 }
-@media only screen and (max-width: 565px) {
-  .sidebar-items {
-    padding: 10px 0 !important;
+@media only screen and (max-width: 1000px) {
+  .sidebar {
+    min-width: 200px;
   }
   .sidebar-items h5 span:nth-child(1) svg {
     font-size: 20px;
   }
   .sidebar-items h5 span:nth-child(2) {
-    font-size: 13px;
+    font-size: 19px;
+    margin-top: 4px;
+  }
+}
+@media only screen and (max-width: 565px) {
+  .sidebar-items {
+    padding: 10px 0 !important;
+  }
+  .sidebar-items h5 span:nth-child(1) svg {
+    font-size: 19px;
+  }
+  .sidebar-items h5 span:nth-child(2) {
+    font-size: 15px;
+  }
+  .admin-right-div {
+    background-color: aqua;
+    padding: 0px 0px !important;
+    /* width: calc(100%-200px) !important; */
+  }
+  .admin-users-display {
+    padding: 0px 0px !important;
   }
 }
 .admin-right-div {
@@ -89,25 +109,29 @@
   min-height: 100%;
 }
 .admin-user-div {
-  height: 91vh;
+  height: 75vh;
   overflow-y: hidden;
-  background-color: #6c6c6c;
+  border: 0.5px solid rgba(128, 128, 128, 0.293);
+  border-radius: 4px;
 }
 .user-name-display {
   height: 100%;
   overflow-y: auto;
-  max-height: 91vh;
+  max-height: 100%;
+  color: #6c6c6c;
 }
 .admin-users-display {
   min-height: 100%;
+  background-color: #6c6c6c;
 }
 div.user-name-display::-webkit-scrollbar {
   width: 6px;
 }
 div.user-name-display::-webkit-scrollbar-track {
-  background: #a6a6a6;
+  background: #015187f0;
 }
 div.user-name-display::-webkit-scrollbar-thumb {
-  background-color: #002741f0;
+  background-color: #a6a6a6;
+  border-radius: 5px;
   /* border: 3px solid rgb(55, 55, 55); */
 }

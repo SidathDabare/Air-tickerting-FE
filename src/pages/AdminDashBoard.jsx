@@ -67,11 +67,12 @@ const AdminDashBoard = () => {
   }
   useEffect(() => {
     setShowDashboard(true)
+    setShowUserProfile(false)
     if (loggedUser.role === "Admin") {
-      getAllUsers()
       getOrdersData()
     }
-  }, [loggedUser])
+    getAllUsers()
+  }, [])
   return (
     <div className='d-flex col-12 bg-light px-0 admin-main'>
       <div className='col-4 col-xs-4 col-md-2 sidebar px-0'>
@@ -83,7 +84,7 @@ const AdminDashBoard = () => {
         </div>
         <div className='col-12'>
           <div
-            className='col-12 sidebar-items'
+            className='col-12 px-0 sidebar-items'
             onClick={() => {
               setShowUserProfile(false)
               setShowDashboard(!showDashboard)
@@ -96,7 +97,7 @@ const AdminDashBoard = () => {
             </h5>
           </div>
           <div
-            className='col-12 sidebar-items'
+            className='col-12 px-0 sidebar-items'
             onClick={() => {
               setShowDashboard(false)
               setShowUserProfile(!showUserProfile)
@@ -107,6 +108,28 @@ const AdminDashBoard = () => {
               </span>
               <span className='pl-2'>User profile</span>
             </h5>
+          </div>
+          <div
+            className={
+              showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
+            }>
+            <div className='col-12 d-flex py-2'>
+              <h5>Users</h5>
+            </div>
+            <div className='user-name-display'>
+              {/* {allUsers.map((user, i) => (
+                <UserComponents key={i} user={user} i={i} />
+              ))} */}
+              {allUsers.map((user, i) => (
+                <div key={i}>
+                  {user.role !== "Admin" ? (
+                    <UserComponents user={user} i={i} />
+                  ) : (
+                    <div>{allUsers.slice(0, i)}</div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           {/* <div className='col-12 sidebar-items'>
             <h5>Dashboard</h5>
@@ -119,7 +142,7 @@ const AdminDashBoard = () => {
           </div> */}
         </div>
       </div>
-      <div className='col-8 col-xs-8 col-md-10 px-0 admin-right-div'>
+      <div className='col-md-10 px-0 admin-right-div'>
         <div className='col-12 admin-nav-div border-bottom'>
           <div className='col-10 col-10 col-md-4 d-flex justify-content-end align-items-center'>
             <InputGroup className='col-12 admin-search'>
@@ -145,33 +168,15 @@ const AdminDashBoard = () => {
         </div>
 
         <div
-          className={
-            showDashboard ? "col-12 admin-dashboard-div" : "col-12 d-none"
-          }>
+          className={showDashboard ? "col-12 admin-dashboard-div" : "d-none"}>
           <h1>Dashboard</h1>
         </div>
 
         <div
           className={
-            showUserProfile ? "col-12 admin-user-div d-flex bg-light" : "d-none"
+            showUserProfile ? "col-12 admin-user-div bg-info" : "d-none"
           }>
-          <div className='col-5 col-xs-5 col-md-3'>
-            <div className='col-12 d-flex border-bottom py-2'>
-              <h6>Users</h6>
-            </div>
-            <div className='user-name-display'>
-              {allUsers.map((user, i) => (
-                <div key={i}>
-                  {user.role !== "Admin" ? (
-                    <UserComponents user={user} i={i} />
-                  ) : (
-                    <div>{allUsers.slice(0, i)}</div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className='col-7 col-xs-7 col-md-9 admin-users-display'>
+          <div className='col-12 admin-users-display'>
             <div className='col-12 px-0'>
               <UserDisplayComponent />
             </div>
