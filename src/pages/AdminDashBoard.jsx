@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { Container, InputGroup } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import UserComponents from "../components/UserComponents"
 import UserDisplayComponent from "../components/UserDisplayComponent"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
@@ -13,6 +14,7 @@ import SearchIcon from "@mui/icons-material/Search"
 import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
 import { selectedUser } from "../redux/actions"
+import AdminDisplayComponent from "../components/AdminDisplayComponent"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
@@ -89,10 +91,12 @@ const AdminDashBoard = () => {
             : "sidebar px-0 sidebar-move-left"
         }>
         <div className='col-12 d-flex justify-content-left align-items-center sidebar-logo add-margin'>
-          <h4 className='hide-item mr-2'>TICKETING </h4>
-          <span className='pb-2'>
-            <FlightTakeoffSharpIcon className='make-icon-bigger' />
-          </span>
+          <Link to={"/"}>
+            <h4 className='hide-item mr-2'>TICKETING </h4>
+            <span className='pb-2'>
+              <FlightTakeoffSharpIcon className='make-icon-bigger' />
+            </span>
+          </Link>
         </div>
         <div className='col-12'>
           <div
@@ -129,9 +133,6 @@ const AdminDashBoard = () => {
               <h6>USERS</h6>
             </div>
             <div className='user-name-display'>
-              {/* {allUsers.map((user, i) => (
-                <UserComponents key={i} user={user} i={i} />
-              ))} */}
               {allUsers.map((user, i) => (
                 <div key={i}>
                   {user.role !== "Admin" ? (
@@ -143,15 +144,6 @@ const AdminDashBoard = () => {
               ))}
             </div>
           </div>
-          {/* <div className='col-12 sidebar-items'>
-            <h5>Dashboard</h5>
-          </div>
-          <div className='col-12 sidebar-items'>
-            <h5>Dashboard</h5>
-          </div>
-          <div className='col-12 sidebar-items'>
-            <h5>Dashboard</h5>
-          </div> */}
         </div>
       </div>
       <div
@@ -192,11 +184,14 @@ const AdminDashBoard = () => {
 
         <div
           className={showDashboard ? "col-12 admin-dashboard-div" : "d-none"}>
-          <h1>Dashboard</h1>
+          <AdminDisplayComponent />
         </div>
 
         <div className={showUserProfile ? "col-12" : "d-none"}>
-          <UserDisplayComponent />
+          <UserDisplayComponent
+            setShowDashboard={setShowDashboard}
+            getAllUsers={getAllUsers}
+          />
           {/* <div className='col-12 admin-users-display'>
             <UserDisplayComponent />
           </div> */}

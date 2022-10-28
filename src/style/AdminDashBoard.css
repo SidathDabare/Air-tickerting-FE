@@ -25,6 +25,15 @@
 .sidebar-logo {
   height: 8vh;
 }
+.sidebar-logo a {
+  text-decoration: none;
+  display: flex;
+  color: var(--font-color);
+}
+.sidebar-logo a:hover {
+  text-decoration: none;
+  color: var(--font-hover-color);
+}
 .sidebar-items {
   padding: 10px 0 10px 5px;
   margin: 3px 0;
@@ -99,7 +108,7 @@
 .admin-dashboard-div {
   height: 92vh;
   max-height: 92vh;
-  background-color: #6c6c6c;
+  background-color: #6c6c6c00;
 }
 /* .admin-user-div {
   height: 73vh;
@@ -132,7 +141,26 @@ div.user-name-display::-webkit-scrollbar-thumb {
 .menu-icon {
   display: none;
 }
-
+.perfomance-item01 {
+  height: 70vh;
+  width: 45%;
+  border-radius: 5px;
+  border: 0.2px solid rgb(189, 189, 189);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.perfomance-item02 {
+  height: 70vh;
+  width: 45%;
+  border-radius: 5px;
+  border: 0.2px solid rgb(189, 189, 189);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (max-width: 1000px) {
   .user-display-section01 {
     flex-direction: column;
@@ -170,6 +198,12 @@ div.user-name-display::-webkit-scrollbar-thumb {
   }
   .show-menu-icon {
     visibility: visible;
+  }
+  .perfomance-item01 {
+    height: 30vh;
+  }
+  .perfomance-item02 {
+    height: 30vh;
   }
 }
 @media only screen and (max-width: 565px) {
@@ -229,5 +263,17 @@ div.user-name-display::-webkit-scrollbar-thumb {
     background-color: #a6a6a6;
     border-radius: 5px;
     /* border: 3px solid rgb(55, 55, 55); */
+  }
+  .perfomence-content {
+    flex-direction: column;
+  }
+  .perfomance-item01 {
+    height: 18vh;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .perfomance-item02 {
+    height: 20vh;
+    width: 100%;
   }
 }
