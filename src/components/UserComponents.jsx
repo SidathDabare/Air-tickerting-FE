@@ -18,15 +18,21 @@ const UserComponents = (props) => {
         <div
           className={
             user._id === props.user._id
-              ? "d-flex py-1 my-2 px-0 col-11 mx-auto user-item add-background"
-              : "d-flex py-1 my-2 px-0 user-item col-11 mx-auto"
+              ? "d-flex py-1 my-2 px-0 col-11 mx-auto user-item add-background add-margin"
+              : "d-flex py-1 my-2 px-0 user-item col-11 mx-auto add-margin"
           }
           onClick={() => {
             dispatch(selectedUser(props.user))
           }}>
-          <div className='col-12 d-flex px-0'>
-            {/* <div className='col-1 px-0'>{props.i}</div> */}
-            <div className='col-12 users-names-item px-1'>
+          <div className='col-12 d-flex px-1 '>
+            <div className='col-2 px-0 '>
+              <img
+                className='user-com-small-avater'
+                src={props.user.avatar}
+                alt=''
+              />
+            </div>
+            <div className='col-10 users-names-item px-2 hide-item'>
               <span className='ml-0'>{props.user.firstName}</span>
               <span
                 className='mx-1

@@ -46,8 +46,28 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   object-fit: cover;
 }
 @media only screen and (max-width: 1000px) {
+  .user-display-div-main {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .user-display-section01 {
+    height: 40vh;
+    width: 100%;
+  }
+  .user-display-section02 {
+    height: 45vh;
+    width: 100%;
+  }
+  .user-display-img {
+    padding: 10px;
+  }
 }
 @media only screen and (max-width: 565px) {
+  .user-display-img {
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+  }
   /* .user-display-div {
     padding: 0px 0px !important;
     width: calc(100% - 200px) !important;

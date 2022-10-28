@@ -49,6 +49,7 @@
   /* width: calc(100%-200px) !important; */
 }
 .admin-nav-div {
+  position: relative;
   height: 8vh;
   color: var(--font-color);
   background-color: #f4f3ef;
@@ -58,6 +59,8 @@
 }
 .admin-search {
   position: relative;
+  width: 200px;
+  min-width: 150px;
 }
 .admin-search-icon {
   position: absolute;
@@ -146,9 +149,7 @@ div.user-name-display::-webkit-scrollbar-thumb {
     width: 250px;
     transition: 0.8s ease-out;
   }
-  /* .admin-right-div {
-    min-width: calc(100% - 250px) !important;
-  } */
+
   .admin-right-div-expand {
     min-width: 100%;
     transform: translateX(-250px);
@@ -159,10 +160,7 @@ div.user-name-display::-webkit-scrollbar-thumb {
     transform: translateX(0px);
     transition: 0.8s ease-out;
   }
-  .add-width {
-    width: calc(100% - 250px);
-    transition: width 0.9s;
-  }
+
   .menu-icon {
     display: block;
     color: #6c6c6c;
@@ -183,9 +181,53 @@ div.user-name-display::-webkit-scrollbar-thumb {
   .admin-users-display {
     padding: 0px 0px !important;
   }
+  .sidebar {
+    width: 100px;
+    min-width: 100px;
+  }
+  .sidebar-move-left {
+    transform: translateX(-100px);
+    width: 350px;
+    transition: 0.8s ease-out;
+  }
+  .sidebar-move-right {
+    transform: translateX(0);
+    width: 100px;
+    transition: 0.8s ease-out;
+  }
 
-  /* .user-display-section01 {
-    width: 100%;
+  .admin-right-div-expand {
     min-width: 100%;
-  } */
+    transform: translateX(-100px);
+    transition: 0.8s ease-out;
+  }
+  .admin-right-div-minimize {
+    min-width: calc(100% - 100px);
+    transform: translateX(0px);
+    transition: 0.8s ease-out;
+  }
+  .hide-item {
+    display: none;
+  }
+  .make-icon-bigger {
+    font-size: 32px !important;
+  }
+  .sidebar-logo {
+    justify-content: center !important;
+  }
+  .add-margin {
+    justify-content: center;
+    width: 100%;
+  }
+  div.user-name-display::-webkit-scrollbar {
+    width: 2px;
+  }
+  div.user-name-display::-webkit-scrollbar-track {
+    background: #015187f0;
+  }
+  div.user-name-display::-webkit-scrollbar-thumb {
+    background-color: #a6a6a6;
+    border-radius: 5px;
+    /* border: 3px solid rgb(55, 55, 55); */
+  }
 }

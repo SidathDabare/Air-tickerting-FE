@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react"
 import { Container, InputGroup } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import UserComponents from "../components/UserComponents"
 import UserDisplayComponent from "../components/UserDisplayComponent"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
@@ -12,14 +12,15 @@ import WidgetsIcon from "@mui/icons-material/Widgets"
 import SearchIcon from "@mui/icons-material/Search"
 import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
+import { selectedUser } from "../redux/actions"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
   const token = useSelector((state) => state.userReducer.token)
+  const dispatch = useDispatch()
 
   const [bookingInfo, setBookingInfo] = useState({})
   const [allUsers, setAllUsers] = useState([])
-  const [defaultUserId, setDefaultUserId] = useState("")
 
   const [showDashboard, setShowDashboard] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
@@ -62,7 +63,8 @@ const AdminDashBoard = () => {
         let data = await res.json()
         console.log(data)
         setAllUsers(data.users)
-        setDefaultUserId(data.users[0]._id)
+
+        dispatch(selectedUser(data.users[1]))
       } else {
         console.log("ORDER ERROR")
       }
@@ -86,10 +88,10 @@ const AdminDashBoard = () => {
             ? "sidebar px-0 sidebar-move-right"
             : "sidebar px-0 sidebar-move-left"
         }>
-        <div className='col-12 px-3 d-flex justify-content-left align-items-center sidebar-logo'>
-          <h4>TICKETING </h4>
-          <span className='pb-2 ml-2'>
-            <FlightTakeoffSharpIcon />
+        <div className='col-12 d-flex justify-content-left align-items-center sidebar-logo add-margin'>
+          <h4 className='hide-item mr-2'>TICKETING </h4>
+          <span className='pb-2'>
+            <FlightTakeoffSharpIcon className='make-icon-bigger' />
           </span>
         </div>
         <div className='col-12'>
@@ -99,11 +101,11 @@ const AdminDashBoard = () => {
               setShowUserProfile(false)
               setShowDashboard(!showDashboard)
             }}>
-            <h6 className='d-flex align-items-center'>
+            <h6 className='d-flex align-items-center add-margin'>
               <span>
-                <DashboardIcon />
+                <DashboardIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2'>DASHBOARD</span>
+              <span className='pl-2 hide-item'>DASHBOARD</span>
             </h6>
           </div>
           <div
@@ -112,18 +114,18 @@ const AdminDashBoard = () => {
               setShowDashboard(false)
               setShowUserProfile(!showUserProfile)
             }}>
-            <h6 className='d-flex align-items-center'>
+            <h6 className='d-flex align-items-center add-margin'>
               <span>
-                <AccountBoxIcon />
+                <AccountBoxIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2'>USER PROFILE</span>
+              <span className='pl-2 hide-item'>USER PROFILE</span>
             </h6>
           </div>
           <div
             className={
               showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
             }>
-            <div className='col-12 d-flex py-2'>
+            <div className='col-12 d-flex py-2 px-0 add-margin'>
               <h6>USERS</h6>
             </div>
             <div className='user-name-display'>
@@ -133,11 +135,7 @@ const AdminDashBoard = () => {
               {allUsers.map((user, i) => (
                 <div key={i}>
                   {user.role !== "Admin" ? (
-                    <UserComponents
-                      user={user}
-                      i={i}
-                      defaultUserId={defaultUserId}
-                    />
+                    <UserComponents user={user} i={i} />
                   ) : (
                     <div>{allUsers.slice(0, i)}</div>
                   )}
@@ -169,7 +167,7 @@ const AdminDashBoard = () => {
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className='col-8 col-8 col-md-4 d-flex justify-content-end align-items-center'>
+          <div className='col-8 d-flex justify-content-end align-items-center'>
             <InputGroup className='col-10 col-md-7 admin-search flex-grow-1'>
               {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
               <SearchIcon className='admin-search-icon' />
@@ -180,7 +178,7 @@ const AdminDashBoard = () => {
                 className='admin-search-input'
               />
             </InputGroup>
-            <div className='col-3'>
+            <div className='col-2'>
               <div className='admin-profile-div'>
                 <img
                   src={loggedUser.avatar}

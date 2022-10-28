@@ -22,10 +22,22 @@
 .add-background {
   background-color: rgb(0, 40, 60);
 }
+.user-com-small-avater {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
 @media only screen and (max-width: 565px) {
   .users-names-item {
     padding: 0px 0px !important;
     margin: 0 !important;
     font-size: 15px;
+  }
+  .hide-item {
+    display: none;
+  }
+  .add-margin {
+    margin: 0 auto !important;
+    max-width: 60% !important;
   }
 }
