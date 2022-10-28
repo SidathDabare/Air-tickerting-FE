@@ -31,24 +31,24 @@ const UserDisplayComponent = (props) => {
           <div className='col-12 user-display-div-main'>
             <div className='user-display-section01 px-0'>
               <div className='col-12'>
-                <div className='px-0 d-flex align-items-center justify-content-center bg-info'>
+                <div className='px-0 d-flex align-items-center justify-content-center'>
                   <img className='user-display-img' src={user.avatar} alt='' />
                 </div>
               </div>
               <div className='col-12'>
-                <div className='px-0 d-flex align-items-center bg-success'>
-                  <div className='col-12'>
-                    <p>
+                <div className='px-0 d-flex align-items-center justify-content-center'>
+                  <div className='col-12 text-center'>
+                    <h5 className='text-info'>
                       <span>
                         {user.firstName} {user.lastName}
                       </span>
-                    </p>
+                    </h5>
                     <p>
                       <span>{user.email}</span>
                     </p>
                     <Button
                       variant='outline-danger'
-                      className='d-flex align-items-center'>
+                      className='d-flex align-items-center justify-content-center mx-auto'>
                       <PersonOffIcon />
                       <span className='mx-1'>Delete User</span>
                     </Button>
@@ -56,22 +56,15 @@ const UserDisplayComponent = (props) => {
                 </div>
               </div>
             </div>
-            <div className='px-0 d-flex align-items-center user-display-section02'>
-              <div className='col-12'>
-                <p>
-                  <span>
-                    {user.firstName} {user.lastName}
-                  </span>
-                </p>
-                <p>
-                  <span>{user.email}</span>
-                </p>
-                <Button
-                  variant='outline-danger'
-                  className='d-flex align-items-center'>
-                  <PersonOffIcon />
-                  <span className='mx-1'>Delete User</span>
-                </Button>
+            <div className='px-0 user-display-section02'>
+              <div className='col-12 '>
+                <div className='col-12 py-1 border-bottom px-0'>
+                  <h6>Perfomence</h6>
+                </div>
+                <div className='col-12'>
+                  <div className='col-6'></div>
+                  <div className='col-6'></div>
+                </div>
               </div>
             </div>
           </div>

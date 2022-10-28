@@ -7,21 +7,21 @@
 .user-display-div-main {
   display: flex;
   height: 92vh;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
   justify-content: space-between;
   align-items: center;
 }
 .user-display-section01 {
-  background-color: #716c6c;
   height: 83vh;
   width: 28%;
   border-radius: 5px;
+  border: 0.2px solid rgb(183, 183, 183);
 }
 .user-display-section02 {
-  background-color: #716c6c;
   height: 83vh;
   width: 70%;
   border-radius: 5px;
+  border: 0.2px solid rgb(183, 183, 183);
 }
 
 .users-orders-display {
@@ -44,22 +44,25 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   width: 150px;
   min-width: 150px;
   object-fit: cover;
+  padding: 10px;
 }
 @media only screen and (max-width: 1000px) {
+  .user-display-div {
+    overflow-x: hidden;
+  }
   .user-display-div-main {
+    max-width: 100%;
+    overflow-x: auto;
     flex-direction: column;
     justify-content: space-around;
   }
   .user-display-section01 {
-    height: 40vh;
+    height: 38vh;
     width: 100%;
   }
   .user-display-section02 {
-    height: 45vh;
+    height: 50vh;
     width: 100%;
-  }
-  .user-display-img {
-    padding: 10px;
   }
 }
 @media only screen and (max-width: 565px) {

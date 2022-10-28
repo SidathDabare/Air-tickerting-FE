@@ -168,7 +168,7 @@ const AdminDashBoard = () => {
             />
           </div>
           <div className='col-8 d-flex justify-content-end align-items-center'>
-            <InputGroup className='col-10 col-md-7 admin-search flex-grow-1'>
+            <InputGroup className='col-10 col-md-7 admin-search flex-grow-1 px-0'>
               {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
               <SearchIcon className='admin-search-icon' />
               <Form.Control
@@ -178,7 +178,7 @@ const AdminDashBoard = () => {
                 className='admin-search-input'
               />
             </InputGroup>
-            <div className='col-2'>
+            <div className='col-2 hide-item'>
               <div className='admin-profile-div'>
                 <img
                   src={loggedUser.avatar}

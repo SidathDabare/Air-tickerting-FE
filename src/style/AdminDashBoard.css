@@ -41,7 +41,7 @@
 } */
 
 .admin-right-div {
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0);
   width: calc(100% - 250px) !important;
   max-width: calc(100% - 250px) !important;
   height: 100vh;
@@ -60,7 +60,7 @@
 .admin-search {
   position: relative;
   width: 200px;
-  min-width: 150px;
+  min-width: 170px;
 }
 .admin-search-icon {
   position: absolute;
@@ -174,7 +174,7 @@ div.user-name-display::-webkit-scrollbar-thumb {
 }
 @media only screen and (max-width: 565px) {
   .admin-right-div {
-    background-color: aqua;
+    background-color: rgba(0, 255, 255, 0);
     padding: 0px 0px !important;
     /* width: calc(100%-200px) !important; */
   }
