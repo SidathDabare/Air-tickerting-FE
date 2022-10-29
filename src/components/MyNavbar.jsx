@@ -14,6 +14,7 @@ const MyNavbar = () => {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
   const navSlide = () => {
     const toggleBtn = document.querySelector(".toggle-btn")
     const navDiv = document.querySelector(".nav-center-div")
