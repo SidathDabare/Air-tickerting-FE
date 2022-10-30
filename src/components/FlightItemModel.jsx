@@ -156,7 +156,7 @@ const FlightItemModel = (props) => {
                     </div>
 
                     <div className='col-12 mt-2 px-0 d-flex info-div-section01'>
-                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 '>
+                      <div className='col-12 col-xs-12 col-md-6 d-flex px-0 info-div-section01-item01'>
                         <div className='col-3 px-0'>
                           <p className='mb-1'>{segment.departure.iataCode} </p>
                           <h5>
@@ -173,7 +173,7 @@ const FlightItemModel = (props) => {
                           <h5>{Moment(segment.arrival.at).format("HH:mm")} </h5>
                         </div>
                       </div>
-                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 info-div-section02'>
+                      <div className='col-12 col-xs-12 col-md-6 d-flex px-0 info-div-section01-item02'>
                         <div className='col-6 d-flex'>
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img

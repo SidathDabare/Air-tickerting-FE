@@ -39,6 +39,12 @@
 .carrier-img-model {
   margin-top: -20px;
 }
+@media only screen and (min-width: 785px) {
+  .info-div-section01-item02 {
+    display: none !important;
+  }
+}
+
 @media only screen and (max-width: 565px) {
   .info-div {
     width: 100% !important;

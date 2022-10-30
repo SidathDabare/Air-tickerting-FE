@@ -67,24 +67,7 @@ const SearchComponent = () => {
       )
     }
   }
-  // const handleSearch = (e) => {
-  //   e.preventDefault()
-  //   // if (!ticketItem === {}) {
-  //   //   dispatch(deleteTicketDataAction({}))
-  //   // }
-  //   dispatch(
-  //     searchAction(
-  //       originLocationCode,
-  //       destinationLocationCode,
-  //       departureDate,
-  //       tripType,
-  //       returnDate,
-  //       adults
-  //     )
-  //   )
 
-  //   navigate("/search-result")
-  // }
   useEffect(() => {
     if (
       originLocationCode &&
@@ -114,7 +97,7 @@ const SearchComponent = () => {
         ""
       )}
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Container className='search-componet col-12 col-xs-12 col-md-11 col-lg-8 mt-3'>
+        <Container className='search-componet col-12 mt-3'>
           <Row className='d-flex justify-content-center'>
             <div className='col-6 col-xs-6 col-md-3 header-btn active-btn'>
               <FlightTakeoffSharpIcon className='header-btn-icon' />
@@ -136,19 +119,19 @@ const SearchComponent = () => {
           <Row className='mt-4 mx-2'>
             <Form className='col-12'>
               <Row xs={12} className='d-flex justify-content-between'>
-                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
                   <InputAutoComplete
                     getInput={setOriginLocationCode}
                     label={"Departure"}
                   />
                 </div>
-                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
                   <InputAutoComplete
                     getInput={setDestinationLocationCode}
                     label={"Arrival"}
                   />
                 </div>
-                <div className='col-12 col-xs-12 col-md-4 mb-3 px-1'>
+                <div className='col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
                   <Stack spacing={2} className='border-0'>
                     <TextField
                       className='w-100 input-select'
@@ -164,9 +147,6 @@ const SearchComponent = () => {
                       onChange={(e) => setTripType(e.target.value)}>
                       <MenuItem value='returnDate'>Return</MenuItem>
                       <MenuItem value='One way'>One way</MenuItem>
-                      <MenuItem value='3' disabled>
-                        Multi-city
-                      </MenuItem>
                     </TextField>
                   </Stack>
                   {/* <Form.Select aria-label='Default select example'>
@@ -177,10 +157,10 @@ const SearchComponent = () => {
                   </Form.Select> */}
                 </div>
 
-                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-4 mb-3 px-1'>
+                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
                   <Stack spacing={1} className='col-6 px-0'>
                     <DatePicker
-                      className='trxt-trunucate'
+                      className='text-trunucate'
                       label='Departure'
                       value={departureDate}
                       onChange={(newValue) => {
@@ -191,6 +171,7 @@ const SearchComponent = () => {
                   </Stack>
                   <Stack spacing={1} className='col-6 px-0'>
                     <DatePicker
+                      className='text-trunucate'
                       disabled={tripType === "One way" ? true : false}
                       label='Arrival'
                       value={returnDate}
@@ -200,11 +181,42 @@ const SearchComponent = () => {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </Stack>
-                </div>
-                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-4 mb-3 px-1'>
-                  <Stack spacing={2} className='border-0 col-6 px-0 '>
+                  {/* <Stack spacing={1} className='col-12 px-0'>
                     <TextField
                       className='w-100 input-select'
+                      // label={departureDate}
+                      select
+                      size='large'
+                      color='info'>
+                      <MenuItem className='date-select-div'>
+                        <div className='d-flex'>
+                          <DatePicker
+                            className='text-trunucate'
+                            label='Departure'
+                            value={departureDate}
+                            onChange={(newValue) => {
+                              setDepartureDate(format(newValue, "yyyy-MM-dd"))
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                          <DatePicker
+                            className='text-trunucate'
+                            label='Departure'
+                            value={departureDate}
+                            onChange={(newValue) => {
+                              setDepartureDate(format(newValue, "yyyy-MM-dd"))
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                        </div>
+                      </MenuItem>
+                    </TextField>
+                  </Stack> */}
+                </div>
+                <div className='d-flex justify-content-between px-0 col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
+                  <Stack spacing={2} className='border-0 col-6 px-0 '>
+                    <TextField
+                      className='w-100 input-select text-trunucate'
                       label='Passenger'
                       select
                       size='large'
@@ -232,21 +244,18 @@ const SearchComponent = () => {
                     >
                       <MenuItem value='returnDate'>Return</MenuItem>
                       <MenuItem value='2'>One way</MenuItem>
-                      <MenuItem value='3' disabled>
-                        Multi-city
-                      </MenuItem>
                     </TextField>
                   </Stack>
                 </div>
 
-                <div className='d-flex justify-content-center align-items-center col-12 col-xs-12 col-md-4 mb-3 px-1'>
+                <div className='d-flex justify-content-center align-items-center col-12 col-xs-12 col-md-6 col-lg-4 mb-3 px-1'>
                   <Button
                     disabled={searchDisabled ? true : false}
                     id='search-button'
                     type='submit'
                     className={
                       searchDisabled
-                        ? "w-100 h-100 bg-secondary border-0"
+                        ? "w-100 h-100 bg-secondary border-0 py-3"
                         : "w-100 h-100 bg-info font-weight-bold"
                     }
                     onClick={handleSearch}>

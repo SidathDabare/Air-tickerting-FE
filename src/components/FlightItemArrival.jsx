@@ -44,7 +44,7 @@ const FlightItemArrival = ({ listItem }) => {
             listItem.itineraries[1].segments[1] &&
             listItem.itineraries[1].segments[1].arrival && (
               <>
-                <Col className='col-12 col-xs-12col-md-8 bg-light flight-item-section01'>
+                <Col className='col-12 col-xs-12 col-md-8 bg-light flight-item-section01'>
                   <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                     <div className='pl-3'>
                       <small className='font-weight-bold'>{listItem.id}</small>

@@ -1,9 +1,13 @@
 /** @format */
 import "../style/MyNavbar.css"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Container, Button, Dropdown, Row } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
+import BigLogo from "../assets/logo1.png"
 
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
@@ -12,6 +16,9 @@ import { setLoggedInUserAction, setTokenAction } from "../redux/actions"
 const MyNavbar = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
   const dispatch = useDispatch()
+  const [showUserProfile, setShowUserProfile] = useState(false)
+  const [toggleBtn, setToggleBtn] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
 
   const navigate = useNavigate()
 
@@ -48,169 +55,129 @@ const MyNavbar = () => {
     //navigate("/login")
   }
   useEffect(() => {
-    navSlide()
+    setShowUserProfile(false)
+    setToggleBtn(false)
+    setShowMenu(false)
   }, [])
 
   return (
-    <div className='nav-div mui-fixed'>
-      <Container className='d-flex justify-content-between align-items-center nav-container'>
-        <div className='nav-left-div'>
-          <h4>TICKETING </h4>
-          <span className='pb-2 ml-2'>
-            <FlightTakeoffSharpIcon />
-          </span>
+    <div className='navbar-div-main'>
+      <Container className='navbar-div-container px-0'>
+        <div className='logo-div'>
+          <img src={BigLogo} alt='' />
         </div>
-        <div className='nav-center-div'>
-          <div className='toggle-btn-div pt-4'>
-            {loggedUser ? (
-              <div className='profile-div'>
-                <img src={loggedUser.avatar} alt='' className='profile-image' />
-              </div>
-            ) : (
-              ""
-            )}
-
-            <div className='text-white d-flex align-items-center justify-content-right'>
-              <p className='mb-0 ml-3'>
-                {loggedUser ? (
-                  <span>
-                    Welcome, {loggedUser.firstName} {loggedUser.lastName}
-                    <Button
-                      className='py-1 ml-3'
-                      variant='outline-warning'
-                      onClick={() => {
-                        userLogOut()
-                      }}>
-                      <LogoutOutlinedIcon />
-                      <span className='ml-1'>Log out</span>
-                    </Button>
-                  </span>
-                ) : (
-                  <Button
-                    variant='outline-primary'
-                    onClick={() => {
-                      navigate("../login")
-                    }}>
-                    Log In
-                  </Button>
-                )}
-              </p>
-            </div>
+        <div className='nav-menu-div'>
+          <div className='nav-menu'>
+            <Link to='/' className='nav-menu-items'>
+              Home
+            </Link>
+            <Link to='/' className='nav-menu-items'>
+              Home
+            </Link>
+            <Link to='/' className='nav-menu-items'>
+              Home
+            </Link>
+            <Link to='/' className='nav-menu-items'>
+              Home
+            </Link>
           </div>
-
-          <Link to='/'>Home</Link>
-          <Link to='/'>About</Link>
-          <Link to='/'>Tickets</Link>
-          <Link to='/'>Travels</Link>
-          <Link to='/admin'>
-            <span>More</span>
-            <span className='mb-n1 ml-1'>
-              <i className='bi bi-chevron-down  down-btn'></i>
-            </span>
-          </Link>
-        </div>
-        <div className='nav-right-div d-flex align-items-center justify-content-right'>
-          {loggedUser ? (
-            <div className='profile-div mr-2'>
-              <img src={loggedUser.avatar} alt='' className='profile-image' />
-            </div>
-          ) : (
-            ""
-          )}
-          <div className='text-white'>
-            <p className='mb-0'>
-              {loggedUser ? (
-                <span>
-                  {loggedUser.firstName} {loggedUser.lastName}
+          <div className='user-profile'>
+            {loggedUser ? (
+              <>
+                <div className='profile-div mr-2'>
+                  <img
+                    src={loggedUser.avatar}
+                    alt=''
+                    className='profile-image'
+                  />
+                </div>{" "}
+                <span className='text-truncate'>
+                  {" "}
+                  Hello, {loggedUser.firstName}
                 </span>
-              ) : (
-                <Button
-                  variant='outline-primary'
-                  onClick={() => {
-                    navigate("../login")
-                  }}>
-                  Log In
-                </Button>
-              )}
-            </p>
-          </div>
-          <Dropdown>
-            {loggedUser ? (
-              <Dropdown.Toggle
-                split
-                variant='tranparent'
-                id='dropdown-basic'
-                className='text-white pb-0'
-              />
+                {!showUserProfile ? (
+                  <KeyboardArrowDownIcon
+                    className='profile-toggle-btn'
+                    onClick={() => setShowUserProfile(!showUserProfile)}
+                  />
+                ) : (
+                  <KeyboardArrowUpIcon
+                    className='profile-toggle-btn'
+                    onClick={() => setShowUserProfile(!showUserProfile)}
+                  />
+                )}
+              </>
             ) : (
-              " "
+              <div className='col-12 d-flex justify-content-end user-logout-div'>
+                <AccountCircleIcon className='mx-2' />
+                <Link to='./login'>LOGIN</Link>
+              </div>
             )}
-            {loggedUser ? (
-              <Dropdown.Menu className='nav-drop-menu'>
-                <Container>
-                  <div className='mt-3 col-12 border-bottom'>
-                    <h5 className='mb-0 py-0'>
-                      Welcome to TICKERTING skywards
-                    </h5>
-                    <br></br>
-                    <p className=''>
-                      Mr {loggedUser.firstName} {loggedUser.lastName}
-                    </p>
-                  </div>
-                  <div className='col-12'>
-                    <div className='col-7'>
-                      {/* <Dropdown.Item>
-                        <Link to='/dashboard'>
-                          Hello,{loggedUser.firstName} {loggedUser.lastName}
-                        </Link>
-                      </Dropdown.Item> */}
-                      <Dropdown.Item>
-                        <Link
-                          to={
-                            loggedUser.role === "Admin"
-                              ? "/admin"
-                              : "/dashboard"
-                          }>
-                          Dashboard
-                        </Link>
-                      </Dropdown.Item>
 
-                      <div className='px-2'>
-                        {loggedUser ? (
-                          <Button
-                            className='btn-block mt-2'
-                            variant='outline-primary'
-                            onClick={() => {
-                              userLogOut()
-                            }}>
-                            Log out
-                          </Button>
-                        ) : (
-                          <Button
-                            className='btn-block mt-2'
-                            variant='outline-primary'
-                            onClick={() => {
-                              navigate("../login")
-                            }}>
-                            Log In
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                    <div className='col-3'></div>
-                  </div>
-                </Container>
-              </Dropdown.Menu>
-            ) : (
-              ""
-            )}
-          </Dropdown>
+            <div
+              className={
+                !showUserProfile
+                  ? "user-profile-details-hide"
+                  : "user-profile-details-show"
+              }>
+              <div className='col-12 d-flex p-2'>
+                <div className='col-3'>
+                  <img
+                    src={loggedUser.avatar}
+                    alt=''
+                    className='menu-profile-image'
+                  />
+                </div>
+                <div className='col-9 d-flex justify-content-center align-items-start flex-column'>
+                  <h6 className='text-truncate mb-0'>
+                    {" "}
+                    {loggedUser.firstName} {loggedUser.lastName}
+                  </h6>
+
+                  <small>{loggedUser.email}</small>
+                </div>
+              </div>
+              <div className='col-12 py-2'>
+                <small>User role : {loggedUser.role}</small>
+              </div>
+              <div className='col-12 mb-auto'>
+                <button
+                  className='btn btn-outline-info btn-block'
+                  onClick={() => {
+                    userLogOut()
+                  }}>
+                  LOG OUT
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='toggle-btn'>
-          <div className='line1'></div>
-          <div className='line2'></div>
-          <div className='line3'></div>
+        <div
+          className='toggle-btn'
+          onClick={() => {
+            setToggleBtn(!toggleBtn)
+            setShowMenu(!showMenu)
+          }}>
+          <div
+            className={
+              !toggleBtn
+                ? "line1 back-toggle-btn-left"
+                : "line1 toggle-btn-left"
+            }></div>
+          <div className={!toggleBtn ? "line2" : "toggle-btn-hide"}></div>
+          <div
+            className={
+              !toggleBtn
+                ? "line3 back-toggle-btn-right"
+                : "line3 toggle-btn-right"
+            }></div>
         </div>
+        <div
+          className={
+            showMenu
+              ? "nav-menu-small hide-nav-menu"
+              : "nav-menu-small show-nav-menu"
+          }></div>
       </Container>
     </div>
   )

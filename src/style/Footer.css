@@ -5,11 +5,11 @@
 }
 
 .footer {
-  background-color: rgba(0, 39, 65, 0.942);
+  background-color: rgb(5, 32, 44);
   height: auto;
   width: 100%;
   position: relative;
-  top: 20px;
+  margin-top: 20px;
 }
 
 .footer-list-item h5 {
@@ -20,6 +20,7 @@
   padding: 5px 0 5px 0;
   text-decoration: none;
   color: var(--font-color);
+  font-size: 13px;
 }
 .footer-list-item a:hover {
   padding: 5px 0 5px 0;
@@ -31,8 +32,9 @@
   bottom: 0px;
   left: 0;
   right: 0;
+  font-size: 12px;
 }
-@media only screen and (max-width: 565px) {
+@media only screen and (max-width: 765px) {
   .footer-div {
     flex-wrap: wrap;
   }
