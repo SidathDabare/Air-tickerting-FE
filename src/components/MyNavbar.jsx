@@ -1,7 +1,7 @@
 /** @format */
 import "../style/MyNavbar.css"
 import React, { useEffect, useState } from "react"
-import { Container, Button, Dropdown, Row } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
@@ -9,8 +9,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import BigLogo from "../assets/logo1.png"
 
-import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"
 import { setLoggedInUserAction, setTokenAction } from "../redux/actions"
 
 const MyNavbar = () => {
@@ -63,8 +61,8 @@ const MyNavbar = () => {
   return (
     <div className='navbar-div-main'>
       <Container className='navbar-div-container px-0'>
-        <div className='logo-div'>
-          <img src={BigLogo} alt='' />
+        <div className='logo-div' onClick={() => navigate("/")}>
+          <img src={BigLogo} alt='logo' />
         </div>
         <div className='nav-menu-div'>
           <div className='nav-menu'>
@@ -113,43 +111,53 @@ const MyNavbar = () => {
                 <Link to='./login'>LOGIN</Link>
               </div>
             )}
+            {loggedUser ? (
+              <div
+                className={
+                  !showUserProfile
+                    ? "user-profile-details-hide"
+                    : "user-profile-details-show"
+                }>
+                <div className='col-12 d-flex p-2'>
+                  <div className='col-3'>
+                    <img
+                      src={loggedUser.avatar}
+                      alt=''
+                      className='menu-profile-image'
+                    />
+                  </div>
+                  <div className='col-9 d-flex justify-content-center align-items-start flex-column'>
+                    <h6 className='text-truncate mb-0'>
+                      {" "}
+                      {loggedUser.firstName} {loggedUser.lastName}
+                    </h6>
 
-            <div
-              className={
-                !showUserProfile
-                  ? "user-profile-details-hide"
-                  : "user-profile-details-show"
-              }>
-              <div className='col-12 d-flex p-2'>
-                <div className='col-3'>
-                  <img
-                    src={loggedUser.avatar}
-                    alt=''
-                    className='menu-profile-image'
-                  />
+                    <small>{loggedUser.email}</small>
+                  </div>
                 </div>
-                <div className='col-9 d-flex justify-content-center align-items-start flex-column'>
-                  <h6 className='text-truncate mb-0'>
-                    {" "}
-                    {loggedUser.firstName} {loggedUser.lastName}
-                  </h6>
-
-                  <small>{loggedUser.email}</small>
+                <div className='col-12 py-2'>
+                  <small>User role : {loggedUser.role}</small>
+                </div>
+                <div className='col-12 mb-auto'>
+                  <button
+                    className='btn btn-outline-info btn-block'
+                    onClick={() => {
+                      navigate("../admin")
+                    }}>
+                    Go to dashboard
+                  </button>
+                  <button
+                    className='btn btn-outline-info btn-block'
+                    onClick={() => {
+                      userLogOut()
+                    }}>
+                    LOG OUT
+                  </button>
                 </div>
               </div>
-              <div className='col-12 py-2'>
-                <small>User role : {loggedUser.role}</small>
-              </div>
-              <div className='col-12 mb-auto'>
-                <button
-                  className='btn btn-outline-info btn-block'
-                  onClick={() => {
-                    userLogOut()
-                  }}>
-                  LOG OUT
-                </button>
-              </div>
-            </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div

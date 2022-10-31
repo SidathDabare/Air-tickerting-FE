@@ -102,7 +102,7 @@ const FlightItemModel = (props) => {
         <Modal
           {...props}
           aria-labelledby='contained-modal-title-vcenter'
-          className='col-12'>
+          className='col-12 flight-item-model'>
           <Modal.Header>
             <Modal.Title id='contained-modal-title-vcenter'>
               <h4>Flight details</h4>
@@ -155,8 +155,8 @@ const FlightItemModel = (props) => {
                       </h6>
                     </div>
 
-                    <div className='col-12 mt-2 px-0 d-flex info-div-section01'>
-                      <div className='col-12 col-xs-12 col-md-6 d-flex px-0 info-div-section01-item01'>
+                    <div className='col-12 mt-2 px-0 info-div-section01'>
+                      <div className='col-12 col-xs-12 col-md-6 px-0 info-div-section01-item01'>
                         <div className='col-3 px-0'>
                           <p className='mb-1'>{segment.departure.iataCode} </p>
                           <h5>
@@ -173,7 +173,7 @@ const FlightItemModel = (props) => {
                           <h5>{Moment(segment.arrival.at).format("HH:mm")} </h5>
                         </div>
                       </div>
-                      <div className='col-12 col-xs-12 col-md-6 d-flex px-0 info-div-section01-item02'>
+                      <div className='col-12 col-xs-12 col-md-6 px-0 info-div-section01-item02'>
                         <div className='col-6 d-flex'>
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img
@@ -244,8 +244,8 @@ const FlightItemModel = (props) => {
                       </h6>
                     </div>
 
-                    <div className='col-12 mt-2 px-0 d-flex info-div-section01'>
-                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 '>
+                    <div className='col-12 mt-2 px-0 info-div-section01'>
+                      <div className='col-12 col-x-12 col-md-6 px-0 info-div-section01-item01'>
                         <div className='col-3 px-0'>
                           <p className='mb-1'>{segment.departure.iataCode} </p>
                           <h5>
@@ -262,7 +262,7 @@ const FlightItemModel = (props) => {
                           <h5>{Moment(segment.arrival.at).format("HH:mm")} </h5>
                         </div>
                       </div>
-                      <div className='col-12 col-x-12 col-md-6 d-flex px-0 info-div-section02'>
+                      <div className='col-12 col-x-12 col-md-6 px-0 info-div-section01-item02'>
                         <div className='col-6 d-flex'>
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img
@@ -322,13 +322,13 @@ const FlightItemModel = (props) => {
             ) : (
               ""
             )}
-            <div className='col-12 d-flex justify-content-end px-0 py-1'>
+            <div className='col-12 d-flex justify-content-center px-0 py-1'>
               {available ? (
-                <>
+                <div className='col-12 d-flex justify-content-center'>
                   <Button
                     variant='transparent'
                     className={
-                      available ? "d-flex align-items-center" : "d-none"
+                      available ? "d-flex align-items-center mx-auto" : "d-none"
                     }>
                     <span className='mr-2 text-success font-weight-bold'>
                       Ticket is available
@@ -342,19 +342,19 @@ const FlightItemModel = (props) => {
                       props.onHide()
                       navigate(`/passenger-details`)
                     }}
-                    className='d-flex align-items-center'>
+                    className='d-flex align-items-center mx-auto'>
                     <span className='mr-2 font-weight-bold'>
                       Click to continue
                     </span>
                     <FlightTakeoffSharpIcon />
                   </Button>
-                </>
+                </div>
               ) : message ? (
                 <>
                   <Button
                     variant='transparent'
                     // className={error ? "d-flex align-items-center" : "d-none"}
-                    className='d-flex align-items-center'>
+                    className='d-flex align-items-center mx-auto'>
                     <span className='mr-2 text-danger font-weight-bold'>
                       Ticket is not available
                     </span>
@@ -366,7 +366,7 @@ const FlightItemModel = (props) => {
                       props.onHide()
                       navigate(`/`)
                     }}
-                    className='d-flex align-items-center'>
+                    className='d-flex align-items-center mx-auto'>
                     <span className='mr-2 font-weight-bold'>New Search</span>
                     <FirstPageIcon />
                   </Button>
@@ -378,7 +378,7 @@ const FlightItemModel = (props) => {
 
             <Button
               variant='info'
-              className='d-flex align-items-center py-2'
+              className='d-flex align-items-center py-2 mx-auto'
               onClick={() => {
                 checkTicketAvailable()
               }}>

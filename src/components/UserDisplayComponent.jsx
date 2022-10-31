@@ -71,38 +71,42 @@ const UserDisplayComponent = (props) => {
                 </div>
               </div>
             </div>
-            <div className='px-0 user-display-section02'>
-              <div className='col-12 '>
-                <div className='col-12 py-1 border-bottom px-0'>
-                  <h6>Perfomence</h6>
-                </div>
-                <div className='col-12 d-flex justify-content-around perfomence-content mt-3'>
-                  <div className='perfomance-item01'>
-                    <h6>Total trips</h6>
-                    <br />
-                    <h1 className='text-info'>{user.orders.length}</h1>
+            {user.orders > 0 ? (
+              <div className='px-0 user-display-section02'>
+                <div className='col-12 '>
+                  <div className='col-12 py-1 border-bottom px-0'>
+                    <h6>Perfomence</h6>
                   </div>
-                  <div className='perfomance-item02'>
-                    <h6>Total payment</h6>
-                    <br />
-                    <h1 className='text-success'>
-                      {/* {user.orders
+                  <div className='col-12 d-flex justify-content-around perfomence-content mt-3'>
+                    <div className='perfomance-item01'>
+                      <h6>Total trips</h6>
+                      <br />
+                      <h1 className='text-info'>{user.orders.length}</h1>
+                    </div>
+                    <div className='perfomance-item02'>
+                      <h6>Total payment</h6>
+                      <br />
+                      <h1 className='text-success'>
+                        {/* {user.orders
                         .map((a) => Number(a.data.flightOffers[0].price.total))
                         .reduce(function (a, b) {
                           let sum = a + b
                           return Number(sum).toFixed(2)
                         })} */}
-                      {user.orders
-                        .map((element) =>
-                          Number(element.data.flightOffers[0].price.total)
-                        )
-                        .reduce((a, b) => a + b, 0)
-                        .toFixed(2)}
-                    </h1>
+                        {user.orders
+                          .map((element) =>
+                            Number(element.data.flightOffers[0].price.total)
+                          )
+                          .reduce((a, b) => a + b, 0)
+                          .toFixed(2)}
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           <div>
@@ -117,20 +121,24 @@ const UserDisplayComponent = (props) => {
             </span>
           </Modal.Header>
           <Modal.Body>
-            <div className='col-12 col-sm-12 col-md-6 d-flex mx-auto'>
-              <img className='user-display-img' src={user.avatar} alt='' />
-              <div className='d-flex flex-column justify-content-center'>
-                <h5 className='text-info'>
-                  <span>
-                    {user.firstName} {user.lastName}
-                  </span>
-                </h5>
+            {user ? (
+              <div className='col-12 col-sm-12 col-md-6 d-flex mx-auto'>
+                <img className='user-display-img' src={user.avatar} alt='' />
+                <div className='d-flex flex-column justify-content-center'>
+                  <h5 className='text-info'>
+                    <span>
+                      {user.firstName} {user.lastName}
+                    </span>
+                  </h5>
 
-                <p>
-                  <span>{user.email}</span>
-                </p>
+                  <p>
+                    <span>{user.email}</span>
+                  </p>
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>

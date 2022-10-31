@@ -4,6 +4,19 @@
   max-width: 850px !important;
   /* min-width: 460px !important; */
 }
+.flight-item-model {
+}
+div.flight-item-model::-webkit-scrollbar {
+  width: 6px;
+}
+div.flight-item-model::-webkit-scrollbar-track {
+  background: #015187f0;
+}
+div.flight-item-model::-webkit-scrollbar-thumb {
+  background-color: #a6a6a6;
+  border-radius: 5px;
+  /* border: 3px solid rgb(55, 55, 55); */
+}
 .depature-details {
   background-color: rgba(0, 39, 65, 0.942);
   color: #e4e4e4;
@@ -39,7 +52,17 @@
 .carrier-img-model {
   margin-top: -20px;
 }
-@media only screen and (min-width: 785px) {
+.info-div-section01 {
+  display: flex;
+}
+.info-div-section01-item01 {
+  display: flex;
+}
+.info-div-section01-item02 {
+  display: flex;
+}
+
+@media only screen and (max-width: 765px) {
   .info-div-section01-item02 {
     display: none !important;
   }
@@ -49,10 +72,4 @@
   .info-div {
     width: 100% !important;
   }
-  .info-div-section01 {
-    flex-direction: column;
-  }
-  /* .info-div-section01 div {
-    padding: 0 10px !important;
-  } */
 }

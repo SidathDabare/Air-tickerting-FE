@@ -61,10 +61,12 @@ const PaymentPage = () => {
               {bookedTicket.data.travelers.map((traveler, i) => (
                 <div key={i} className='px-1 pt-1 border-bottom'>
                   <h6>
-                    <span>{traveler.id}. </span>
-                    <span>{traveler.gender === "MALE" ? "Mr" : "Miss"} </span>
-                    <span>{traveler.name.firstName} </span>
-                    <span>{traveler.name.lastName}</span>
+                    <small>
+                      <span>{traveler.id}. </span>
+                      <span>{traveler.gender === "MALE" ? "Mr" : "Miss"} </span>
+                      <span>{traveler.name.firstName} </span>
+                      <span>{traveler.name.lastName}</span>
+                    </small>
                   </h6>
                 </div>
               ))}

@@ -184,14 +184,14 @@ export default function PaymentForm(props) {
         </form>
       ) : (
         <>
-          <div className='d-flex justify-content-center align-items-center mt-5'>
+          <div className='d-flex justify-content-center align-items-center mt-5 rounded-1'>
             <h4 className='mb-0'>Payment Successful..!</h4>
             <CheckCircleOutlineIcon
               className='text-success ml-2'
               style={{ fontSize: "25px" }}
             />
           </div>
-          <div className='d-flex justify-content-center mt-3'>
+          <div className='d-flex justify-content-center mt-3 rounded-1'>
             <Button
               onClick={(e) => {
                 e.preventDefault()

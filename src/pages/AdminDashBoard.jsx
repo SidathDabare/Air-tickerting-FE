@@ -10,11 +10,13 @@ import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import DashboardIcon from "@mui/icons-material/Dashboard"
 import AccountBoxIcon from "@mui/icons-material/AccountBox"
 import WidgetsIcon from "@mui/icons-material/Widgets"
+import EditIcon from "@mui/icons-material/Edit"
 import SearchIcon from "@mui/icons-material/Search"
 import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
 import { selectedUser } from "../redux/actions"
 import AdminDisplayComponent from "../components/AdminDisplayComponent"
+import AdminEditComponent from "../components/AdminEditComponent"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
@@ -25,6 +27,7 @@ const AdminDashBoard = () => {
   const [allUsers, setAllUsers] = useState([])
 
   const [showDashboard, setShowDashboard] = useState(false)
+  const [showEditProfile, setShowEditProfile] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
   console.log(showSidebar)
@@ -77,9 +80,10 @@ const AdminDashBoard = () => {
   useEffect(() => {
     setShowDashboard(true)
     setShowUserProfile(false)
-    if (loggedUser.role === "Admin") {
-      getOrdersData()
-    }
+    setShowEditProfile(false)
+    // if (loggedUser.role === "Admin") {
+    //   getOrdersData()
+    // }
     getAllUsers()
   }, [])
   return (
@@ -100,9 +104,10 @@ const AdminDashBoard = () => {
         </div>
         <div className='col-12'>
           <div
-            className='col-12 px-0 sidebar-items'
+            className='col-12 sidebar-items'
             onClick={() => {
               setShowUserProfile(false)
+              setShowEditProfile(false)
               setShowDashboard(!showDashboard)
             }}>
             <h6 className='d-flex align-items-center add-margin'>
@@ -113,36 +118,56 @@ const AdminDashBoard = () => {
             </h6>
           </div>
           <div
-            className='col-12 px-0 sidebar-items'
+            className='col-12 sidebar-items'
             onClick={() => {
               setShowDashboard(false)
+              setShowUserProfile(false)
+              setShowEditProfile(!showEditProfile)
+            }}>
+            <h6 className='d-flex align-items-center add-margin'>
+              <span>
+                <EditIcon className='make-icon-bigger' />
+              </span>
+              <span className='pl-2 hide-item'>EDIT DETAILS</span>
+            </h6>
+          </div>
+          <div
+            className='col-12 sidebar-items'
+            onClick={() => {
+              setShowDashboard(false)
+              setShowEditProfile(false)
               setShowUserProfile(!showUserProfile)
             }}>
             <h6 className='d-flex align-items-center add-margin'>
               <span>
                 <AccountBoxIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2 hide-item'>USER PROFILE</span>
+              <span className='pl-2 hide-item'>USERS PROFILES</span>
             </h6>
           </div>
           <div
             className={
               showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
             }>
-            <div className='col-12 d-flex py-2 px-0 add-margin'>
+            <div className='col-12 d-flex py-2 px-2 add-margin'>
               <h6>USERS</h6>
             </div>
-            <div className='user-name-display'>
-              {allUsers.map((user, i) => (
-                <div key={i}>
-                  {user.role !== "Admin" ? (
+            {allUsers.length > 0 ? (
+              <div className='user-name-display'>
+                {allUsers.map((user, i) => (
+                  <div key={user._id}>
                     <UserComponents user={user} i={i} />
-                  ) : (
-                    <div>{allUsers.slice(0, i)}</div>
-                  )}
-                </div>
-              ))}
-            </div>
+                    {/* {user.role !== "Admin" ? (
+                      <UserComponents user={user} i={i} />
+                    ) : (
+                      <div>{allUsers.slice(0, i)}</div>
+                    )} */}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -186,15 +211,17 @@ const AdminDashBoard = () => {
           className={showDashboard ? "col-12 admin-dashboard-div" : "d-none"}>
           <AdminDisplayComponent />
         </div>
-
+        <div className={showEditProfile ? "col-12" : "d-none"}>
+          <AdminEditComponent
+            setShowDashboard={setShowDashboard}
+            getAllUsers={getAllUsers}
+          />
+        </div>
         <div className={showUserProfile ? "col-12" : "d-none"}>
           <UserDisplayComponent
             setShowDashboard={setShowDashboard}
             getAllUsers={getAllUsers}
           />
-          {/* <div className='col-12 admin-users-display'>
-            <UserDisplayComponent />
-          </div> */}
         </div>
       </div>
     </div>

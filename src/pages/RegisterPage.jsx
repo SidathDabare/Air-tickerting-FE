@@ -5,8 +5,10 @@ import { Button, Container, Form } from "react-bootstrap"
 import "../style/RegisterPage.css"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import Footer from "../components/Footer"
+import { useNavigate } from "react-router-dom"
 
 const RegisterPage = () => {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -37,7 +39,7 @@ const RegisterPage = () => {
       })
       let data = await res.json()
       console.log(data)
-
+      navigate("../login")
       return data
     } catch (error) {
       console.log(error)

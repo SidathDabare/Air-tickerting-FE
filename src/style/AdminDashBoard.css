@@ -41,6 +41,9 @@
   cursor: pointer;
   color: var(--font-color);
 }
+.sidebar-items:hover {
+  background-color: #00243cf0;
+}
 
 /* @media only screen and (min-width: 565px) {
   .user-display-section01 {
@@ -162,6 +165,10 @@ div.user-name-display::-webkit-scrollbar-thumb {
   align-items: center;
 }
 @media only screen and (max-width: 1000px) {
+  .admin-main {
+    overflow: hidden !important;
+  }
+
   .user-display-section01 {
     flex-direction: column;
     width: 100% !important;

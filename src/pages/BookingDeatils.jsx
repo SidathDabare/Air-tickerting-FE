@@ -110,8 +110,8 @@ const BookingDeatils = () => {
               <div className='col-12 d-flex'>
                 <div className='col-6'>
                   {bookedTicket.data.travelers.map((traveler, i) => (
-                    <div key={i} className='px-1'>
-                      <small>
+                    <div key={i} className='px-1 py-1'>
+                      <small className='mb-0'>
                         <span>{traveler.id}. </span>
                         <span>
                           {traveler.gender === "MALE" ? "Mr" : "Miss"}{" "}
@@ -149,26 +149,10 @@ const BookingDeatils = () => {
                 {bookedTicket.data.flightOffers[0].itineraries[0] &&
                   bookedTicket.data.flightOffers[0].itineraries[0].segments.map(
                     (segment, i) => (
-                      <Container key={i} xs={12} className='mb-3'>
-                        {/* <Row xs={12} className='d-flex flex-column px-1'>
-                          <h5 className='mb-0'>
-                            <span>From </span>
-                            <span>{segment.departure.iataCode} </span>
-                            <span>to </span>
-                            <span>{segment.arrival.iataCode} </span>
-                          </h5>
-                          <p className='mb-0'>
-                            <small>
-                              Total duration:{" "}
-                              <span>{getTime(segment.duration)} </span>
-                            </small>
-                          </p>
-                        </Row> */}
-                        <Row
-                          xs={12}
-                          className='flex-column mt-2 info-div mx-auto'>
-                          <div xs={12} className='d-flex flex-column'>
-                            <p className='d-flex'>
+                      <Container key={i} className='col-12 mb-3'>
+                        <Row className='flex-column mt-2 booking-details mx-auto'>
+                          <div className='col-12 d-flex flex-column px-0 border-bottom'>
+                            <p className='d-flex mb-0'>
                               <small>
                                 {Moment(segment.departure.at).format(
                                   "MMM Do YY"
@@ -186,10 +170,8 @@ const BookingDeatils = () => {
                               <span>{segment.arrival.iataCode} </span>
                             </h6>
                           </div>
-                          <div
-                            xs={12}
-                            className='mt-2 px-0 d-flex info-div-section01'>
-                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
+                          <div className='mt-2 px-0 booking-details-section01'>
+                            <div className='col-12 col-xs-12 col-md-6 px-0 booking-details-item1'>
                               <div className='col-3 px-0'>
                                 <p className='mb-1'>
                                   {segment.departure.iataCode}{" "}
@@ -213,7 +195,7 @@ const BookingDeatils = () => {
                                 </h5>
                               </div>
                             </div>
-                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
+                            <div className='col-12 col-xs-12 col-md-6  px-0 booking-details-item2'>
                               <div className='col-6 d-flex'>
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img
@@ -248,38 +230,28 @@ const BookingDeatils = () => {
                 {bookedTicket.data.flightOffers[0].itineraries[1] &&
                   bookedTicket.data.flightOffers[0].itineraries[1].segments.map(
                     (segment, i) => (
-                      <Container key={i} xs={12} className='mb-3'>
-                        {/* <Row xs={12} className='d-flex flex-column px-1'>
-                          <h5 className='mb-0'>
-                            <span>From </span>
-                            <span>{segment.departure.iataCode} </span>
-                            <span>to </span>
-                            <span>{segment.arrival.iataCode} </span>
-                          </h5>
-                          <p className='mb-0'>
-                            <small>
-                              Total duration:{" "}
-                              <span>{getTime(segment.duration)} </span>
-                            </small>
-                          </p>
-                        </Row> */}
-                        <Row
-                          xs={12}
-                          className='flex-column mt-2 info-div mx-auto'>
-                          <div xs={12} className='d-flex flex-column'>
-                            <small>
-                              {Moment(segment.departure.at).format("MMM Do YY")}{" "}
-                            </small>
+                      <Container key={i} className='col-12 mb-3'>
+                        <Row className='flex-column mt-2 booking-details mx-auto'>
+                          <div className='col-12 d-flex flex-column px-0 border-bottom'>
+                            <p className='d-flex mb-0'>
+                              <small>
+                                {Moment(segment.departure.at).format(
+                                  "MMM Do YY"
+                                )}{" "}
+                              </small>
+                              <small className='ml-2'>
+                                Total duration:{" "}
+                                <span>{getTime(segment.duration)} </span>
+                              </small>
+                            </p>
                             <h6>
                               <span>{segment.departure.iataCode} </span>
                               <span>to </span>
                               <span>{segment.arrival.iataCode} </span>
                             </h6>
                           </div>
-                          <div
-                            xs={12}
-                            className='mt-2 px-0 d-flex info-div-section01'>
-                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
+                          <div className='mt-2 px-0 booking-details-section01'>
+                            <div className='col-12 col-xs-12 col-md-6 px-0 booking-details-item1'>
                               <div className='col-3 px-0'>
                                 <p className='mb-1'>
                                   {segment.departure.iataCode}{" "}
@@ -303,7 +275,7 @@ const BookingDeatils = () => {
                                 </h5>
                               </div>
                             </div>
-                            <div className='col-12 col-xs-12 col-md-6 d-flex px-0'>
+                            <div className='col-12 col-xs-12 col-md-6 px-0 booking-details-item2'>
                               <div className='col-6 d-flex'>
                                 <div className='col-3 d-flex justify-content-around align-items-center'>
                                   <img

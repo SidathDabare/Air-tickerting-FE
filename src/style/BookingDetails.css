@@ -4,14 +4,28 @@
   width: 100%;
   height: auto;
 }
-@media only screen and (max-width: 565px) {
-  .info-div {
-    width: 100% !important;
+
+.booking-details {
+  width: 100%;
+}
+.booking-details-section01 {
+  display: flex;
+}
+
+.booking-details-item1 {
+  display: flex;
+}
+.booking-details-item2 {
+  display: flex;
+}
+@media only screen and (max-width: 765px) {
+  .booking-details-item2 {
+    display: none;
   }
-  .info-div-section01 {
+}
+@media only screen and (max-width: 565px) {
+  .booking-details {
+    max-width: 100% !important;
     flex-direction: column;
   }
-  /* .info-div-section01 div {
-    padding: 0 10px !important;
-  } */
 }
