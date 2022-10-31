@@ -1,0 +1,32 @@
+[
+  {
+    "id": "scala",
+    "label": "scala",
+    "value": 494,
+    "color": "hsl(323, 70%, 50%)"
+  },
+  {
+    "id": "elixir",
+    "label": "elixir",
+    "value": 526,
+    "color": "hsl(152, 70%, 50%)"
+  },
+  {
+    "id": "ruby",
+    "label": "ruby",
+    "value": 469,
+    "color": "hsl(65, 70%, 50%)"
+  },
+  {
+    "id": "c",
+    "label": "c",
+    "value": 274,
+    "color": "hsl(317, 70%, 50%)"
+  },
+  {
+    "id": "erlang",
+    "label": "erlang",
+    "value": 281,
+    "color": "hsl(271, 70%, 50%)"
+  }
+]

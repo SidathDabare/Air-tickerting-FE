@@ -1,0 +1,110 @@
+[
+  {
+    "id": "scala",
+    "label": "scala",
+    "value": 494,
+    "color": "hsl(323, 70%, 50%)"
+  },
+  {
+    "id": "elixir",
+    "label": "elixir",
+    "value": 526,
+    "color": "hsl(152, 70%, 50%)"
+  },
+  {
+    "id": "ruby",
+    "label": "ruby",
+    "value": 469,
+    "color": "hsl(65, 70%, 50%)"
+  },
+  {
+    "id": "c",
+    "label": "c",
+    "value": 274,
+    "color": "hsl(317, 70%, 50%)"
+  },
+  {
+    "id": "erlang",
+    "label": "erlang",
+    "value": 281,
+    "color": "hsl(271, 70%, 50%)"
+  },
+  {
+    "id": "python",
+    "label": "python",
+    "value": 19,
+    "color": "hsl(27, 70%, 50%)"
+  },
+  {
+    "id": "java",
+    "label": "java",
+    "value": 575,
+    "color": "hsl(21, 70%, 50%)"
+  },
+  {
+    "id": "javascript",
+    "label": "javascript",
+    "value": 136,
+    "color": "hsl(50, 70%, 50%)"
+  },
+  {
+    "id": "stylus",
+    "label": "stylus",
+    "value": 561,
+    "color": "hsl(32, 70%, 50%)"
+  },
+  {
+    "id": "css",
+    "label": "css",
+    "value": 139,
+    "color": "hsl(311, 70%, 50%)"
+  },
+  {
+    "id": "rust",
+    "label": "rust",
+    "value": 175,
+    "color": "hsl(343, 70%, 50%)"
+  },
+  {
+    "id": "go",
+    "label": "go",
+    "value": 443,
+    "color": "hsl(198, 70%, 50%)"
+  },
+  {
+    "id": "lisp",
+    "label": "lisp",
+    "value": 78,
+    "color": "hsl(309, 70%, 50%)"
+  },
+  {
+    "id": "make",
+    "label": "make",
+    "value": 210,
+    "color": "hsl(16, 70%, 50%)"
+  },
+  {
+    "id": "sass",
+    "label": "sass",
+    "value": 262,
+    "color": "hsl(187, 70%, 50%)"
+  },
+  {
+    "id": "haskell",
+    "label": "haskell",
+    "value": 348,
+    "color": "hsl(86, 70%, 50%)"
+  },
+  {
+    "id": "hack",
+    "label": "hack",
+    "value": 373,
+    "color": "hsl(106, 70%, 50%)"
+  },
+  {
+    "id": "php",
+    "label": "php",
+    "value": 586,
+    "color": "hsl(272, 70%, 50%)"
+  }
+]

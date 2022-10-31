@@ -20,32 +20,6 @@ const MyNavbar = () => {
 
   const navigate = useNavigate()
 
-  const navSlide = () => {
-    const toggleBtn = document.querySelector(".toggle-btn")
-    const navDiv = document.querySelector(".nav-center-div")
-    const navDivLinks = document.querySelectorAll(".nav-center-div a")
-    // toggle nav -------------
-    toggleBtn.addEventListener("click", () => {
-      navDiv.classList.toggle("nav-links-active")
-      //animation btn------------------
-      toggleBtn.classList.toggle("toggle-btn-animate")
-
-      // animate links -------------
-      navDivLinks.forEach((link, index) => {
-        //link.classList.add("nav-links-animation")
-        // if (link.style.animation) {
-        //     link.style.animation = ""
-        // } else {
-        //     link.style.animation = `navLinksFade 0.5s ease forwords ${index / 7 + 1}s`
-        // }
-        if (link.style.animation) {
-          link.style.animation = ""
-        } else {
-          link.classList.add("nav-links-animation")
-        }
-      })
-    })
-  }
   const userLogOut = () => {
     dispatch(setTokenAction(""))
     dispatch(setLoggedInUserAction(""))

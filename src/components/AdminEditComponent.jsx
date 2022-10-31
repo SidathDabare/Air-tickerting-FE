@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import OrderComponent from "../components/OrderComponent"
 import PersonOffIcon from "@mui/icons-material/PersonOff"
 import CloseIcon from "@mui/icons-material/Close"
-import "../style/UserDisplayComponent.css"
+import "../style/AdminEditComponent.css"
 import Modal from "react-bootstrap/Modal"
 import { MenuItem, TextField } from "@mui/material"
 import { DatePicker } from "@mui/x-date-pickers"
@@ -92,12 +92,12 @@ const AdminEditComponent = (props) => {
   return (
     <>
       {admin.loggedInUser.firstName ? (
-        <div className='col-12 user-display-div-main'>
-          <div className='user-display-section01 px-0'>
+        <div className='col-12 admin-edit-div-main'>
+          <div className='admin-edit-section01 px-0'>
             <div className='col-12'>
               <div className='px-0 d-flex align-items-center justify-content-center'>
                 <img
-                  className='user-display-img'
+                  className='admin-edit-img'
                   src={admin.loggedInUser.avatar}
                   alt=''
                 />
@@ -119,20 +119,20 @@ const AdminEditComponent = (props) => {
               </div>
             </div>
           </div>
-          <div className='px-0 user-display-section02'>
+          <div className='px-0 admin-edit-section02'>
             <div className='col-12 '>
-              <div className='col-12 py-1 border-bottom '>
+              <div className='col-12 py-2 border-bottom px-3'>
                 <h5>Edit Profile</h5>
               </div>
-              <div className='px-2'>
-                <div className='col-12 py-2 mt-1 d-flex'>
+              <div className='px-0 py-2'>
+                <div className='py-2 mt-1 admin-edit-div'>
                   <TextField
                     size='small'
                     id='outlined-basic'
                     label='Firstname'
                     defaultValue={admin.loggedInUser.firstName}
                     variant='outlined'
-                    className='col-6 col-xs-6 col-md-4 px-1'
+                    className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <TextField
@@ -141,7 +141,7 @@ const AdminEditComponent = (props) => {
                     defaultValue={admin.loggedInUser.lastName}
                     label='Lastname'
                     variant='outlined'
-                    className='col-6 col-xs-6 col-md-4 px-1'
+                    className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setLastName(e.target.value)}
                   />
                   <TextField
@@ -150,16 +150,9 @@ const AdminEditComponent = (props) => {
                     defaultValue={admin.loggedInUser.email}
                     label='Email'
                     variant='outlined'
-                    className='col-6 col-xs-6 col-md-4 px-1'
+                    className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </div>
-                <div className='col-12 d-flex'>
-                  <small className='text-info text-truncate'>
-                    {avatar ? avatar : ""}
-                  </small>
-                </div>
-                <div className='col-12 py-2 mt-1 d-flex'>
                   <TextField
                     size='small'
                     id='outlined-basic'
@@ -167,23 +160,31 @@ const AdminEditComponent = (props) => {
                     type='password'
                     defaultValue={""}
                     variant='outlined'
-                    className='col-6 col-xs-6 col-md-4 px-1'
+                    className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <Form.Group className='col-6 col-xs-6 col-md-4 px-1'>
+                  <Form.Group className='col-12 col-xs-12 col-md-6 px-1'>
                     <Form.Control
                       className='col-12 px-0 py-1'
                       type='file'
                       onChange={addImage}
                     />
                   </Form.Group>
-                  <Button
-                    type='submit'
-                    className='col-6 col-xs-6 col-md-4 px-1'
-                    onClick={editAdminDetails}>
-                    Edit Details
-                  </Button>
+                  <div className='admin-btn-div col-12 col-xs-12 col-md-6 px-1'>
+                    <button
+                      type='submit'
+                      className='btn btn-outline-info btn-block'
+                      onClick={editAdminDetails}>
+                      Edit Details
+                    </button>
+                  </div>
                 </div>
+                <div className='col-12 d-flex'>
+                  <small className='text-info text-truncate'>
+                    {avatar ? avatar : ""}
+                  </small>
+                </div>
+                <div className='col-12 py-2 mt-1 d-flex'></div>
               </div>
             </div>
           </div>

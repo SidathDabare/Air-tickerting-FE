@@ -1,0 +1,128 @@
+/** @format */
+.admin-edit-div {
+  position: relative;
+  max-height: 95vh;
+  width: 100%;
+  min-width: 500px;
+}
+.admin-edit-div-main {
+  display: flex;
+  height: 92vh;
+  min-width: 500px;
+  background-color: rgba(0, 255, 255, 0);
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.admin-edit-section01 {
+  height: 83vh;
+  width: 28%;
+  border-radius: 5px;
+  border: 0.2px solid rgb(183, 183, 183);
+}
+.admin-edit-section02 {
+  height: 83vh;
+  width: 70%;
+  border-radius: 5px;
+  border: 0.2px solid rgb(183, 183, 183);
+}
+
+.users-orders-display {
+  overflow-y: auto;
+  height: 100%;
+  max-height: 55vh;
+}
+div.admin-edit-div-main::-webkit-scrollbar {
+  width: 6px;
+}
+div.admin-edit-div-main::-webkit-scrollbar-track {
+  background: #a6a6a6;
+}
+div.admin-edit-div-main::-webkit-scrollbar-thumb {
+  background-color: #002741f0;
+  /* border: 3px solid rgb(55, 55, 55); */
+}
+.admin-edit-img {
+  height: 150px;
+  width: 150px;
+  min-width: 150px;
+  object-fit: cover;
+  padding: 10px;
+}
+.admin-edit-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 30vh;
+  width: 100%;
+}
+@media only screen and (max-width: 1000px) {
+  .admin-edit-div {
+    overflow-x: hidden;
+  }
+  .admin-edit-div-main {
+    max-width: 100%;
+    overflow-x: auto;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .admin-edit-section01 {
+    height: 30vh;
+    width: 100%;
+  }
+  .admin-edit-section02 {
+    height: 65vh;
+    width: 100%;
+    margin-top: 2vh;
+  }
+  .admin-edit-div {
+    height: auto;
+    min-height: 30vh;
+  }
+}
+@media only screen and (max-width: 765px) {
+  .admin-edit-div {
+    height: 92vh;
+    /* min-height: 92vh; */
+    overflow-y: scroll !important;
+    display: inline-block;
+  }
+  .admin-edit-img {
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+  }
+  .admin-edit-div {
+    height: auto;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  /* .admin-edit-div > div {
+    margin: 5px 0;
+  } */
+}
+@media only screen and (max-width: 565px) {
+  /* .admin-edit-div {
+    height: 92vh;
+ 
+    overflow-y: scroll !important;
+    display: inline-block;
+  }
+  .admin-edit-img {
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+  }
+  .admin-edit-div {
+    height: auto;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  } */
+  /* .admin-edit-div > div {
+    margin: 5px 0;
+  } */
+}

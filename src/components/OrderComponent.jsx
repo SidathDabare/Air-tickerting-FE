@@ -13,11 +13,11 @@ import Moment from "moment"
 import Loader from "../components/Loader"
 
 const OrderComponent = (props) => {
-  //console.log(props.order)
+  console.log(props.order)
   const [showInfo, setShowInfo] = useState(false)
   useEffect(() => {
     // setShowInfo(false)
-  }, [props, showInfo])
+  }, [props.order, showInfo])
   return (
     <>
       <div
