@@ -3,12 +3,11 @@
   position: relative;
   max-height: 95vh;
   width: 100%;
-  min-width: 500px;
 }
 .admin-edit-div-main {
   display: flex;
   height: 92vh;
-  min-width: 500px;
+
   background-color: rgba(0, 255, 255, 0);
   justify-content: space-between;
   align-items: center;
@@ -56,7 +55,7 @@ div.admin-edit-div-main::-webkit-scrollbar-thumb {
   height: 30vh;
   width: 100%;
 }
-@media only screen and (max-width: 1000px) {
+/* @media only screen and (max-width: 1000px) {
   .admin-edit-div {
     overflow-x: hidden;
   }
@@ -79,13 +78,33 @@ div.admin-edit-div-main::-webkit-scrollbar-thumb {
     height: auto;
     min-height: 30vh;
   }
-}
+} */
 @media only screen and (max-width: 765px) {
+  .admin-edit-div-main {
+    position: relative;
+    max-width: 100%;
+    height: 92vh;
+    overflow-x: auto;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
   .admin-edit-div {
     height: 92vh;
     /* min-height: 92vh; */
     overflow-y: scroll !important;
     display: inline-block;
+  }
+  .admin-edit-section01 {
+    margin-top: 10vh;
+    height: 30vh;
+    width: 100%;
+  }
+  .admin-edit-section02 {
+    height: auto;
+    width: 100%;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
   }
   .admin-edit-img {
     height: 100px;

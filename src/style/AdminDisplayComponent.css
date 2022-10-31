@@ -27,7 +27,6 @@ div.admin-display-main::-webkit-scrollbar-thumb {
 .admin-display-section01 {
   position: relative;
   height: 30vh;
-  min-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +70,7 @@ div.admin-display-main::-webkit-scrollbar-thumb {
   position: relative;
   height: 55vh;
   width: 100%;
-  min-width: 500px;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -93,6 +92,7 @@ div.admin-display-main::-webkit-scrollbar-thumb {
 }
 @media only screen and (max-width: 765px) {
   .admin-display-main {
+    position: relative;
     height: 92vh;
     /* min-height: 92vh; */
     overflow-y: scroll !important;
@@ -102,6 +102,7 @@ div.admin-display-main::-webkit-scrollbar-thumb {
     flex-wrap: wrap;
     height: 40vh;
     min-height: 30vh;
+    margin-top: 8vh;
   }
   .admin-display-items {
     width: 49%;
