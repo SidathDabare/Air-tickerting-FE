@@ -90,7 +90,7 @@ div.admin-display-main::-webkit-scrollbar-thumb {
 .font-color {
   color: blueviolet;
 }
-@media only screen and (max-width: 765px) {
+@media only screen and (max-width: 1000px) {
   .admin-display-main {
     position: relative;
     height: 92vh;
@@ -100,15 +100,28 @@ div.admin-display-main::-webkit-scrollbar-thumb {
   }
   .admin-display-section01 {
     flex-wrap: wrap;
-    height: 40vh;
+    height: auto;
     min-height: 30vh;
-    margin-top: 8vh;
   }
+  .admin-display-items {
+    width: 48%;
+    min-width: 48%;
+    margin: 10px 0 10px 0;
+  }
+}
+@media only screen and (max-width: 765px) {
+  .admin-display-main {
+    position: relative;
+    height: 92vh;
+    /* min-height: 92vh; */
+    overflow-y: scroll !important;
+    display: inline-block;
+  }
+
   .admin-display-items {
     width: 49%;
     height: 115px;
     min-height: 115px;
-    margin: 10px 0 10px 0;
   }
 
   .admin-display-items-section1 {
@@ -127,10 +140,11 @@ div.admin-display-main::-webkit-scrollbar-thumb {
 @media only screen and (max-width: 578px) {
   .admin-display-items {
     width: 100%;
+    margin: 3px 0 3px 0;
   }
   .admin-display-section01 {
     flex-wrap: wrap;
-    height: 75vh;
-    min-height: 75vh;
+    height: 65vh;
+    min-height: 65vh;
   }
 }

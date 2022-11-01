@@ -17,8 +17,6 @@ const AdminDisplayComponent = () => {
 
   const [orders, setOrders] = useState([])
   const [users, setUsers] = useState([])
-  const [total, setTotal] = useState([])
-  console.log(total)
 
   // console.log(
   //   orders.length > 0 ? orders[0].data.flightOffers[0].price.total : "0"
@@ -38,7 +36,6 @@ const AdminDisplayComponent = () => {
       let data = await res.json()
       //console.log(data)
       setOrders(data)
-      setTotal(data)
     } catch (error) {
       console.log(error)
     }
@@ -82,7 +79,7 @@ const AdminDisplayComponent = () => {
                     : "$"}
                 </span>
                 <span className='font-weight-bold'>
-                  {orders.data
+                  {orders
                     ? orders
                         .map((order) =>
                           Number(order.data.flightOffers[0].price.total)
