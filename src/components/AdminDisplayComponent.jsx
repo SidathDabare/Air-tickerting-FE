@@ -13,6 +13,7 @@ import ReportIcon from "@mui/icons-material/Report"
 
 const AdminDisplayComponent = () => {
   const admin = useSelector((state) => state.userReducer.loggedInUser)
+  const token = useSelector((state) => state.userReducer.token)
 
   const [orders, setOrders] = useState([])
   const [users, setUsers] = useState([])
@@ -25,7 +26,7 @@ const AdminDisplayComponent = () => {
 
   const getOrders = async () => {
     let headers = {
-      Authorization: `Bearer ${admin.token}`,
+      Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     }
     let url = `${process.env.REACT_APP_BE_URL}/orders`
@@ -44,7 +45,7 @@ const AdminDisplayComponent = () => {
   }
   const getUsers = async () => {
     let headers = {
-      Authorization: `Bearer ${admin.token}`,
+      Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     }
     let url = `${process.env.REACT_APP_BE_URL}/users`
@@ -76,10 +77,12 @@ const AdminDisplayComponent = () => {
               <h4>
                 {/* {orders.length} */}
                 <span className='mr-1'>
-                  {orders[0].data.flightOffers[0].price.currency}
+                  {orders.length > 0
+                    ? orders[0].data.flightOffers[0].price.currency
+                    : "$"}
                 </span>
                 <span className='font-weight-bold'>
-                  {orders.length > 0
+                  {orders.data
                     ? orders
                         .map((order) =>
                           Number(order.data.flightOffers[0].price.total)
