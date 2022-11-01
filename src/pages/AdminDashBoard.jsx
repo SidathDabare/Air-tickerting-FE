@@ -30,7 +30,7 @@ const AdminDashBoard = () => {
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
-  console.log(showSidebar)
+  //console.log(showSidebar)
 
   const getOrdersData = async () => {
     try {
@@ -66,7 +66,7 @@ const AdminDashBoard = () => {
       })
       if (res.ok) {
         let data = await res.json()
-        console.log(data)
+        //console.log(data)
         setAllUsers(data.users)
 
         dispatch(selectedUser(data.users[1]))

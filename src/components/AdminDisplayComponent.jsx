@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import "../style/AdminDisplayComponent.css"
 import { ResponsivePie } from "@nivo/pie"
@@ -13,7 +13,56 @@ import ReportIcon from "@mui/icons-material/Report"
 
 const AdminDisplayComponent = () => {
   const admin = useSelector((state) => state.userReducer.loggedInUser)
-  console.log(admin.lastName)
+
+  const [orders, setOrders] = useState([])
+  const [users, setUsers] = useState([])
+  const [total, setTotal] = useState([])
+  console.log(total)
+
+  // console.log(
+  //   orders.length > 0 ? orders[0].data.flightOffers[0].price.total : "0"
+  // )
+
+  const getOrders = async () => {
+    let headers = {
+      Authorization: `Bearer ${admin.token}`,
+      "Content-type": "application/json",
+    }
+    let url = `${process.env.REACT_APP_BE_URL}/orders`
+    try {
+      let res = await fetch(url, {
+        method: "GET",
+        headers,
+      })
+      let data = await res.json()
+      //console.log(data)
+      setOrders(data)
+      setTotal(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const getUsers = async () => {
+    let headers = {
+      Authorization: `Bearer ${admin.token}`,
+      "Content-type": "application/json",
+    }
+    let url = `${process.env.REACT_APP_BE_URL}/users`
+    try {
+      let res = await fetch(url, {
+        method: "GET",
+        headers,
+      })
+      let data = await res.json()
+      setUsers(data.users)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getOrders()
+    getUsers()
+  }, [])
   return (
     <div className='admin-display-main'>
       <div className='admin-display-section01'>
@@ -24,7 +73,22 @@ const AdminDisplayComponent = () => {
             </div>
             <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-success'>
               <p className='mb-0'>Revenue</p>
-              <h4>$135</h4>
+              <h4>
+                {/* {orders.length} */}
+                <span className='mr-1'>
+                  {orders[0].data.flightOffers[0].price.currency}
+                </span>
+                <span className='font-weight-bold'>
+                  {orders.length > 0
+                    ? orders
+                        .map((order) =>
+                          Number(order.data.flightOffers[0].price.total)
+                        )
+                        .reduce((a, b) => a + b, 0)
+                        .toFixed(2)
+                    : "0"}
+                </span>
+              </h4>
             </div>
           </div>
           <div className='col-12 admin-display-items-section2 text-right'>
@@ -43,7 +107,7 @@ const AdminDisplayComponent = () => {
             </div>
             <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-info'>
               <p className='mb-0'>Users</p>
-              <h4>$135</h4>
+              <h4>{users ? users.length : "0"}</h4>
             </div>
           </div>
           <div className='col-12 admin-display-items-section2 text-right'>
@@ -62,7 +126,7 @@ const AdminDisplayComponent = () => {
             </div>
             <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center font-color'>
               <p className='mb-0'>Orders</p>
-              <h4>$135</h4>
+              <h4>{orders ? orders.length : "0"}</h4>
             </div>
           </div>
           <div className='col-12 admin-display-items-section2 text-right'>
@@ -81,7 +145,7 @@ const AdminDisplayComponent = () => {
             </div>
             <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-danger'>
               <p className='mb-0'>Errors</p>
-              <h4>$135</h4>
+              <h4>05</h4>
             </div>
           </div>
           <div className='col-12 admin-display-items-section2 text-right'>
