@@ -116,7 +116,11 @@ const MyNavbar = () => {
                   <button
                     className='btn btn-outline-info btn-block'
                     onClick={() => {
-                      navigate("../admin")
+                      navigate(
+                        loggedUser.role === "Admin"
+                          ? "../admin"
+                          : "../dashboard"
+                      )
                     }}>
                     Go to dashboard
                   </button>

@@ -1,27 +1,29 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { Container, InputGroup } from "react-bootstrap"
+import { InputGroup } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import UserComponents from "../components/UserComponents"
 import UserDisplayComponent from "../components/UserDisplayComponent"
-import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
-import DashboardIcon from "@mui/icons-material/Dashboard"
-import AccountBoxIcon from "@mui/icons-material/AccountBox"
-import WidgetsIcon from "@mui/icons-material/Widgets"
-import EditIcon from "@mui/icons-material/Edit"
 import SearchIcon from "@mui/icons-material/Search"
 import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
 import { selectedUser } from "../redux/actions"
 import AdminDisplayComponent from "../components/AdminDisplayComponent"
 import AdminEditComponent from "../components/AdminEditComponent"
+import BigLogo from "../assets/logo1.png"
+import CloseIcon from "@mui/icons-material/Close"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined"
+import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
   const token = useSelector((state) => state.userReducer.token)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [bookingInfo, setBookingInfo] = useState({})
   const [allUsers, setAllUsers] = useState([])
@@ -94,13 +96,14 @@ const AdminDashBoard = () => {
             ? "sidebar px-0 sidebar-move-right"
             : "sidebar px-0 sidebar-move-left"
         }>
-        <div className='col-12 d-flex justify-content-left align-items-center sidebar-logo add-margin'>
-          <Link to={"/"}>
-            <h4 className='hide-item mr-2'>TICKETING </h4>
-            <span className='pb-2'>
-              <FlightTakeoffSharpIcon className='make-icon-bigger' />
-            </span>
-          </Link>
+        <div className='col-12 d-flex justify-content-left align-items-center sidebar-logo'>
+          <div className='admin-dashboard-logo-div d-flex justify-content-between align-items-center'>
+            <img src={BigLogo} alt='logo' onClick={() => navigate("/")} />
+            <CloseIcon
+              className='show-close-icon'
+              onClick={() => setShowSidebar(!showSidebar)}
+            />
+          </div>
         </div>
         <div className='col-12'>
           <div
@@ -108,13 +111,14 @@ const AdminDashBoard = () => {
             onClick={() => {
               setShowUserProfile(false)
               setShowEditProfile(false)
+              setShowSidebar(false)
               setShowDashboard(!showDashboard)
             }}>
-            <h6 className='d-flex align-items-center add-margin'>
+            <h6 className='d-flex align-items-center'>
               <span>
-                <DashboardIcon className='make-icon-bigger' />
+                <DashboardCustomizeOutlinedIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2 hide-item'>DASHBOARD</span>
+              <span className='pl-2'>DASHBOARD</span>
             </h6>
           </div>
           <div
@@ -122,13 +126,14 @@ const AdminDashBoard = () => {
             onClick={() => {
               setShowDashboard(false)
               setShowUserProfile(false)
+              setShowSidebar(false)
               setShowEditProfile(!showEditProfile)
             }}>
-            <h6 className='d-flex align-items-center add-margin'>
+            <h6 className='d-flex align-items-center'>
               <span>
-                <EditIcon className='make-icon-bigger' />
+                <BorderColorOutlinedIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2 hide-item'>EDIT DETAILS</span>
+              <span className='pl-2'>EDIT DETAILS</span>
             </h6>
           </div>
           <div
@@ -138,25 +143,29 @@ const AdminDashBoard = () => {
               setShowEditProfile(false)
               setShowUserProfile(!showUserProfile)
             }}>
-            <h6 className='d-flex align-items-center add-margin'>
+            <h6 className='d-flex align-items-center'>
               <span>
-                <AccountBoxIcon className='make-icon-bigger' />
+                <AccountCircleIcon className='make-icon-bigger' />
               </span>
-              <span className='pl-2 hide-item'>USERS PROFILES</span>
+              <span className='pl-2'>USERS PROFILES</span>
             </h6>
           </div>
           <div
             className={
               showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
             }>
-            <div className='col-12 d-flex py-2 px-2 add-margin'>
+            <div className='col-12 d-flex py-2 px-2'>
               <h6>USERS</h6>
             </div>
             {allUsers.length > 0 ? (
               <div className='user-name-display'>
                 {allUsers.map((user, i) => (
                   <div key={user._id}>
-                    <UserComponents user={user} i={i} />
+                    <UserComponents
+                      user={user}
+                      i={i}
+                      setShowSidebar={setShowSidebar}
+                    />
                     {/* {user.role !== "Admin" ? (
                       <UserComponents user={user} i={i} />
                     ) : (
@@ -178,13 +187,13 @@ const AdminDashBoard = () => {
             : "px-0 admin-right-div admin-right-div-expand"
         }>
         <div className='col-12 admin-nav-div border-bottom'>
-          <div className='col-2'>
-            <WidgetsIcon
+          <div className='col-1'>
+            <MoreVertIcon
               className='menu-icon'
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className='col-8 d-flex justify-content-end align-items-center'>
+          <div className='col-11 col-md-8 d-flex justify-content-end align-items-center px-0'>
             <InputGroup className='col-10 col-md-7 admin-search flex-grow-1 px-0'>
               {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
               <SearchIcon className='admin-search-icon' />
@@ -195,7 +204,7 @@ const AdminDashBoard = () => {
                 className='admin-search-input'
               />
             </InputGroup>
-            <div className='col-2 hide-item'>
+            <div className='col-1 hide-item d-flex justify-content-end'>
               <div className='admin-profile-div'>
                 <img
                   src={loggedUser.avatar}

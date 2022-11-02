@@ -12,6 +12,10 @@
   color: var(--font-color);
   background-color: rgb(0, 52, 78);
 }
+.user-item:hover {
+  color: #0096dc;
+  background-color: rgb(0, 40, 60);
+}
 .add-box-shadow {
   -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
   box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
@@ -22,12 +26,15 @@
 .add-background {
   background-color: rgb(0, 40, 60);
 }
-.user-com-small-avater {
+.user-com-small-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
 }
 @media only screen and (max-width: 565px) {
+  /* .user-item {
+    padding: 0 10px !important;
+  } */
   .users-names-item {
     padding: 0px 0px !important;
     margin: 0 !important;
@@ -39,5 +46,14 @@
   .add-margin {
     margin: 0 auto !important;
     max-width: 60% !important;
+  }
+  .user-com-small-avatar {
+    width: 22px;
+    min-width: 22px;
+    height: 22px;
+  }
+  .users-names-item {
+    padding-top: 3px !important;
+    font-size: 14px;
   }
 }

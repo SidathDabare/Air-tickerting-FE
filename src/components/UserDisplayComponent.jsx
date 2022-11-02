@@ -85,7 +85,17 @@ const UserDisplayComponent = (props) => {
                     </div>
                     <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-success'>
                       <p className='mb-0'>Revenue</p>
-                      <h4>$135</h4>
+                      <h4>
+                        {" "}
+                        {user.orders
+                          ? user.orders
+                              .map((order) =>
+                                Number(order.data.flightOffers[0].price.total)
+                              )
+                              .reduce((a, b) => a + b, 0)
+                              .toFixed(2)
+                          : "0"}
+                      </h4>
                     </div>
                   </div>
                   <div className='col-12 user-display-items-section2 text-right'>
@@ -104,7 +114,7 @@ const UserDisplayComponent = (props) => {
                     </div>
                     <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center font-color'>
                       <p className='mb-0'>Orders</p>
-                      <h4>$135</h4>
+                      <h4>{user.orders.length}</h4>
                     </div>
                   </div>
                   <div className='col-12 user-display-items-section2 text-right'>

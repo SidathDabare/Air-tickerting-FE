@@ -1,15 +1,9 @@
 /** @format */
 import React, { useState } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import { useSelector } from "react-redux"
-import OrderComponent from "../components/OrderComponent"
-import PersonOffIcon from "@mui/icons-material/PersonOff"
-import CloseIcon from "@mui/icons-material/Close"
 import "../style/AdminEditComponent.css"
-import Modal from "react-bootstrap/Modal"
-import { MenuItem, TextField } from "@mui/material"
-import { DatePicker } from "@mui/x-date-pickers"
-import { format } from "date-fns"
+import { TextField } from "@mui/material"
 
 const AdminEditComponent = (props) => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
@@ -67,7 +61,7 @@ const AdminEditComponent = (props) => {
       Authorization: `Bearer ${admin.token}`,
       "Content-type": "application/json",
     }
-    let url = `${process.env.REACT_APP_BE_URL}/users/me`
+    let url = `${process.env.REACT_APP_BE_URL}/users/${admin.loggedInUser._id}`
     try {
       let res = await fetch(url, {
         method: "PUT",

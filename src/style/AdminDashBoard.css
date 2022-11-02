@@ -11,6 +11,7 @@
   height: 100vh;
   max-height: 100vh;
   width: 100%;
+  position: relative;
 }
 .sidebar {
   height: 100vh;
@@ -21,6 +22,15 @@
   color: var(--font-color);
   border-right: #e4e4e4;
   transition: 0.8s;
+}
+.admin-dashboard-logo-div {
+  width: 100%;
+}
+.admin-dashboard-logo-div img {
+  height: 40px;
+}
+.show-close-icon {
+  display: none !important;
 }
 .sidebar-logo {
   height: 8vh;
@@ -41,8 +51,16 @@
   cursor: pointer;
   color: var(--font-color);
 }
+.sidebar-items h6 {
+  font-size: 14px;
+}
+.sidebar-items h6 span:nth-child(1) svg {
+  font-size: 18px;
+}
+
 .sidebar-items:hover {
   background-color: #00243cf0;
+  color: #0096dc;
 }
 
 /* @media only screen and (min-width: 565px) {
@@ -64,7 +82,7 @@
   position: relative;
   height: 8vh;
   color: var(--font-color);
-  background-color: #f4f3ef;
+  background-color: #ebebeb;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,6 +108,7 @@
 .admin-profile-div {
   position: relative;
   width: 36px;
+  min-width: 36px;
   height: 36px;
   border-radius: 50%;
   background-color: rgb(255, 255, 255);
@@ -168,7 +187,10 @@ div.user-name-display::-webkit-scrollbar-thumb {
   .admin-main {
     overflow: hidden !important;
   }
-
+  .admin-right-div {
+    min-width: 100%;
+    transform: translateX(-250px);
+  }
   .user-display-section01 {
     flex-direction: column;
     width: 100% !important;
@@ -176,16 +198,22 @@ div.user-name-display::-webkit-scrollbar-thumb {
   }
   .sidebar-move-left {
     transform: translateX(-250px);
-    width: 350px;
+    width: 250px;
     transition: 0.8s ease-out;
+    z-index: 2;
   }
   .sidebar-move-right {
     transform: translateX(0);
     width: 250px;
     transition: 0.8s ease-out;
+    z-index: 2;
+  }
+  .show-close-icon {
+    display: block !important;
+    cursor: pointer;
   }
 
-  .admin-right-div-expand {
+  /* .admin-right-div-expand {
     min-width: 100%;
     transform: translateX(-250px);
     transition: 0.8s ease-out;
@@ -194,17 +222,23 @@ div.user-name-display::-webkit-scrollbar-thumb {
     min-width: calc(100% - 250px);
     transform: translateX(0px);
     transition: 0.8s ease-out;
+  } */
+  .admin-nav-div div:nth-child(2) {
+    max-width: 40% !important;
+    display: flex;
+    justify-content: end !important;
   }
-
   .menu-icon {
     display: block;
     color: #6c6c6c;
+    cursor: pointer;
   }
   .hide-menu-icon {
     visibility: hidden;
   }
   .show-menu-icon {
     visibility: visible;
+    cursor: pointer;
   }
   .perfomance-item01 {
     height: 30vh;
@@ -223,10 +257,30 @@ div.user-name-display::-webkit-scrollbar-thumb {
     padding: 0px 0px !important;
   }
   .sidebar {
+    width: 150px !important;
+    max-width: 150px !important;
+  }
+  .sidebar-move-right {
+    transform: translateX(0);
+    width: 150px !important;
+    max-width: 150px !important;
+    transition: 0.8s ease-out;
+  }
+  .admin-nav-div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .admin-nav-div div:nth-child(2) {
+    max-width: 90% !important;
+    display: flex;
+    justify-content: space-around !important;
+  }
+
+  /* .sidebar {
     width: 100px;
     min-width: 100px;
-  }
-  .sidebar-move-left {
+  } */
+  /* .sidebar-move-left {
     transform: translateX(-100px);
     width: 350px;
     transition: 0.8s ease-out;
@@ -235,9 +289,9 @@ div.user-name-display::-webkit-scrollbar-thumb {
     transform: translateX(0);
     width: 100px;
     transition: 0.8s ease-out;
-  }
+  } */
 
-  .admin-right-div-expand {
+  /* .admin-right-div-expand {
     min-width: 100%;
     transform: translateX(-100px);
     transition: 0.8s ease-out;
@@ -246,8 +300,8 @@ div.user-name-display::-webkit-scrollbar-thumb {
     min-width: calc(100% - 100px);
     transform: translateX(0px);
     transition: 0.8s ease-out;
-  }
-  .hide-item {
+  } */
+  /* .hide-item {
     display: none;
   }
   .make-icon-bigger {
@@ -259,7 +313,7 @@ div.user-name-display::-webkit-scrollbar-thumb {
   .add-margin {
     justify-content: center;
     width: 100%;
-  }
+  } */
   div.user-name-display::-webkit-scrollbar {
     width: 2px;
   }
