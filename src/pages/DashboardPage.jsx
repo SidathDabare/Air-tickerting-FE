@@ -7,19 +7,15 @@ import React, { useEffect, useState } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import UserComponents from "../components/UserComponents"
 import OrderComponent from "../components/OrderComponent"
 import Form from "react-bootstrap/Form"
 import "../style/DashboardPage.css"
-import { selectedUser } from "../redux/actions"
 import BigLogo from "../assets/logo1.png"
 import CloseIcon from "@mui/icons-material/Close"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined"
 import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined"
 import { TextField } from "@mui/material"
-import { ResponsivePie } from "@nivo/pie"
-import pieChart from "../data/pieChart.json"
 import LoopIcon from "@mui/icons-material/Loop"
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket"
@@ -47,26 +43,7 @@ const DashboardPage = () => {
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
-  //console.log(showSidebar)
 
-  // const getOrders = async () => {
-  //   let headers = {
-  //     Authorization: `Bearer ${token}`,
-  //     "Content-type": "application/json",
-  //   }
-  //   let url = `${process.env.REACT_APP_BE_URL}/orders`
-  //   try {
-  //     let res = await fetch(url, {
-  //       method: "GET",
-  //       headers,
-  //     })
-  //     let data = await res.json()
-  //     //console.log(data)
-  //     setOrders(data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   const addImage = async (e) => {
     let str = e.target.files[0]
     let url = `${process.env.REACT_APP_BE_URL}/files/cloudinary`
@@ -106,7 +83,7 @@ const DashboardPage = () => {
         }),
       })
       let data = await res.json()
-      console.log(data)
+      //console.log(data)
 
       return data
     } catch (error) {
@@ -114,29 +91,6 @@ const DashboardPage = () => {
     }
   }
 
-  // const getOrdersData = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       `${process.env.REACT_APP_BE_URL}/users/${loggedUser._id}`,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     )
-  //     if (res.ok) {
-  //       let data = await res.json()
-  //       //console.log(data)
-  //       setBookingInfo(data)
-  //     } else {
-  //       console.log("ORDER ERROR")
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   const getUser = async () => {
     try {
       const res = await fetch(
@@ -151,7 +105,7 @@ const DashboardPage = () => {
       )
       if (res.ok) {
         let data = await res.json()
-        console.log(data)
+        //console.log(data)
         setUser(data)
       } else {
         console.log("ORDER ERROR")
@@ -164,9 +118,7 @@ const DashboardPage = () => {
     setShowDashboard(true)
     setShowUserProfile(false)
     setShowEditProfile(false)
-    // if (loggedUser.role === "Admin") {
-    //   getOrdersData()
-    // }
+
     getUser()
   }, [])
   return (
@@ -233,7 +185,7 @@ const DashboardPage = () => {
             />
           </div>
 
-          <div className='col-1 hide-item d-flex justify-content-end'>
+          <div className='col-5 col-md-3 hide-item d-flex justify-content-end align-items-center'>
             <div className='user-profile-div'>
               <img
                 src={loggedUser.avatar}
@@ -241,6 +193,7 @@ const DashboardPage = () => {
                 className='user-profile-pic px-0'
               />
             </div>
+            <h6 className='mb-0 ml-1'>Hello, {loggedUser.firstName}</h6>
           </div>
         </div>
 
@@ -257,7 +210,7 @@ const DashboardPage = () => {
                     <h4>
                       {/* {orders.length} */}
                       <span className='mr-1'>
-                        {user.orders.length > 0
+                        {user.orders && user.orders.length > 0
                           ? user.orders[0].data.flightOffers[0].price.currency
                           : "$"}
                       </span>
@@ -323,125 +276,6 @@ const DashboardPage = () => {
               </div>
             </div>
             <div className='user-dashboard-display-section02'>
-              {/* <div className='user-dashboard-display-section02-div1'>
-                <ResponsivePie
-                  data={pieChart}
-                  margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-                  innerRadius={0.5}
-                  padAngle={0.7}
-                  cornerRadius={3}
-                  activeOuterRadiusOffset={8}
-                  borderWidth={1}
-                  borderColor={{
-                    from: "color",
-                    modifiers: [["darker", 0.2]],
-                  }}
-                  arcLinkLabelsSkipAngle={10}
-                  arcLinkLabelsTextColor='#333333'
-                  arcLinkLabelsThickness={2}
-                  arcLinkLabelsColor={{ from: "color" }}
-                  arcLabelsSkipAngle={10}
-                  arcLabelsTextColor={{
-                    from: "color",
-                    modifiers: [["darker", 2]],
-                  }}
-                  defs={[
-                    {
-                      id: "dots",
-                      type: "patternDots",
-                      background: "inherit",
-                      color: "rgba(255, 255, 255, 0.3)",
-                      size: 4,
-                      padding: 1,
-                      stagger: true,
-                    },
-                    {
-                      id: "lines",
-                      type: "patternLines",
-                      background: "inherit",
-                      color: "rgba(255, 255, 255, 0.3)",
-                      rotation: -45,
-                      lineWidth: 6,
-                      spacing: 10,
-                    },
-                  ]}
-                  fill={[
-                    {
-                      match: {
-                        id: "ruby",
-                      },
-                      id: "dots",
-                    },
-                    {
-                      match: {
-                        id: "c",
-                      },
-                      id: "dots",
-                    },
-                    {
-                      match: {
-                        id: "go",
-                      },
-                      id: "dots",
-                    },
-                    {
-                      match: {
-                        id: "python",
-                      },
-                      id: "dots",
-                    },
-                    {
-                      match: {
-                        id: "scala",
-                      },
-                      id: "lines",
-                    },
-                    {
-                      match: {
-                        id: "lisp",
-                      },
-                      id: "lines",
-                    },
-                    {
-                      match: {
-                        id: "elixir",
-                      },
-                      id: "lines",
-                    },
-                    {
-                      match: {
-                        id: "javascript",
-                      },
-                      id: "lines",
-                    },
-                  ]}
-                  legends={[
-                    {
-                      anchor: "bottom",
-                      direction: "row",
-                      justify: false,
-                      translateX: 0,
-                      translateY: 56,
-                      itemsSpacing: 0,
-                      itemWidth: 100,
-                      itemHeight: 18,
-                      itemTextColor: "#999",
-                      itemDirection: "left-to-right",
-                      itemOpacity: 1,
-                      symbolSize: 18,
-                      symbolShape: "circle",
-                      effects: [
-                        {
-                          on: "hover",
-                          style: {
-                            itemTextColor: "#000",
-                          },
-                        },
-                      ],
-                    },
-                  ]}
-                />
-              </div> */}
               {user.orders &&
                 user.orders.map((order, i) => (
                   <OrderComponent key={i} order={order} />
@@ -457,7 +291,7 @@ const DashboardPage = () => {
                   <div className='col-12'>
                     <div className='px-0 d-flex align-items-center justify-content-center'>
                       <img
-                        className='admin-edit-img'
+                        className='user-edit-img'
                         src={loggedUser.avatar}
                         alt=''
                       />

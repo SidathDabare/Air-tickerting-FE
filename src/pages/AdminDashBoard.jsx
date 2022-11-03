@@ -34,29 +34,6 @@ const AdminDashBoard = () => {
   const [showSidebar, setShowSidebar] = useState(false)
   //console.log(showSidebar)
 
-  const getOrdersData = async () => {
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BE_URL}/users/${loggedUser._id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      if (res.ok) {
-        let data = await res.json()
-        //console.log(data)
-        setBookingInfo(data)
-      } else {
-        console.log("ORDER ERROR")
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const getAllUsers = async () => {
     try {
       const res = await fetch(`${process.env.REACT_APP_BE_URL}/users`, {
@@ -97,7 +74,7 @@ const AdminDashBoard = () => {
             : "sidebar px-0 sidebar-move-left"
         }>
         <div className='col-12 d-flex justify-content-left align-items-center sidebar-logo'>
-          <div className='admin-dashboard-logo-div d-flex justify-content-between align-items-center'>
+          <div className='admin-dashboard-logo-div'>
             <img src={BigLogo} alt='logo' onClick={() => navigate("/")} />
             <CloseIcon
               className='show-close-icon'
@@ -187,32 +164,21 @@ const AdminDashBoard = () => {
             : "px-0 admin-right-div admin-right-div-expand"
         }>
         <div className='col-12 admin-nav-div border-bottom'>
-          <div className='col-1 d-flex justify-content-center px-0'>
+          <div className='col-1'>
             <MoreVertIcon
-              className='menu-icon'
+              className='admin-menu-icon'
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className='col-11 col-md-8 d-flex justify-content-end align-items-center px-0'>
-            <InputGroup className='col-10 col-md-7 admin-search flex-grow-1 px-0'>
-              {/* <InputGroup.Text id='basic-addon1'></InputGroup.Text> */}
-              <SearchIcon className='admin-search-icon' />
-              <Form.Control
-                placeholder='Search'
-                // aria-label='Search'
-                aria-describedby='basic-addon1'
-                className='admin-search-input'
+          <div className='col-3 d-flex justify-content-end align-items-center px-0'>
+            <div className='admin-profile-div'>
+              <img
+                src={loggedUser.avatar}
+                alt='admin-user-pic'
+                className='admin-profile-pic px-0'
               />
-            </InputGroup>
-            <div className='col-1 hide-item d-flex justify-content-end'>
-              <div className='admin-profile-div'>
-                <img
-                  src={loggedUser.avatar}
-                  alt='admin-user-pic'
-                  className='admin-profile-pic px-0'
-                />
-              </div>
-            </div>
+            </div>{" "}
+            <h6 className='mb-0 ml-1'>Hello, {loggedUser.firstName}</h6>
           </div>
         </div>
 

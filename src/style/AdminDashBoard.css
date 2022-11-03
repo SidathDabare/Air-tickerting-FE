@@ -24,7 +24,10 @@
   transition: 0.8s;
 }
 .admin-dashboard-logo-div {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: left;
 }
 .admin-dashboard-logo-div img {
   height: 40px;
@@ -82,12 +85,12 @@
   position: relative;
   height: 8vh;
   color: var(--font-color);
-  background-color: #ebebeb;
+  background-color: #103c54;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.admin-search {
+/* .admin-search {
   position: relative;
   width: 200px;
   min-width: 170px;
@@ -104,7 +107,7 @@
   border-radius: 5px !important;
   background-color: transparent !important;
   color: var(--font-color) !important;
-}
+} */
 .admin-profile-div {
   position: relative;
   width: 36px;
@@ -153,15 +156,15 @@ div.user-name-display::-webkit-scrollbar {
   width: 6px;
 }
 div.user-name-display::-webkit-scrollbar-track {
-  background: #015187f0;
+  background-color: #a6a6a6;
 }
 div.user-name-display::-webkit-scrollbar-thumb {
-  background-color: #a6a6a6;
+  background: #015187f0;
   border-radius: 5px;
   /* border: 3px solid rgb(55, 55, 55); */
 }
-.menu-icon {
-  display: none;
+.admin-menu-icon {
+  display: none !important;
 }
 .perfomance-item01 {
   height: 70vh;
@@ -208,6 +211,13 @@ div.user-name-display::-webkit-scrollbar-thumb {
     transition: 0.8s ease-out;
     z-index: 2;
   }
+  .admin-dashboard-logo-div {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .show-close-icon {
     display: block !important;
     cursor: pointer;
@@ -228,10 +238,13 @@ div.user-name-display::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: end !important;
   }
-  .menu-icon {
-    display: block;
-    color: #6c6c6c;
+  .admin-menu-icon {
+    display: block !important;
+    color: #ffffff;
     cursor: pointer;
+  }
+  .admin-menu-icon:hover {
+    color: #0096dc;
   }
   .hide-menu-icon {
     visibility: hidden;
@@ -269,6 +282,7 @@ div.user-name-display::-webkit-scrollbar-thumb {
   .admin-nav-div {
     display: flex;
     justify-content: space-between;
+    background-color: #0096dc;
   }
   .admin-nav-div div:nth-child(2) {
     max-width: 90% !important;

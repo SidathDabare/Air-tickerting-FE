@@ -24,8 +24,10 @@
   transition: 0.8s;
 }
 .user-dashboard-logo-div {
-  width: 100%;
-  height: 55px;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: left;
 }
 .user-dashboard-logo-div img {
   height: 40px;
@@ -75,7 +77,7 @@
   position: relative;
   height: 8vh;
   color: var(--font-color);
-  background-color: #ebebeb;
+  background-color: #103c54;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,7 +136,7 @@
 }
 
 .menu-icon {
-  display: none;
+  display: none !important;
 }
 .user-dashboard-display-section01 {
   position: relative;
@@ -157,10 +159,10 @@ div.user-dashboard-display-section02::-webkit-scrollbar {
   width: 6px;
 }
 div.user-dashboard-display-section02::-webkit-scrollbar-track {
-  background: #015187f0;
+  background-color: #a6a6a6;
 }
 div.user-dashboard-display-section02::-webkit-scrollbar-thumb {
-  background-color: #a6a6a6;
+  background: #015187f0;
   border-radius: 5px;
   /* border: 3px solid rgb(55, 55, 55); */
 }
@@ -244,6 +246,7 @@ div.user-edit-div-main::-webkit-scrollbar-thumb {
   height: 150px;
   width: 150px;
   min-width: 150px;
+  border-radius: 50%;
   object-fit: cover;
   padding: 10px;
 }
@@ -258,6 +261,13 @@ div.user-edit-div-main::-webkit-scrollbar-thumb {
   .user-main {
     width: 100%;
     overflow-x: hidden;
+  }
+  .user-dashboard-logo-div {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .user-right-div {
     min-width: 100%;
@@ -291,9 +301,12 @@ div.user-edit-div-main::-webkit-scrollbar-thumb {
     justify-content: end !important;
   }
   .menu-icon {
-    display: block;
-    color: #6c6c6c;
+    display: block !important;
+    color: #ffffff;
     cursor: pointer;
+  }
+  .menu-icon:hover {
+    color: #0096dc;
   }
   .hide-menu-icon {
     visibility: hidden;
@@ -369,6 +382,7 @@ div.user-edit-div-main::-webkit-scrollbar-thumb {
     height: 100px;
     width: 100px;
     min-width: 100px;
+    border-radius: 50%;
   }
   .user-edit-div {
     height: auto;

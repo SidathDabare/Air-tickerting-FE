@@ -17,10 +17,10 @@ div.admin-display-main::-webkit-scrollbar {
   width: 6px;
 }
 div.admin-display-main::-webkit-scrollbar-track {
-  background: #015187f0;
+  background-color: #a6a6a6;
 }
 div.admin-display-main::-webkit-scrollbar-thumb {
-  background-color: #a6a6a6;
+  background: #015187f0;
   border-radius: 5px;
   /* border: 3px solid rgb(55, 55, 55); */
 }
