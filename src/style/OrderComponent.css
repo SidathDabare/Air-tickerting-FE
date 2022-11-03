@@ -28,9 +28,13 @@
 }
 .order-item {
   border-radius: 4px;
-  /* -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);
-  box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8); */
 }
+.order-item:hover {
+  border-radius: 4px;
+  -webkit-box-shadow: 5px 5px 15px -11px #000000;
+  box-shadow: 5px 5px 15px -11px #000000;
+}
+
 .order-item-show {
   border-radius: 5px;
   /* -webkit-box-shadow: 5px 5px 9px -6px rgba(86, 86, 86, 0.8);

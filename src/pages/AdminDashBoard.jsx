@@ -187,7 +187,7 @@ const AdminDashBoard = () => {
             : "px-0 admin-right-div admin-right-div-expand"
         }>
         <div className='col-12 admin-nav-div border-bottom'>
-          <div className='col-1'>
+          <div className='col-1 d-flex justify-content-center px-0'>
             <MoreVertIcon
               className='menu-icon'
               onClick={() => setShowSidebar(!showSidebar)}

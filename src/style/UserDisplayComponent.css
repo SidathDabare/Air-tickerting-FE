@@ -22,12 +22,25 @@ div.user-display-div-main::-webkit-scrollbar-thumb {
   /* border: 3px solid rgb(55, 55, 55); */
 }
 .user-display-section01 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   height: 83vh;
   width: 28%;
   border-radius: 5px;
   border: 0.2px solid rgb(183, 183, 183);
   background-color: var(--bg-card);
+}
+.user-display-section01:hover {
+  -webkit-box-shadow: 3px 4px 15px -7px #3a3a3a;
+  box-shadow: 3px 4px 15px -7px #3a3a3a;
+}
+.user-display-section01 div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .user-display-section02 {
   position: relative;
@@ -53,6 +66,10 @@ div.user-display-div-main::-webkit-scrollbar-thumb {
   background-color: var(--bg-card);
   border-radius: 5px;
 }
+.user-display-bottom:hover {
+  -webkit-box-shadow: 3px 4px 15px -7px #3a3a3a;
+  box-shadow: 3px 4px 15px -7px #3a3a3a;
+}
 .users-orders-display {
   overflow-y: auto;
   height: 100%;
@@ -73,6 +90,7 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   width: 150px;
   min-width: 150px;
   object-fit: cover;
+  border-radius: 50%;
   padding: 10px;
 }
 
@@ -120,22 +138,29 @@ div.users-orders-display::-webkit-scrollbar-thumb {
     display: inline-block;
   }
 
-  .user-display-div-main {
-    flex-direction: column;
-    justify-content: space-around;
-  }
   .user-display-section01 {
-    height: 38vh;
+    position: relative;
+    flex-direction: row !important;
+    align-items: center;
+    height: 28vh;
+    max-height: 28vh;
     width: 100%;
     padding-bottom: 2vh;
     margin-top: 2vh;
+  }
+  .user-display-section01 div {
+    width: 50%;
   }
 
   .user-display-section02 {
     height: 50vh;
     width: 100%;
-    margin-top: 5vh;
-    margin-bottom: 10vh;
+    margin-top: 2vh;
+    margin-bottom: 10vh !important;
+  }
+  .user-display-bottom {
+    margin-top: 2vh;
+    height: 50vh;
   }
 }
 @media only screen and (max-width: 765px) {

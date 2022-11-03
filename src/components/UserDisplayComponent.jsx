@@ -48,31 +48,21 @@ const UserDisplayComponent = (props) => {
         {user ? (
           <div className='col-12 user-display-div-main px-0'>
             <div className='user-display-section01 px-0'>
-              <div className='col-12'>
-                <div className='px-0 d-flex align-items-center justify-content-center'>
-                  <img className='user-display-img' src={user.avatar} alt='' />
-                </div>
+              <div className=' px-0 d-flex align-items-center justify-content-center'>
+                <img className='user-display-img' src={user.avatar} alt='' />
               </div>
-              <div className='col-12'>
-                <div className='px-0 d-flex align-items-center justify-content-center'>
-                  <div className='col-12 text-center'>
-                    <h5 className='text-info'>
-                      <span>
-                        {user.firstName} {user.lastName}
-                      </span>
-                    </h5>
-                    <p>
-                      <span>{user.email}</span>
-                    </p>
-                    <Button
-                      onClick={handleShow}
-                      variant='outline-danger'
-                      className='d-flex align-items-center justify-content-center mx-auto'>
-                      <PersonOffIcon />
-                      <span className='mx-1'>Delete User</span>
-                    </Button>
-                  </div>
-                </div>
+              <div className=''>
+                <h5 className=''>
+                  {user.firstName} {user.lastName}
+                </h5>
+                <p>{user.email}</p>
+                <Button
+                  onClick={handleShow}
+                  variant='outline-danger'
+                  className='d-flex align-items-center justify-content-center mx-auto'>
+                  <PersonOffIcon />
+                  <span className='mx-1'>Delete User</span>
+                </Button>
               </div>
             </div>
 

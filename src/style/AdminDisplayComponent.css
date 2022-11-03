@@ -68,12 +68,11 @@ div.admin-display-main::-webkit-scrollbar-thumb {
 }
 .admin-display-section02 {
   position: relative;
-  height: 55vh;
+  height: 65vh;
   width: 100%;
-
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: center; */
   /* background-color: var(--bg-container); */
   border-radius: 5px;
   /* border: 0.2px solid var(--border); */

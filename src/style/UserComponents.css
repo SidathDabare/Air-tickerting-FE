@@ -23,7 +23,7 @@
 .add-thick-border {
   border: 1.5px solid rgb(130, 130, 130);
 }
-.add-background {
+.add-selected-background {
   background-color: rgb(0, 40, 60);
 }
 .user-com-small-avatar {

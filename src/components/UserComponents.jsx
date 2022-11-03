@@ -18,7 +18,7 @@ const UserComponents = (props) => {
         <div
           className={
             user._id === props.user._id
-              ? "d-flex py-1 my-2 px-0 col-11 mx-auto user-item add-background"
+              ? "d-flex py-1 my-2 px-0 col-11 mx-auto user-item add-selected-background"
               : "d-flex py-1 my-2 px-0 user-item col-11 mx-auto"
           }
           onClick={() => {

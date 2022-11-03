@@ -44,7 +44,7 @@ const OrderComponent = (props) => {
             }
           </span>
         </div>
-        <div className='col-3 d-flex justify-content-center align-items-center'>
+        <div className='col-3 d-flex justify-content-center align-items-center text-truncate'>
           {format(
             parseISO(
               props.order.data.flightOffers[0].itineraries[0].segments[0]

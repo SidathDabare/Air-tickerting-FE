@@ -78,7 +78,7 @@ const AdminDisplayComponent = () => {
                     ? orders[0].data.flightOffers[0].price.currency
                     : "$"}
                 </span>
-                <span className='font-weight-bold'>
+                <span className='font-weight-bold text-truncate'>
                   {orders
                     ? orders
                         .map((order) =>
