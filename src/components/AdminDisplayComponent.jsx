@@ -10,17 +10,15 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle"
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket"
 import ReportIcon from "@mui/icons-material/Report"
+import { format } from "date-fns"
 
 const AdminDisplayComponent = () => {
   const admin = useSelector((state) => state.userReducer.loggedInUser)
   const token = useSelector((state) => state.userReducer.token)
 
   const [orders, setOrders] = useState([])
+  console.log(orders)
   const [users, setUsers] = useState([])
-
-  // console.log(
-  //   orders.length > 0 ? orders[0].data.flightOffers[0].price.total : "0"
-  // )
 
   const getOrders = async () => {
     let headers = {
@@ -57,10 +55,53 @@ const AdminDisplayComponent = () => {
       console.log(error)
     }
   }
+  const chatData = [
+    // {
+    //   id: orders[0].createdAt
+    //     ? format(new Date(orders[0].createdAt), "MMM do yyyy")
+    //     : "0",
+    //   label: orders[0].createdAt
+    //     ? format(new Date(orders[0].createdAt), "MMM do yyyy")
+    //     : "0",
+    //   value: orders ? orders[0].data.flightOffers[0].price.total : "0",
+    //   color: "hsl(323, 70%, 50%)",
+    // },
+    // {
+    //   id: format(new Date(orders[1].createdAt), "MMM do yyyy"),
+    //   label: format(new Date(orders[1].createdAt), "MMM do yyyy"),
+    //   value: orders[1].data.flightOffers[0].price.total,
+    //   color: "hsl(152, 70%, 50%)",
+    // },
+    // {
+    //   id: format(new Date(orders[2].createdAt), "MMM do yyyy"),
+    //   label: format(new Date(orders[2].createdAt), "MMM do yyyy"),
+    //   value: orders[2].data.flightOffers[0].price.total,
+    //   color: "hsl(65, 70%, 50%)",
+    // },
+    // {
+    //   id: format(new Date(orders[3].createdAt), "MMM do yyyy"),
+    //   label: format(new Date(orders[3].createdAt), "MMM do yyyy"),
+    //   value: orders[3].data.flightOffers[0].price.total,
+    //   color: "hsl(317, 70%, 50%)",
+    // },
+    // {
+    //   id: format(new Date(orders[4].createdAt), "MMM do yyyy"),
+    //   label: format(new Date(orders[4].createdAt), "MMM do yyyy"),
+    //   value: orders[4].data.flightOffers[0].price.total,
+    //   color: "hsl(271, 70%, 50%)",
+    // },
+    // {
+    //   id: format(new Date(orders[0].createdAt), "MMM do yyyy"),
+    //   label: format(new Date(orders[0].createdAt), "MMM do yyyy"),
+    //   value: orders[0].data.flightOffers[0].price.total,
+    //   color: "hsl(271, 70%, 50%)",
+    // },
+  ]
   useEffect(() => {
     getOrders()
     getUsers()
   }, [])
+
   return (
     <div className='admin-display-main'>
       <div className='admin-display-section01'>
@@ -160,310 +201,127 @@ const AdminDisplayComponent = () => {
       </div>
       <div className='admin-display-section02'>
         <div className='admin-display-section02-div1'>
-          <ResponsivePie
-            data={pieChart}
-            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-            innerRadius={0.5}
-            padAngle={0.7}
-            cornerRadius={3}
-            activeOuterRadiusOffset={8}
-            borderWidth={1}
-            borderColor={{
-              from: "color",
-              modifiers: [["darker", 0.2]],
-            }}
-            arcLinkLabelsSkipAngle={10}
-            arcLinkLabelsTextColor='#333333'
-            arcLinkLabelsThickness={2}
-            arcLinkLabelsColor={{ from: "color" }}
-            arcLabelsSkipAngle={10}
-            arcLabelsTextColor={{
-              from: "color",
-              modifiers: [["darker", 2]],
-            }}
-            defs={[
-              {
-                id: "dots",
-                type: "patternDots",
-                background: "inherit",
-                color: "rgba(255, 255, 255, 0.3)",
-                size: 4,
-                padding: 1,
-                stagger: true,
-              },
-              {
-                id: "lines",
-                type: "patternLines",
-                background: "inherit",
-                color: "rgba(255, 255, 255, 0.3)",
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10,
-              },
-            ]}
-            fill={[
-              {
-                match: {
-                  id: "ruby",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "c",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "go",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "python",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "scala",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "lisp",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "elixir",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "javascript",
-                },
-                id: "lines",
-              },
-            ]}
-            legends={[
-              {
-                anchor: "bottom",
-                direction: "row",
-                justify: false,
-                translateX: 0,
-                translateY: 56,
-                itemsSpacing: 0,
-                itemWidth: 100,
-                itemHeight: 18,
-                itemTextColor: "#999",
-                itemDirection: "left-to-right",
-                itemOpacity: 1,
-                symbolSize: 18,
-                symbolShape: "circle",
-                effects: [
+          {orders ? (
+            <>
+              <div className='col-12 d-flex justify-content-center py-2'>
+                <h6>Last 5 orders</h6>
+              </div>
+              <ResponsivePie
+                data={pieChart}
+                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                innerRadius={0.5}
+                padAngle={0.7}
+                cornerRadius={3}
+                activeOuterRadiusOffset={8}
+                borderWidth={1}
+                borderColor={{
+                  from: "color",
+                  modifiers: [["darker", 0.2]],
+                }}
+                arcLinkLabelsSkipAngle={10}
+                arcLinkLabelsTextColor='#333333'
+                arcLinkLabelsThickness={2}
+                arcLinkLabelsColor={{ from: "color" }}
+                arcLabelsSkipAngle={10}
+                arcLabelsTextColor={{
+                  from: "color",
+                  modifiers: [["darker", 2]],
+                }}
+                defs={[
                   {
-                    on: "hover",
-                    style: {
-                      itemTextColor: "#000",
-                    },
+                    id: "dots",
+                    type: "patternDots",
+                    background: "inherit",
+                    color: "rgba(255, 255, 255, 0.3)",
+                    size: 4,
+                    padding: 1,
+                    stagger: true,
                   },
-                ],
-              },
-            ]}
-          />
+                  {
+                    id: "lines",
+                    type: "patternLines",
+                    background: "inherit",
+                    color: "rgba(255, 255, 255, 0.3)",
+                    rotation: -45,
+                    lineWidth: 6,
+                    spacing: 10,
+                  },
+                ]}
+                fill={[
+                  {
+                    match: {
+                      id: "Mon",
+                    },
+                    id: "dots",
+                  },
+                  {
+                    match: {
+                      id: "Tue",
+                    },
+                    id: "dots",
+                  },
+                  {
+                    match: {
+                      id: "Wed",
+                    },
+                    id: "dots",
+                  },
+                  {
+                    match: {
+                      id: "Thr",
+                    },
+                    id: "dots",
+                  },
+                  {
+                    match: {
+                      id: "Fri",
+                    },
+                    id: "lines",
+                  },
+                  {
+                    match: {
+                      id: "Sat",
+                    },
+                    id: "lines",
+                  },
+                  {
+                    match: {
+                      id: "Sun",
+                    },
+                    id: "lines",
+                  },
+                ]}
+                legends={[
+                  {
+                    anchor: "bottom",
+                    direction: "row",
+                    justify: false,
+                    translateX: 0,
+                    translateY: 56,
+                    itemsSpacing: 0,
+                    itemWidth: 100,
+                    itemHeight: 18,
+                    itemTextColor: "#999",
+                    itemDirection: "left-to-right",
+                    itemOpacity: 1,
+                    symbolSize: 18,
+                    symbolShape: "circle",
+                    effects: [
+                      {
+                        on: "hover",
+                        style: {
+                          itemTextColor: "#000",
+                        },
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </>
+          ) : (
+            ""
+          )}
         </div>
-        {/* <div className='admin-display-section02-div2'>
-          <ResponsivePie
-            data={pieChart}
-            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-            innerRadius={0.5}
-            padAngle={0.7}
-            cornerRadius={3}
-            activeOuterRadiusOffset={8}
-            borderWidth={1}
-            borderColor={{
-              from: "color",
-              modifiers: [["darker", 0.2]],
-            }}
-            arcLinkLabelsSkipAngle={10}
-            arcLinkLabelsTextColor='#333333'
-            arcLinkLabelsThickness={2}
-            arcLinkLabelsColor={{ from: "color" }}
-            arcLabelsSkipAngle={10}
-            arcLabelsTextColor={{
-              from: "color",
-              modifiers: [["darker", 2]],
-            }}
-            defs={[
-              {
-                id: "dots",
-                type: "patternDots",
-                background: "inherit",
-                color: "rgba(255, 255, 255, 0.3)",
-                size: 4,
-                padding: 1,
-                stagger: true,
-              },
-              {
-                id: "lines",
-                type: "patternLines",
-                background: "inherit",
-                color: "rgba(255, 255, 255, 0.3)",
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10,
-              },
-            ]}
-            fill={[
-              {
-                match: {
-                  id: "ruby",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "c",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "go",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "python",
-                },
-                id: "dots",
-              },
-              {
-                match: {
-                  id: "scala",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "lisp",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "elixir",
-                },
-                id: "lines",
-              },
-              {
-                match: {
-                  id: "javascript",
-                },
-                id: "lines",
-              },
-            ]}
-            legends={[
-              {
-                anchor: "bottom",
-                direction: "row",
-                justify: false,
-                translateX: 0,
-                translateY: 56,
-                itemsSpacing: 0,
-                itemWidth: 100,
-                itemHeight: 18,
-                itemTextColor: "#999",
-                itemDirection: "left-to-right",
-                itemOpacity: 1,
-                symbolSize: 18,
-                symbolShape: "circle",
-                effects: [
-                  {
-                    on: "hover",
-                    style: {
-                      itemTextColor: "#000",
-                    },
-                  },
-                ],
-              },
-            ]}
-          />
-        </div> */}
-        {/* <div className='admin-display-section02-div2'>
-          <ResponsiveLine
-            data={nivoChart}
-            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-            xScale={{ type: "point" }}
-            yScale={{
-              type: "linear",
-              min: "auto",
-              max: "auto",
-              stacked: true,
-              reverse: false,
-            }}
-            yFormat=' >-.2f'
-            axisTop={null}
-            axisRight={null}
-            axisBottom={{
-              orient: "bottom",
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: "transportation",
-              legendOffset: 36,
-              legendPosition: "middle",
-            }}
-            axisLeft={{
-              orient: "left",
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: "count",
-              legendOffset: -40,
-              legendPosition: "middle",
-            }}
-            pointSize={10}
-            pointColor={{ theme: "background" }}
-            pointBorderWidth={2}
-            pointBorderColor={{ from: "serieColor" }}
-            pointLabelYOffset={-12}
-            useMesh={true}
-            legends={[
-              {
-                anchor: "bottom-right",
-                direction: "column",
-                justify: false,
-                translateX: 100,
-                translateY: 0,
-                itemsSpacing: 0,
-                itemDirection: "left-to-right",
-                itemWidth: 80,
-                itemHeight: 20,
-                itemOpacity: 0.75,
-                symbolSize: 12,
-                symbolShape: "circle",
-                symbolBorderColor: "rgba(0, 0, 0, .5)",
-                effects: [
-                  {
-                    on: "hover",
-                    style: {
-                      itemBackground: "rgba(0, 0, 0, .03)",
-                      itemOpacity: 1,
-                    },
-                  },
-                ],
-              },
-            ]}
-          />
-        </div> */}
       </div>
     </div>
   )

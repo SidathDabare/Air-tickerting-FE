@@ -78,12 +78,17 @@ div.admin-display-main::-webkit-scrollbar-thumb {
   /* border: 0.2px solid var(--border); */
 }
 .admin-display-section02-div1 {
-  width: 98.3%;
+  width: 98.4%;
   height: 50vh;
+  margin: 0 auto;
   border: 0.2px solid var(--border);
   background-color: var(--bg-card);
   border-radius: 5px;
   padding: 0 5px;
+}
+.admin-display-section02-div1:hover {
+  -webkit-box-shadow: 3px 4px 15px -7px #3a3a3a;
+  box-shadow: 3px 4px 15px -7px #3a3a3a;
 }
 
 .font-color {
@@ -106,6 +111,12 @@ div.admin-display-main::-webkit-scrollbar-thumb {
     width: 48%;
     min-width: 48%;
     margin: 10px 0 10px 0;
+  }
+  .admin-display-section02 {
+    padding: 0 10px;
+  }
+  .admin-display-section02-div1 {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 765px) {

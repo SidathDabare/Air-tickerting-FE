@@ -170,7 +170,7 @@ const AdminDashBoard = () => {
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className='col-3 d-flex justify-content-end align-items-center px-0'>
+          <div className='col-4 col-md-3 d-flex justify-content-end align-items-center px-0'>
             <div className='admin-profile-div'>
               <img
                 src={loggedUser.avatar}
@@ -178,7 +178,9 @@ const AdminDashBoard = () => {
                 className='admin-profile-pic px-0'
               />
             </div>{" "}
-            <h6 className='mb-0 ml-1'>Hello, {loggedUser.firstName}</h6>
+            <h6 className='mb-0 ml-1 text-truncate'>
+              Hello, {loggedUser.firstName}
+            </h6>
           </div>
         </div>
 

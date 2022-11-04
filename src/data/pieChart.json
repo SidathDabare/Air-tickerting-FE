@@ -1,31 +1,43 @@
 [
   {
-    "id": "scala",
-    "label": "scala",
+    "id": "Mon",
+    "label": "Mon",
     "value": 494,
     "color": "hsl(323, 70%, 50%)"
   },
   {
-    "id": "elixir",
-    "label": "elixir",
+    "id": "Tue",
+    "label": "Tue",
     "value": 526,
     "color": "hsl(152, 70%, 50%)"
   },
   {
-    "id": "ruby",
-    "label": "ruby",
+    "id": "Wed",
+    "label": "Wed",
     "value": 469,
     "color": "hsl(65, 70%, 50%)"
   },
   {
-    "id": "c",
-    "label": "c",
+    "id": "Thr",
+    "label": "Thr",
     "value": 274,
     "color": "hsl(317, 70%, 50%)"
   },
   {
-    "id": "erlang",
-    "label": "erlang",
+    "id": "Fri",
+    "label": "Fri",
+    "value": 281,
+    "color": "hsl(271, 70%, 50%)"
+  },
+  {
+    "id": "Sat",
+    "label": "Sat",
+    "value": 281,
+    "color": "hsl(271, 70%, 50%)"
+  },
+  {
+    "id": "Sun",
+    "label": "Sun",
     "value": 281,
     "color": "hsl(271, 70%, 50%)"
   }

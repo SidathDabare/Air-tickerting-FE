@@ -282,7 +282,6 @@ div.user-name-display::-webkit-scrollbar-thumb {
   .admin-nav-div {
     display: flex;
     justify-content: space-between;
-    background-color: #0096dc;
   }
   .admin-nav-div div:nth-child(2) {
     max-width: 90% !important;
