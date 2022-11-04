@@ -200,12 +200,12 @@ const AdminDisplayComponent = () => {
         </div>
       </div>
       <div className='admin-display-section02'>
+        <div className='col-12 d-flex justify-content-center py-2'>
+          <h6>Last 5 orders</h6>
+        </div>
         <div className='admin-display-section02-div1'>
           {orders ? (
             <>
-              <div className='col-12 d-flex justify-content-center py-2'>
-                <h6>Last 5 orders</h6>
-              </div>
               <ResponsivePie
                 data={pieChart}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}

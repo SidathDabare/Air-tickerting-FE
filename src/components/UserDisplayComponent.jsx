@@ -35,7 +35,8 @@ const UserDisplayComponent = (props) => {
       )
       console.log(res)
       handleClose()
-      props.setShowDashboard(true)
+      // window.location.reload()
+      // props.setShowDashboard(true)
       props.getAllUsers()
     } catch (error) {
       console.log(error)

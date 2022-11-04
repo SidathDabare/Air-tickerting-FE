@@ -1,42 +1,23 @@
 /** @format */
 import React, { useState } from "react"
 import { Form } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import "../style/AdminEditComponent.css"
 import { TextField } from "@mui/material"
+import { setLoggedInUserAction } from "../redux/actions"
 
 const AdminEditComponent = (props) => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
   const admin = useSelector((state) => state.userReducer)
+  const dispatch = useDispatch()
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState(user.password)
   const [role, setRole] = useState("Admin")
   const [avatar, setAvatar] = useState("")
 
-  // const deleteUser = async () => {
-  //   let headers = {
-  //     Authorization: `Bearer ${admin.token}`,
-  //     "Content-type": "application/json",
-  //   }
-  //   try {
-  //     let res = await fetch(
-  //       `${process.env.REACT_APP_BE_URL}/users/${user._id}`,
-  //       {
-  //         method: "DELETE",
-  //         headers,
-  //       }
-  //     )
-  //     console.log(res)
-  //     handleClose()
-  //     props.setShowDashboard(true)
-  //     props.getAllUsers()
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   const addImage = async (e) => {
     let str = e.target.files[0]
     let url = `${process.env.REACT_APP_BE_URL}/files/cloudinary`
@@ -61,7 +42,7 @@ const AdminEditComponent = (props) => {
       Authorization: `Bearer ${admin.token}`,
       "Content-type": "application/json",
     }
-    let url = `${process.env.REACT_APP_BE_URL}/users/${admin.loggedInUser._id}`
+    let url = `${process.env.REACT_APP_BE_URL}/users/me`
     try {
       let res = await fetch(url, {
         method: "PUT",
@@ -77,6 +58,7 @@ const AdminEditComponent = (props) => {
       })
       let data = await res.json()
       console.log(data)
+      dispatch(setLoggedInUserAction(data))
 
       return data
     } catch (error) {
@@ -88,29 +70,23 @@ const AdminEditComponent = (props) => {
       {admin.loggedInUser.firstName ? (
         <div className='col-12 admin-edit-div-main'>
           <div className='admin-edit-section01 px-0'>
-            <div className='col-12'>
-              <div className='px-0 d-flex align-items-center justify-content-center'>
-                <img
-                  className='admin-edit-img'
-                  src={admin.loggedInUser.avatar}
-                  alt=''
-                />
-              </div>
+            <div className='col-12 px-0 d-flex align-items-center justify-content-center'>
+              <img
+                className='admin-edit-img'
+                src={admin.loggedInUser.avatar}
+                alt=''
+              />
             </div>
-            <div className='col-12'>
-              <div className='px-0 d-flex align-items-center justify-content-center'>
-                <div className='col-12 text-center'>
-                  <h5 className='text-info'>
-                    <span>
-                      {admin.loggedInUser.firstName}{" "}
-                      {admin.loggedInUser.lastName}
-                    </span>
-                  </h5>
-                  <p>
-                    <span>{admin.loggedInUser.email}</span>
-                  </p>
-                </div>
-              </div>
+
+            <div className='col-12 px-0 d-flex flex-column align-items-center justify-content-center'>
+              <h5 className='text-info'>
+                <span>
+                  {admin.loggedInUser.firstName} {admin.loggedInUser.lastName}
+                </span>
+              </h5>
+              <p>
+                <span>{admin.loggedInUser.email}</span>
+              </p>
             </div>
           </div>
           <div className='px-0 admin-edit-section02'>
@@ -147,7 +123,7 @@ const AdminEditComponent = (props) => {
                     className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <TextField
+                  {/* <TextField
                     size='small'
                     id='outlined-basic'
                     label='Password'
@@ -156,7 +132,7 @@ const AdminEditComponent = (props) => {
                     variant='outlined'
                     className='col-12 col-xs-12 col-md-6 px-1'
                     onChange={(e) => setPassword(e.target.value)}
-                  />
+                  /> */}
                   <Form.Group className='col-12 col-xs-12 col-md-6 px-1'>
                     <Form.Control
                       className='col-12 px-0 py-1'

@@ -1,15 +1,16 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { InputGroup } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import UserComponents from "../components/UserComponents"
 import UserDisplayComponent from "../components/UserDisplayComponent"
-import SearchIcon from "@mui/icons-material/Search"
-import Form from "react-bootstrap/Form"
 import "../style/AdminDashBoard.css"
-import { selectedUser } from "../redux/actions"
+import {
+  selectedUser,
+  setLoggedInUserAction,
+  setTokenAction,
+} from "../redux/actions"
 import AdminDisplayComponent from "../components/AdminDisplayComponent"
 import AdminEditComponent from "../components/AdminEditComponent"
 import BigLogo from "../assets/logo1.png"
@@ -18,6 +19,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined"
 import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 
 const AdminDashBoard = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
@@ -32,6 +35,7 @@ const AdminDashBoard = () => {
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
+  const [showToggle, setShowToggle] = useState(false)
   //console.log(showSidebar)
 
   const getAllUsers = async () => {
@@ -56,10 +60,18 @@ const AdminDashBoard = () => {
       console.log(error)
     }
   }
+  const userLogOut = () => {
+    dispatch(setTokenAction(""))
+    dispatch(setLoggedInUserAction(""))
+    navigate("/")
+
+    //navigate("/login")
+  }
   useEffect(() => {
     setShowDashboard(true)
     setShowUserProfile(false)
     setShowEditProfile(false)
+    setShowToggle(false)
     // if (loggedUser.role === "Admin") {
     //   getOrdersData()
     // }
@@ -131,7 +143,7 @@ const AdminDashBoard = () => {
             className={
               showUserProfile ? "col-12 px-0 admin-user-div" : "d-none"
             }>
-            <div className='col-12 d-flex py-2 px-2'>
+            <div className='col-12 d-flex py-2'>
               <h6>USERS</h6>
             </div>
             {allUsers.length > 0 ? (
@@ -170,7 +182,7 @@ const AdminDashBoard = () => {
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className='col-4 col-md-3 d-flex justify-content-end align-items-center px-0'>
+          <div className='col-4 col-md-3 d-flex justify-content-end align-items-center px-0 logged-user-div'>
             <div className='admin-profile-div'>
               <img
                 src={loggedUser.avatar}
@@ -181,6 +193,33 @@ const AdminDashBoard = () => {
             <h6 className='mb-0 ml-1 text-truncate'>
               Hello, {loggedUser.firstName}
             </h6>
+            {showToggle ? (
+              <KeyboardArrowUpIcon
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowToggle(!showToggle)}
+              />
+            ) : (
+              <KeyboardArrowDownIcon
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowToggle(!showToggle)}
+              />
+            )}
+            <div className={showToggle ? "user-toggle-div" : "d-none"}>
+              <button
+                className='btn btn-outline-info btn-block'
+                onClick={() => {
+                  navigate("/")
+                }}>
+                Go to Home
+              </button>
+              <button
+                className='btn btn-outline-info btn-block'
+                onClick={() => {
+                  userLogOut()
+                }}>
+                LOG OUT
+              </button>
+            </div>
           </div>
         </div>
 

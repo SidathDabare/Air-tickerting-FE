@@ -70,16 +70,12 @@ div.admin-display-main::-webkit-scrollbar-thumb {
   position: relative;
   height: 65vh;
   width: 100%;
-  /* display: flex;
-  justify-content: space-around;
-  align-items: center; */
-  /* background-color: var(--bg-container); */
   border-radius: 5px;
-  /* border: 0.2px solid var(--border); */
+  background-color: var(--bg-card);
 }
 .admin-display-section02-div1 {
   width: 98.4%;
-  height: 50vh;
+  height: 55vh;
   margin: 0 auto;
   border: 0.2px solid var(--border);
   background-color: var(--bg-card);

@@ -90,6 +90,22 @@
   justify-content: space-between;
   align-items: center;
 }
+.logged-user-div {
+  position: relative;
+}
+.user-toggle-div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 200px;
+  height: 120px;
+  padding: 10px;
+  background-color: #103c54;
+  top: 6vh;
+  z-index: 1;
+  border-radius: 4px;
+}
 /* .admin-search {
   position: relative;
   width: 200px;

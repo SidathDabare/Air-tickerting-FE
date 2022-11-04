@@ -7,22 +7,24 @@
 .admin-edit-div-main {
   display: flex;
   height: 92vh;
-
-  background-color: rgba(0, 255, 255, 0);
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 .admin-edit-section01 {
+  position: relative;
   height: 83vh;
   width: 28%;
   border-radius: 5px;
   border: 0.2px solid rgb(183, 183, 183);
+  background-color: var(--bg-card);
 }
+
 .admin-edit-section02 {
   height: 83vh;
   width: 70%;
   border-radius: 5px;
+  background-color: var(--bg-card);
   border: 0.2px solid rgb(183, 183, 183);
 }
 
@@ -47,6 +49,7 @@ div.admin-edit-div-main::-webkit-scrollbar-thumb {
   min-width: 150px;
   object-fit: cover;
   padding: 10px;
+  border-radius: 50%;
 }
 .admin-edit-div {
   display: flex;

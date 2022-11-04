@@ -66,6 +66,10 @@ div.user-display-div-main::-webkit-scrollbar-thumb {
   background-color: var(--bg-card);
   border-radius: 5px;
 }
+.user-display-bottom div {
+  width: 100%;
+  height: 55vh;
+}
 .user-display-bottom:hover {
   -webkit-box-shadow: 3px 4px 15px -7px #3a3a3a;
   box-shadow: 3px 4px 15px -7px #3a3a3a;
@@ -196,7 +200,7 @@ div.users-orders-display::-webkit-scrollbar-thumb {
   }
   .user-display-bottom {
     margin-top: 10px 0;
-    height: auto;
+    height: 50vh;
   }
   .user-display-items {
     width: 100%;

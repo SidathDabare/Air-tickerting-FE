@@ -82,7 +82,23 @@
   justify-content: space-between;
   align-items: center;
 }
-.user-search {
+.logged-user-div {
+  position: relative;
+}
+.user-toggle-div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 200px;
+  height: 120px;
+  padding: 10px;
+  background-color: #103c54;
+  top: 6vh;
+  z-index: 1;
+  border-radius: 4px;
+}
+/* .user-search {
   position: relative;
   width: 200px;
   min-width: 170px;
@@ -99,7 +115,7 @@
   border-radius: 5px !important;
   background-color: transparent !important;
   color: var(--font-color) !important;
-}
+} */
 .user-profile-div {
   position: relative;
   width: 36px;

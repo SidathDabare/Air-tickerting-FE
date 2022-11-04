@@ -20,6 +20,9 @@ import LoopIcon from "@mui/icons-material/Loop"
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket"
 import ReportIcon from "@mui/icons-material/Report"
+import { setLoggedInUserAction, setTokenAction } from "../redux/actions"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 
 const DashboardPage = () => {
   const loggedUser = useSelector((state) => state.userReducer.loggedInUser)
@@ -35,7 +38,7 @@ const DashboardPage = () => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState(loggedUser.password)
   const [role, setRole] = useState("Admin")
   const [avatar, setAvatar] = useState("")
 
@@ -43,6 +46,7 @@ const DashboardPage = () => {
   const [showEditProfile, setShowEditProfile] = useState(false)
   const [showUserProfile, setShowUserProfile] = useState(false)
   const [showSidebar, setShowSidebar] = useState(false)
+  const [showToggle, setShowToggle] = useState(false)
 
   const addImage = async (e) => {
     let str = e.target.files[0]
@@ -68,7 +72,7 @@ const DashboardPage = () => {
       Authorization: `Bearer ${token}`,
       "Content-type": "application/json",
     }
-    let url = `${process.env.REACT_APP_BE_URL}/users/${loggedUser._id}`
+    let url = `${process.env.REACT_APP_BE_URL}/users/me`
     try {
       let res = await fetch(url, {
         method: "PUT",
@@ -83,8 +87,8 @@ const DashboardPage = () => {
         }),
       })
       let data = await res.json()
-      //console.log(data)
-
+      console.log(data)
+      dispatch(setLoggedInUserAction(data))
       return data
     } catch (error) {
       console.log(error)
@@ -113,6 +117,13 @@ const DashboardPage = () => {
     } catch (error) {
       console.log(error)
     }
+  }
+  const userLogOut = () => {
+    dispatch(setTokenAction(""))
+    dispatch(setLoggedInUserAction(""))
+    navigate("/")
+
+    //navigate("/login")
   }
   useEffect(() => {
     setShowDashboard(true)
@@ -194,6 +205,33 @@ const DashboardPage = () => {
               />
             </div>
             <h6 className='mb-0 ml-1'>Hello, {loggedUser.firstName}</h6>
+            {showToggle ? (
+              <KeyboardArrowUpIcon
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowToggle(!showToggle)}
+              />
+            ) : (
+              <KeyboardArrowDownIcon
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowToggle(!showToggle)}
+              />
+            )}
+            <div className={showToggle ? "user-toggle-div" : "d-none"}>
+              <button
+                className='btn btn-outline-info btn-block'
+                onClick={() => {
+                  navigate("/")
+                }}>
+                Go to Home
+              </button>
+              <button
+                className='btn btn-outline-info btn-block'
+                onClick={() => {
+                  userLogOut()
+                }}>
+                LOG OUT
+              </button>
+            </div>
           </div>
         </div>
 
@@ -346,16 +384,17 @@ const DashboardPage = () => {
                           className='col-12 col-xs-12 col-md-6 px-1'
                           onChange={(e) => setEmail(e.target.value)}
                         />
-                        <TextField
+                        {/* <TextField
                           size='small'
                           id='outlined-basic'
                           label='Password'
                           type='password'
-                          defaultValue={""}
+                          defaultValue={loggedUser.password}
+                          value={loggedUser.password}
                           variant='outlined'
                           className='col-12 col-xs-12 col-md-6 px-1'
                           onChange={(e) => setPassword(e.target.value)}
-                        />
+                        /> */}
                         <Form.Group className='col-12 col-xs-12 col-md-6 px-1'>
                           <Form.Control
                             className='col-12 px-0 py-1'
