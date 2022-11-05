@@ -40,7 +40,7 @@ const FlightList = () => {
             flightData.data[0].itineraries[0] &&
             flightData.data[0].itineraries.length > 0 && (
               <>
-                <div className='pb-3 bg-light rounded'>
+                <div className='pb-3 rounded'>
                   <div className='d-flex justify-content-center align-items-center py-3 flight-list-header1 '>
                     <FlightTakeoffSharpIcon />
                     <h6 className='mb-0 mx-2'>Outbound,</h6>
@@ -77,7 +77,7 @@ const FlightList = () => {
             flightData.data[0].itineraries[0] &&
             flightData.data[0].itineraries[1] &&
             flightData.data[0].itineraries.length > 0 && (
-              <div className='pb-3 bg-light rounded'>
+              <div className='pb-3 rounded'>
                 <div className='d-flex justify-content-center align-items-center py-3 flight-list-header2 mt-3'>
                   <FlightTakeoffSharpIcon />
                   <h6 className='mb-0 mx-2'>Inbound,</h6>

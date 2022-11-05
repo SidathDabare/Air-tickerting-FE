@@ -30,13 +30,6 @@ const FlightItemModel = (props) => {
   const [error, setError] = useState(false)
   const [message, setMessage] = useState("")
 
-  // const checkLoggedUser = () => {
-  //   if (!loggedTopken) {
-  //     navigate("../login")
-  //   } else {
-  //     console.log("USER LOGGED !!")
-  //   }
-  // }
   const checkTicketAvailable = async () => {
     //checkLoggedUser()
     let token = await getAmadeusToken()
@@ -95,7 +88,7 @@ const FlightItemModel = (props) => {
     setSelectTicket(ticket)
     //console.log(selectTicket)
   }, [ticket, selectTicket, message])
-  //const changeTicket = (ticket) => setSelectTicket(ticket)
+
   return (
     <>
       {selectTicket ? (
@@ -118,19 +111,6 @@ const FlightItemModel = (props) => {
             {selectTicket.itineraries[0] &&
               selectTicket.itineraries[0].segments.map((segment, i) => (
                 <Container key={i} className='mb-3 col-12'>
-                  {/* <Row xs={12} className='d-flex flex-column px-1'>
-                <h5 className='mb-0'>
-                  <span>From </span>
-                  <span>{segment.departure.iataCode} </span>
-                  <span>to </span>
-                  <span>{segment.arrival.iataCode} </span>
-                </h5>
-                <p className='mb-0'>
-                  <small>
-                    Total duration: <span>{getTime(segment.duration)} </span>
-                  </small>
-                </p>
-              </Row> */}
                   <Row className='col-12 flex-column mt-2 info-div mx-auto'>
                     <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>
@@ -178,7 +158,7 @@ const FlightItemModel = (props) => {
                           <div className='col-3 d-flex justify-content-around align-items-center'>
                             <img
                               className='carrier-img-model'
-                              src={`https://content.airhex.com/content/logos/airlines_${segment.carrierCode}_22_27_t.png?background=fffff`}
+                              src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${segment.carrierCode}_18_16_t.png?background=fffff`}
                               alt=''
                             />
                           </div>
@@ -207,19 +187,6 @@ const FlightItemModel = (props) => {
             {selectTicket.itineraries[1] &&
               selectTicket.itineraries[1].segments.map((segment, i) => (
                 <Container key={i} className='col-12 mb-3'>
-                  {/* <Row xs={12} className='d-flex flex-column px-1'>
-                <h5 className='mb-0'>
-                  <span>From </span>
-                  <span>{segment.departure.iataCode} </span>
-                  <span>to </span>
-                  <span>{segment.arrival.iataCode} </span>
-                </h5>
-                <p className='mb-0'>
-                  <small>
-                    Total duration: <span>{getTime(segment.duration)} </span>
-                  </small>
-                </p>
-              </Row> */}
                   <Row className='col-12 flex-column mt-2 info-div mx-auto'>
                     <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>
@@ -289,31 +256,6 @@ const FlightItemModel = (props) => {
               ))}
           </Modal.Body>
           <Modal.Footer>
-            {/* {available ? (
-          <Button
-            variant='info'
-            onClick={() => {
-              props.onHide()
-              navigate(`/passenger-details`)
-            }}
-            className='d-flex align-items-center'>
-            <span className='mr-2 font-weight-bold'>
-              Continue to Passengers
-            </span>
-            <FlightTakeoffSharpIcon />
-          </Button>
-        ) : (
-          <Button
-            variant='info'
-            onClick={() => {
-              props.onHide()
-              navigate(`/`)
-            }}
-            className='d-flex align-items-center'>
-            <span className='mr-2 font-weight-bold'>New Search</span>
-            <FirstPageIcon />
-          </Button>
-        )} */}
             {message ? (
               <Alert variant='danger mx-auto'>
                 {message}
@@ -328,12 +270,11 @@ const FlightItemModel = (props) => {
                   <Button
                     variant='transparent'
                     className={
-                      available ? "d-flex align-items-center mx-auto" : "d-none"
+                      available ? "d-flex align-items-center ml-auto" : "d-none"
                     }>
                     <span className='mr-2 text-success font-weight-bold'>
                       Ticket is available
                     </span>
-
                     <TaskAltIcon className='text-success' />
                   </Button>
                   <Button
@@ -342,7 +283,7 @@ const FlightItemModel = (props) => {
                       props.onHide()
                       navigate(`/passenger-details`)
                     }}
-                    className='d-flex align-items-center mx-auto'>
+                    className='d-flex align-items-center mr-auto'>
                     <span className='mr-2 font-weight-bold'>
                       Click to continue
                     </span>
@@ -386,31 +327,6 @@ const FlightItemModel = (props) => {
                 Check Availability..?
               </span>
             </Button>
-            {/* {available ? (
-          <Button
-            variant='info'
-            onClick={() => {
-              props.onHide()
-              navigate(`/passenger-details`)
-            }}
-            className='d-flex align-items-center'>
-            <span className='mr-2 font-weight-bold'>
-              Continue to Passengers
-            </span>
-            <FlightTakeoffSharpIcon />
-          </Button>
-        ) : (
-          <Button
-            variant='info'
-            onClick={() => {
-              props.onHide()
-              navigate(`/`)
-            }}
-            className='d-flex align-items-center'>
-            <span className='mr-2 font-weight-bold'>New Search</span>
-            <FirstPageIcon />
-          </Button>
-        )} */}
           </Modal.Footer>
         </Modal>
       ) : (

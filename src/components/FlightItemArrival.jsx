@@ -26,14 +26,19 @@ const FlightItemArrival = ({ listItem }) => {
   )
   const [modalShow, setModalShow] = useState(false)
   const [connectionModalShow, setConnectionModalShow] = useState(false)
-
+  const [showSelected, setShowSelected] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
     //console.log(listItem)
   }, [listItem, modalShow])
   return (
-    <div className='d-flex flight-item px-0 col-12'>
+    <div
+      className={
+        showSelected
+          ? "d-flex flight-item px-0 col-12 add-background"
+          : "d-flex flight-item px-0 col-12"
+      }>
       {listItem === {} ? (
         <Loader />
       ) : (
@@ -44,7 +49,9 @@ const FlightItemArrival = ({ listItem }) => {
             listItem.itineraries[1].segments[1] &&
             listItem.itineraries[1].segments[1].arrival && (
               <>
-                <Col className='col-12 col-xs-12 col-md-8 bg-light flight-item-section01'>
+                <Col
+                  className='col-12 col-xs-12 col-md-8 flight-item-section01'
+                  onClick={() => setShowSelected(!showSelected)}>
                   <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                     <div className='pl-3'>
                       <small className='font-weight-bold'>{listItem.id}</small>
@@ -137,7 +144,13 @@ const FlightItemArrival = ({ listItem }) => {
                   </Row>
                 </Col>
 
-                <Col className='col-12 col-xs-12 col-md-4 bg-light'>
+                <Col
+                  onClick={() => setShowSelected(!showSelected)}
+                  className={
+                    showSelected
+                      ? "col-12 col-xs-12 col-md-4 flight-item-section02"
+                      : "col-12 col-xs-12 col-md-4 flight-item-section02-hide"
+                  }>
                   <Row>
                     <Col className=' col-12 text-center economy px-0 pb-4'>
                       <div className='py-2'>

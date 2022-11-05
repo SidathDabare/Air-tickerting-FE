@@ -6,8 +6,9 @@
   --light-border-color: #c2c2c2;
 }
 .flight-item {
-  border-bottom: 0.1px solid #a2a2a2;
+  border: 0.1px solid #a2a2a2;
   color: #494949;
+  background-color: aliceblue;
 }
 .section01 {
   border-top: 4px solid rgba(92, 78, 96, 0.942);
@@ -54,5 +55,24 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    border-radius: 0 0 6px 6px;
+  }
+  .flight-item-section01 {
+    cursor: pointer;
+  }
+  .flight-item-section02 {
+    display: block;
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+  }
+  .flight-item-section02-hide {
+    display: none;
+  }
+  .add-background {
+    color: #000000 !important;
+    background-color: #fefefe !important;
+    border: 1px solid rgba(8, 7, 8, 0.942);
+    -webkit-box-shadow: 0px 3px 15px -4px #000000;
+    box-shadow: 0px 3px 15px -4px #000000;
   }
 }

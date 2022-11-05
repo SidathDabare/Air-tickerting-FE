@@ -23,7 +23,8 @@ const FlightItemDeparture = ({ listItem }) => {
   )
   const [modalShow, setModalShow] = useState(false)
   const [connectionModalShow, setConnectionModalShow] = useState(false)
-  //const [details, setDetails] = useState({})
+  const [showSelected, setShowSelected] = useState(false)
+  console.log(showSelected)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,7 +32,12 @@ const FlightItemDeparture = ({ listItem }) => {
     // console.log(details.id)
   }, [listItem, modalShow])
   return (
-    <div className='d-flex flight-item px-0 col-12'>
+    <div
+      className={
+        showSelected
+          ? "d-flex flight-item px-0 col-12 add-background"
+          : "d-flex flight-item px-0 col-12"
+      }>
       {listItem &&
       listItem.itineraries &&
       listItem.itineraries.length > 0 &&
@@ -39,7 +45,9 @@ const FlightItemDeparture = ({ listItem }) => {
       listItem.itineraries[0].segments[0].arrival ? (
         <>
           <>
-            <Col className='col-12 col-xs-12 col-md-8 flight-item-section01'>
+            <Col
+              className='col-12 col-xs-12 col-md-8 flight-item-section01'
+              onClick={() => setShowSelected(!showSelected)}>
               <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                 <div className='pl-3'>
                   <small className='font-weight-bold'>{listItem.id}</small>
@@ -125,7 +133,13 @@ const FlightItemDeparture = ({ listItem }) => {
                 </div>
               </Row>
             </Col>
-            <Col className='col-12 col-xs-12 col-md-4 bg-light'>
+            <Col
+              onClick={() => setShowSelected(!showSelected)}
+              className={
+                showSelected
+                  ? "col-12 col-xs-12 col-md-4 flight-item-section02"
+                  : "col-12 col-xs-12 col-md-4 flight-item-section02-hide"
+              }>
               <Row>
                 <Col className='col-12 text-center economy px-0 pb-4'>
                   <div className='py-2'>

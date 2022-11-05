@@ -1,12 +1,23 @@
 /** @format */
+.connection-item {
+  background-color: #e8fafb;
+  margin: 10px auto;
+  padding: 10px 0;
+  border-radius: 4px;
+  border: 0.5px solid rgba(0, 30, 94, 0.179);
 
+  box-shadow: 0px 4px 10px -4px #757575;
+}
 .lines {
   height: 0.5px;
   width: 50px;
   background-color: #737373;
 }
+.connection-carrier-img {
+  height: 25px;
+  object-fit: cover;
+}
+@media only screen and (max-width: 765px) {
+}
 @media only screen and (max-width: 565px) {
-  .lines {
-    width: 17px;
-  }
 }
