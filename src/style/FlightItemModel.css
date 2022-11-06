@@ -4,7 +4,9 @@
   max-width: 850px !important;
   /* min-width: 460px !important; */
 }
-.flight-item-model {
+.model-header-bg {
+  background-color: #002741f0;
+  color: aliceblue;
 }
 div.flight-item-model::-webkit-scrollbar {
   width: 6px;
@@ -18,11 +20,13 @@ div.flight-item-model::-webkit-scrollbar-thumb {
   /* border: 3px solid rgb(55, 55, 55); */
 }
 .depature-details {
-  background-color: rgba(0, 39, 65, 0.942);
-  color: #e4e4e4;
-  padding: 10px 0px;
+  background-color: rgb(225, 240, 255);
+  border: 0.2px solid #002741f0;
+  color: #002741f0;
+  /* border-radius: 4px 4px 0 0; */
   text-align: center;
-  margin-bottom: 10px;
+  padding: 7px 0;
+  bottom: 3px !important;
 }
 .info-div {
   border: 0.2px solid rgb(202, 202, 202);

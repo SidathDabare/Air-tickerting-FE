@@ -96,7 +96,7 @@ const FlightItemModel = (props) => {
           {...props}
           aria-labelledby='contained-modal-title-vcenter'
           className='col-12 flight-item-model'>
-          <Modal.Header>
+          <Modal.Header className='model-header-bg'>
             <Modal.Title id='contained-modal-title-vcenter'>
               <h4>Flight details</h4>
             </Modal.Title>
@@ -105,12 +105,12 @@ const FlightItemModel = (props) => {
             </span>
           </Modal.Header>
           <Modal.Body className='show-grid'>
-            <div className='depature-details rounded'>
-              <h5>Departure Details</h5>
+            <div className='depature-details'>
+              <h5 className='mb-0'>Departure Details</h5>
             </div>
             {selectTicket.itineraries[0] &&
               selectTicket.itineraries[0].segments.map((segment, i) => (
-                <Container key={i} className='mb-3 col-12'>
+                <Container key={i} className='mb-3 col-12 px-0'>
                   <Row className='col-12 flex-column mt-2 info-div mx-auto'>
                     <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>
@@ -179,14 +179,14 @@ const FlightItemModel = (props) => {
                 </Container>
               ))}
             {selectTicket.itineraries[1] && (
-              <div className='depature-details rounded'>
-                <h5>Arrival Details</h5>
+              <div className='depature-details'>
+                <h5 className='mb-0'>Arrival Details</h5>
               </div>
             )}
 
             {selectTicket.itineraries[1] &&
               selectTicket.itineraries[1].segments.map((segment, i) => (
-                <Container key={i} className='col-12 mb-3'>
+                <Container key={i} className='col-12 mb-3 px-0'>
                   <Row className='col-12 flex-column mt-2 info-div mx-auto'>
                     <div className='col-12 d-flex flex-column px-0'>
                       <p className='mb-0'>

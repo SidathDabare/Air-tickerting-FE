@@ -14,7 +14,7 @@
   background-color: #737373;
 }
 .connection-carrier-img {
-  height: 25px;
+  height: 35px;
   object-fit: cover;
 }
 @media only screen and (max-width: 765px) {

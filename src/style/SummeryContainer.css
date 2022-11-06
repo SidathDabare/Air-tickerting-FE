@@ -17,6 +17,7 @@
   right: 00px;
   top: 70px;
   z-index: 1;
+  box-shadow: -5px 5px 10px -5px #a7a7a7;
 }
 @media only screen and (max-width: 565px) {
   .summery-container {

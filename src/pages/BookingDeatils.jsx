@@ -103,9 +103,9 @@ const BookingDeatils = () => {
         <div className='booking-details-container'>
           <div className='col-12 bg-light py-3' style={{ height: "auto" }}>
             <div>
-              <div className='px-1 passenger-flight-list-header1 py-1'>
+              <div className='px-1 booking-flight-list-header1'>
                 {" "}
-                <h6 className='ml-2'>Passengers</h6>
+                <h6 className='ml-2 my-0 py-2'>Passengers</h6>
               </div>
               <div className='col-12 d-flex'>
                 <div className='col-6'>
@@ -170,7 +170,7 @@ const BookingDeatils = () => {
                               <span>{segment.arrival.iataCode} </span>
                             </h6>
                           </div>
-                          <div className='mt-2 px-0 booking-details-section01'>
+                          <div className='mt-2 px-0 booking-details-section01 border-bottom'>
                             <div className='col-12 col-xs-12 col-md-6 px-0 booking-details-item1'>
                               <div className='col-3 px-0'>
                                 <p className='mb-1'>
@@ -304,11 +304,11 @@ const BookingDeatils = () => {
               </div>
             </div>
             <div>
-              <div className='px-1 passenger-flight-list-header1 py-1'>
+              <div className='px-1 booking-flight-list-header1 py-1'>
                 {" "}
                 <h6 className='ml-2'>Contacts</h6>
               </div>
-              <div className='col-6'>
+              <div className='col-12 col-md-6'>
                 <h6 className='pt-2'>
                   <span>Company Name : </span>
                   <span>{bookedTicket.data.contacts[0].companyName}</span>
@@ -352,7 +352,6 @@ const BookingDeatils = () => {
                   <span>{bookedTicket.data.contacts[0].emailAddress} </span>
                 </small>
               </div>
-              <div className='col-6'></div>
             </div>
           </div>
           <div className='mt-3 d-flex justify-content-end bg-light py-3 rounded'>

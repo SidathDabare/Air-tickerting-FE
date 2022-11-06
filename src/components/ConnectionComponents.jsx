@@ -35,11 +35,12 @@ const ConnectionComponents = (props) => {
           aria-labelledby='contained-modal-title-vcenter'
           centered
           className='col-12'>
-          <Modal.Header>
+          <Modal.Header className='col-12'>
             <Modal.Title id='contained-modal-title-vcenter'>
               <span>From {ticket[0].departure.iataCode}</span>
               <span> to {ticket[ticket.length - 1].arrival.iataCode}</span>
-              <span className='ml-3 text-truncate'>
+              <br />
+              <span className='text-truncate'>
                 <small style={{ fontSize: "14px" }}>
                   at{" "}
                   {moment(ticket[0].departure.at).format(
@@ -57,18 +58,18 @@ const ConnectionComponents = (props) => {
               <div
                 key={i}
                 className='col-12 col-xs-12 col-md-8 d-flex connection-item'>
-                <div className='col-2 d-flex justify-content-center align-items-center'>
+                <div className='col-1 d-flex justify-content-center align-items-center px-0'>
                   <img
                     className='connection-carrier-img'
                     src={`${process.env.REACT_APP_AIRLINE_LOGO_URL}/airlines_${item.carrierCode}_18_16_t.png?background=fffff`}
                     alt=''
                   />
                 </div>
-                <div className='col-3 px-0'>
+                <div className='col-3'>
                   <p className='mb-1'>{item.departure.iataCode} </p>
                   <h5>{Moment(item.departure.at).format("HH:mm")} </h5>
                 </div>
-                <div className='col-4 d-flex flex-column'>
+                <div className='col-5 d-flex flex-column'>
                   <div className='col-12 d-flex justify-content-center align-items-center px-0'>
                     <AirplanemodeActiveIcon className='AirplanemodeActiveIcon' />
                     <div className='single-line'></div>
@@ -81,7 +82,7 @@ const ConnectionComponents = (props) => {
                   </div>
                 </div>
 
-                <div className='col-3 px-0 text-right'>
+                <div className='col-3 text-right'>
                   <p className='mb-1'>{item.arrival.iataCode}</p>
                   <h5>{Moment(item.arrival.at).format("HH:mm")} </h5>
                 </div>
