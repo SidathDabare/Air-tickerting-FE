@@ -213,7 +213,9 @@ const PassengerDetails = () => {
             <button
               //disabled={disable === true ? true : false}
               className={
-                disable === true ? "add-passenger-btn bg-info" : "d-none"
+                disable === true
+                  ? "add-passenger-btn bg-info rounded"
+                  : "d-none"
               }
               onClick={() => setShowPassengerDetails(!showPassengerDetails)}>
               <span className='align-items-center'>
@@ -447,7 +449,7 @@ const PassengerDetails = () => {
                 <>
                   <div className='d-flex justify-content-center mt-2 passenger-flight-list-header1 py-2'>
                     <FlightTakeoffSharpIcon />
-                    <h6 className='mb-0 mx-2'>Intbound,</h6>
+                    <h6 className='mb-0 mx-2'>Inbound,</h6>
                   </div>
                   <Col
                     xs={12}
@@ -542,15 +544,14 @@ const PassengerDetails = () => {
           )}
           <div className='d-flex justify-content-end mt-2'>
             <Button
+              disabled={disable ? true : false}
               variant='info'
               onClick={() => {
                 makeTicketBooking()
                 setLoader(true)
               }}
               className='d-flex align-items-center'>
-              <span className='mr-2 font-weight-bold'>
-                Confirm details to Continue
-              </span>
+              <span className='mr-2 font-weight-bold'>Confirm to Continue</span>
               <FlightTakeoffSharpIcon />
             </Button>
           </div>

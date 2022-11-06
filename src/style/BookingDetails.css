@@ -11,6 +11,10 @@
 .booking-details-section01 {
   display: flex;
 }
+.depature-details {
+  border-radius: 2px;
+  border: 0.1px solid #002741a0;
+}
 
 .booking-details-item1 {
   display: flex;
@@ -21,10 +25,10 @@
 .booking-flight-list-header1 {
   /* background-color: #002741f0; */
   background-color: aliceblue;
-  border: 2px solid #002741f0;
+  border: 0.1px solid #002741a0;
   /* color: var(--font-color); */
   color: #002741f0;
-  border-radius: 4px 4px 0 0;
+  border-radius: 2px;
 }
 @media only screen and (max-width: 765px) {
   .booking-details-item2 {

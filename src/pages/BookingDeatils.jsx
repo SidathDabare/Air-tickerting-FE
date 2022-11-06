@@ -144,7 +144,7 @@ const BookingDeatils = () => {
             <div>
               <div className='show-grid'>
                 <div className='depature-details'>
-                  <h5>Departure Details</h5>
+                  <h5 className='mb-0'>Departure Details</h5>
                 </div>
                 {bookedTicket.data.flightOffers[0].itineraries[0] &&
                   bookedTicket.data.flightOffers[0].itineraries[0].segments.map(
@@ -223,7 +223,7 @@ const BookingDeatils = () => {
                   )}
                 {bookedTicket.data.flightOffers[0].itineraries[1] && (
                   <div className='depature-details'>
-                    <h5>Arrival Details</h5>
+                    <h5 className='mb-0'>Arrival Details</h5>
                   </div>
                 )}
 
@@ -306,7 +306,7 @@ const BookingDeatils = () => {
             <div>
               <div className='px-1 booking-flight-list-header1 py-1'>
                 {" "}
-                <h6 className='ml-2'>Contacts</h6>
+                <h6 className='ml-2 mb-0'>Contacts</h6>
               </div>
               <div className='col-12 col-md-6'>
                 <h6 className='pt-2'>
@@ -354,19 +354,23 @@ const BookingDeatils = () => {
               </div>
             </div>
           </div>
-          <div className='mt-3 d-flex justify-content-end bg-light py-3 rounded'>
-            <Button onClick={createAndDownloadPdf}>
+          <div className='mt-3 d-flex justify-content-around bg-light px-n1 py-3 rounded'>
+            <button
+              onClick={createAndDownloadPdf}
+              className='btn btn-outline-info col-5'>
               <span>Download PDF </span>
               <span>
                 <PictureAsPdfIcon />
               </span>
-            </Button>
-            <Button className='mx-1' onClick={sendEmailWithAttachmhment}>
+            </button>
+            <button
+              onClick={sendEmailWithAttachmhment}
+              className='btn btn-outline-info col-5'>
               <span>Send email </span>
               <span>
                 <AttachEmailIcon />
               </span>
-            </Button>
+            </button>
           </div>
         </div>
       </Container>

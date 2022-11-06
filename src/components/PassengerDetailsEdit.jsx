@@ -10,6 +10,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import { useDispatch, useSelector } from "react-redux"
 import ClearIcon from "@mui/icons-material/Clear"
+import "../style/PassengerDetailsEdit.css"
 import {
   deletePassengerDetailsAction,
   editPassengerDetailsAction,
@@ -60,7 +61,7 @@ const PassengerDetailsEdit = (props) => {
       {
         documentType: "PASSPORT",
         birthPlace: birthPlace,
-        issuanceLocation: "Madrid",
+        issuanceLocation: "Italy",
         issuanceDate: "2015-04-14",
         number: passport,
         expiryDate: "2025-04-14",
@@ -92,7 +93,7 @@ const PassengerDetailsEdit = (props) => {
               <span> {props.index + 1}</span>
               <span className='mx-2'>
                 {" "}
-                {props.passenger.gender === "MALE" ? "Mr" : "Mrs"}
+                {props.passenger.gender === "MALE" ? "Mr" : "Miss"}
               </span>
               <span className='mr-2'> {props.passenger.name.firstName}</span>
               <span> {props.passenger.name.lastName}</span>
@@ -121,24 +122,24 @@ const PassengerDetailsEdit = (props) => {
               </div>
               <div className='col-12 py-2 mt-1 bg-light'>
                 <TextField
-                  className='w-25 px-1'
+                  className='col-12 col-xs-6 col-md-4 px-1'
                   label='Title'
                   select
                   size='small'
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}>
                   <MenuItem value='MALE'>Mr</MenuItem>
-                  <MenuItem value='FEMALE'>Mrs</MenuItem>
+                  <MenuItem value='FEMALE'>Miss</MenuItem>
                 </TextField>
               </div>
-              <div className='col-12 py-2 mt-1 d-flex'>
+              <div className='col-12 py-2 mt-1 d-flex flex-wrap'>
                 <TextField
                   size='small'
                   id='outlined-basic'
                   label='Firstname'
                   value={firstName}
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <TextField
@@ -147,13 +148,13 @@ const PassengerDetailsEdit = (props) => {
                   value={lastName}
                   label='Lastname'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setLastName(e.target.value)}
                 />
 
                 <DatePicker
                   size='small'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   label='Birthday'
                   variant='outlined'
                   value={birthday}
@@ -168,18 +169,17 @@ const PassengerDetailsEdit = (props) => {
                     />
                   )}
                 />
-              </div>
-              <div className='col-12 py-2 mt-1 d-flex'>
+
                 <TextField
                   size='small'
                   id='outlined-basic'
                   value={email}
                   label='Email'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <div className='col-6 col-xs-6 col-md-4 px-1'>
+                <div className='col-6 col-xs-6 col-md-4 px-1 mb-3'>
                   <TextField
                     size='small'
                     id='outlined-basic'
@@ -199,14 +199,6 @@ const PassengerDetailsEdit = (props) => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </div>
-
-                {/* <MuiTelInput
-                  size='small'
-                  id='outlined-basic'
-                  value={phone}
-                  onChange={handleChange}
-                  className='col-6 col-xs-6 col-md-4 px-1'
-                /> */}
               </div>
               <div className='col-12 py-1 mt-1 border-bottom'>
                 <h5 className='mb-0 text-dark'>Passport Details</h5>
@@ -218,7 +210,7 @@ const PassengerDetailsEdit = (props) => {
                   label='Passport number'
                   value={passport}
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setPassport(e.target.value)}
                 />
                 <TextField
@@ -227,17 +219,24 @@ const PassengerDetailsEdit = (props) => {
                   value={birthPlace}
                   label='Birth place'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setBirthPlace(e.target.value)}
                 />
-                <Button
+              </div>
+              <div className='col-12 py-1 mt-1 py-3 d-flex flex-wrap justify-content-around border-top'>
+                <button
                   type='submit'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-12 col-xs-6 col-md-4 btn btn-outline-info mb-2'
                   onClick={editPassengerDetails}>
                   Edit Details
-                </Button>
+                </button>
+                <button
+                  type='submit'
+                  className='col-12 col-xs-6 col-md-4 btn btn-outline-danger mb-2'
+                  onClick={deletePassenger}>
+                  Delete Passenger
+                </button>
               </div>
-              <div className='col-12 py-1 mt-1'></div>
             </div>
           </Accordion.Body>
         </Accordion.Item>
