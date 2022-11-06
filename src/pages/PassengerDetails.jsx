@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { Button, Container, Form, Stack } from "react-bootstrap"
+import { Button, Container } from "react-bootstrap"
 import StepComponent from "../components/StepComponent"
 import MyNavbar from "../components/MyNavbar"
 import SummeryContainer from "../components/SummeryContainer"
@@ -12,7 +12,6 @@ import "../style/PassengerDetails.css"
 import { MenuItem, TextField } from "@mui/material"
 import { DatePicker } from "@mui/x-date-pickers"
 import { format } from "date-fns"
-import { MuiTelInput } from "mui-tel-input"
 import {
   getAmadeusToken,
   getTime,
@@ -49,13 +48,13 @@ const PassengerDetails = () => {
   const [loader, setLoader] = useState(false)
 
   const [title, setTitle] = useState("MALE")
-  const [firstName, setFirstName] = useState("Sidath")
-  const [lastName, setLastName] = useState("Dabare")
-  const [birthday, setBirthDay] = useState("1984-03-13")
-  const [email, setEmail] = useState("sidath@email.com")
+  const [firstName, setFirstName] = useState("John")
+  const [lastName, setLastName] = useState("Doe")
+  const [birthday, setBirthDay] = useState("1990-04-13")
+  const [email, setEmail] = useState("john@email.com")
   const [countryCode, setCountryCode] = useState("39")
   const [phoneNumber, setPhoneNumber] = useState("3154154151")
-  const [passport, setPassport] = useState("x15151515")
+  const [passport, setPassport] = useState("P15151515")
   const [birthPlace, setBirthPlace] = useState("Italy")
 
   const traveler = {
@@ -228,13 +227,13 @@ const PassengerDetails = () => {
             className={
               showPassengerDetails ? "show-add-passenger-details" : "d-none"
             }>
-            <div className='px-2'>
+            <div className='px-2 passenger-add-details'>
               <div className='col-12 py-1 mt-1'>
                 <h5 className='mb-0'>Passenger Details</h5>
               </div>
               <div className='col-12 py-2 mt-1'>
                 <TextField
-                  className='w-25 passeneger-details-input px-1'
+                  className='col-12 col-xs-6 col-md-4  passeneger-details-input px-1'
                   label='Title'
                   select
                   size='small'
@@ -244,14 +243,14 @@ const PassengerDetails = () => {
                   <MenuItem value='FEMALE'>Miss</MenuItem>
                 </TextField>
               </div>
-              <div className='col-12 py-2 mt-1 d-flex'>
+              <div className='col-12 py-2 mt-1 passeneger-details-section02'>
                 <TextField
                   size='small'
                   id='outlined-basic'
                   label='Firstname'
                   value={firstName}
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <TextField
@@ -260,13 +259,13 @@ const PassengerDetails = () => {
                   value={lastName}
                   label='Lastname'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setLastName(e.target.value)}
                 />
 
                 <DatePicker
                   size='small'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   label='Birthday'
                   variant='outlined'
                   value={birthday}
@@ -281,18 +280,17 @@ const PassengerDetails = () => {
                     />
                   )}
                 />
-              </div>
-              <div className='col-12 py-2 mt-1 d-flex'>
+
                 <TextField
                   size='small'
                   id='outlined-basic'
                   value={email}
                   label='Email'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <div className='col-6 col-xs-6 col-md-4 px-1'>
+                <div className='col-6 col-xs-6 col-md-4 px-1 mb-3'>
                   <TextField
                     size='small'
                     id='outlined-basic'
@@ -312,26 +310,18 @@ const PassengerDetails = () => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </div>
-
-                {/* <MuiTelInput
-                  size='small'
-                  id='outlined-basic'
-                  value={phone}
-                  onChange={handleChange}
-                  className='col-6 col-xs-6 col-md-4 px-1'
-                /> */}
               </div>
               <div className='col-12 py-1 mt-1'>
                 <h5 className='mb-0'>Passport Details</h5>
               </div>
-              <div className='col-12 py-2 mt-1'>
+              <div className='col-12 py-2 mt-1 d-inline-block'>
                 <TextField
                   size='small'
                   id='outlined-basic'
                   label='Passport number'
                   value={passport}
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setPassport(e.target.value)}
                 />
                 <TextField
@@ -340,17 +330,16 @@ const PassengerDetails = () => {
                   value={birthPlace}
                   label='Birth place'
                   variant='outlined'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-6 col-xs-6 col-md-4 px-1 mb-3'
                   onChange={(e) => setBirthPlace(e.target.value)}
                 />
                 <Button
                   type='submit'
-                  className='col-6 col-xs-6 col-md-4 px-1'
+                  className='col-12 col-xs-6 col-md-4 px-1 mb-3'
                   onClick={addPassengerDetails}>
                   Add Details
                 </Button>
               </div>
-              <div className='col-12 py-1 mt-1'></div>
             </div>
           </div>
         </div>
@@ -377,7 +366,7 @@ const PassengerDetails = () => {
                 <h6 className='mb-0 mx-2'>Outbound,</h6>
               </div>
 
-              <Col xs={12} className='bg-light text-dark'>
+              <Col xs={12} className='bg-light text-dark passenger-detail-item'>
                 <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                   <div className='pl-3'>
                     <small className='font-weight-bold'>
@@ -460,7 +449,9 @@ const PassengerDetails = () => {
                     <FlightTakeoffSharpIcon />
                     <h6 className='mb-0 mx-2'>Intbound,</h6>
                   </div>
-                  <Col xs={12} className='bg-light text-dark'>
+                  <Col
+                    xs={12}
+                    className='bg-light text-dark passenger-detail-item'>
                     <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                       <div className='pl-3'>
                         <small className='font-weight-bold'>

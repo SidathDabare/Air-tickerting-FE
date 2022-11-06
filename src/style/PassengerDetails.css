@@ -20,12 +20,19 @@
   border: none;
   outline: none;
 }
+
 .show-add-passenger-details {
   position: absolute;
   width: 100%;
   height: auto;
-  background-color: #ebebeb;
+  background-color: #eafffc;
+  border: 0.1px solid rgb(179, 179, 179);
   z-index: 1;
+  box-shadow: -1px 2px 22px 0px rgba(163, 161, 161, 0.75);
+}
+.passeneger-details-section02 {
+  display: flex;
+  flex-wrap: wrap;
 }
 .passeneger-details-input {
   color: var(--font-color);
@@ -50,6 +57,17 @@
   color: var(--font-color);
   border-radius: 4px 4px 0 0;
 }
+.passenger-detail-item {
+  border: 0.1px solid gray !important;
+}
 /* .passenger-input-edit {
   max-width: 200px;
 } */
+@media only screen and (max-width: 578px) {
+  /* .passenger-add-details div {
+    padding: 4px 0;
+  } */
+  /* .passeneger-details-input {
+    padding-left: 5px !important;
+  } */
+}
