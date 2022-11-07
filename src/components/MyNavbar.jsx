@@ -40,18 +40,28 @@ const MyNavbar = () => {
         </div>
         <div className='nav-menu-div'>
           <div className='nav-menu'>
-            <Link to='/' className='nav-menu-items'>
+            {/* <Link to='/' className='nav-menu-items'>
               Home
             </Link>
             <Link to='/' className='nav-menu-items'>
               Home
-            </Link>
-            <Link to='/' className='nav-menu-items'>
-              Home
-            </Link>
-            <Link to='/' className='nav-menu-items'>
-              Home
-            </Link>
+            </Link> */}
+            <p
+              className='nav-menu-items mb-0'
+              onClick={() => {
+                navigate(
+                  loggedUser.role === "Admin" ? "../admin" : "../dashboard"
+                )
+              }}>
+              Dashboard
+            </p>
+            <p
+              className='nav-menu-items mb-0'
+              onClick={() => {
+                navigate("./contact-us")
+              }}>
+              Contact Us
+            </p>
           </div>
           <div className='user-profile'>
             {loggedUser ? (
@@ -163,7 +173,61 @@ const MyNavbar = () => {
             showMenu
               ? "nav-menu-small hide-nav-menu"
               : "nav-menu-small show-nav-menu"
-          }></div>
+          }>
+          <div className='nav-menu-small-item'>
+            <span
+              className='small-nav-menu-items'
+              onClick={() => {
+                navigate(
+                  loggedUser.role === "Admin" ? "../admin" : "../dashboard"
+                )
+              }}>
+              Dashboard
+            </span>
+            <span
+              className='small-nav-menu-items'
+              onClick={() => {
+                navigate("../contact-us")
+              }}>
+              Contact Us
+            </span>
+          </div>
+          {loggedUser ? (
+            <div className='col-12 px-0 nav-menu-small-profile-div'>
+              <div className='col-12 nav-menu-small-profile'>
+                <img
+                  src={loggedUser.avatar}
+                  alt=''
+                  className='small-menu-profile-image'
+                />
+              </div>
+              <div className='col-12 small-menu-profile-info px-0'>
+                <h6 className='text-truncate mb-0 py-2 text-info'>
+                  {" "}
+                  {loggedUser.firstName} {loggedUser.lastName}
+                </h6>
+
+                <small className='py-2'>{loggedUser.email}</small>
+                <div
+                  className='btn btn-outline-info mt-3'
+                  onClick={() => {
+                    userLogOut()
+                  }}>
+                  Logout
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className='col-12 px-0 small-user-logout-div'>
+              <div className='logout-item'>
+                <AccountCircleIcon className='logout-icon' />
+                <Link to='./login' className='mx-1'>
+                  LOGIN
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
       </Container>
     </div>
   )

@@ -57,12 +57,12 @@
   position: relative;
   box-shadow: 5px 5px 13px -4px #141414;
 }
-.register-div p {
+.goto-register-div p {
   cursor: pointer;
   color: var(--font-color);
 }
-.register-div p:hover {
-  color: var(--font-hover-color);
+.goto-register-div p:hover {
+  color: aqua;
 }
 .image-container {
   background-size: cover;

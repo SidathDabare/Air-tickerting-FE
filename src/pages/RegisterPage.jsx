@@ -1,11 +1,12 @@
 /** @format */
 
 import React, { useEffect, useState } from "react"
-import { Button, Container, Form } from "react-bootstrap"
+import { Container, Form } from "react-bootstrap"
 import "../style/RegisterPage.css"
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import Footer from "../components/Footer"
 import { useNavigate } from "react-router-dom"
+import BigLogo from "../assets/logo1.png"
 
 const RegisterPage = () => {
   const navigate = useNavigate()
@@ -75,22 +76,15 @@ const RegisterPage = () => {
     <div>
       <div className='register-nav-div'>
         <Container className='d-flex justify-content-between align-items-center text-white register-nav-section01'>
-          <div className='register-nav-left-div '>
-            <h4>TICKETING </h4>
-            <span className='pb-2 ml-2'>
-              <FlightTakeoffSharpIcon />
-            </span>
+          <div className='logo-div' onClick={() => navigate("/")}>
+            <img src={BigLogo} alt='logo' />
           </div>
         </Container>
       </div>
       <div className='text-center text-white register-nav-section02'>
         <div className='register-nav-section02-overlay'></div>
         <Container className='pt-5'>
-          <h1> Log in to TICKETING</h1>
-          <p className='py-0 mb-0'>
-            Earn Miles every time you fly with us and our partners. And
-          </p>
-          <p>spend your Skywards Miles on a world of rewards.</p>
+          <h1>Please Join</h1>
         </Container>
       </div>
 
@@ -140,10 +134,10 @@ const RegisterPage = () => {
               />
             </Form.Group>
             <Form.Group className='mb-3 col-12 col-xs-12 col-md-6'>
-              {/* <Form.Label>Role</Form.Label> */}
+              <Form.Label>Role</Form.Label>
               <Form.Select
                 size='lg'
-                className='w-100 py-2 rounded px-1 mt-2'
+                className='w-100 py-2 rounded px-1'
                 type='text'
                 placeholder='Role'
                 value={role}
@@ -154,13 +148,6 @@ const RegisterPage = () => {
             </Form.Group>
 
             <Form.Group className='mb-3 col-12 col-xs-12 col-md-6'>
-              <Form.Label className='col-12 d-flex'>
-                {avatar ? (
-                  <span className='text-truncate text-info'>{avatar}</span>
-                ) : (
-                  <span></span>
-                )}
-              </Form.Label>
               {/* <Form.Control
                 className='col-6 mr-1'
                 type='text'
@@ -168,6 +155,7 @@ const RegisterPage = () => {
                 value={avatar}
                 onChange={(e) => setAvatar(e.target.value)}
               /> */}
+              <Form.Label>Upload Image</Form.Label>
               <Form.Control
                 className='col-12 px-0 py-1'
                 type='file'
@@ -175,14 +163,22 @@ const RegisterPage = () => {
               />
             </Form.Group>
           </div>
-          <Button
-            className='col-7 mx-auto mt-3'
-            variant='warning btn-block'
-            type='submit'
-            onClick={handleSubmit}>
-            <span className='font-weight-bold mr-1'>Sign up</span>
-            <FlightTakeoffSharpIcon />
-          </Button>
+          <div className='d-flex flex-column'>
+            <Form.Label className='col-6 mx-auto text-truncate'>
+              {avatar ? (
+                <span className='col-12 text-truncate text-info'>{avatar}</span>
+              ) : (
+                <span></span>
+              )}
+            </Form.Label>
+            <button
+              className='col-6 mx-auto mt-3 btn btn-outline-info'
+              type='submit'
+              onClick={handleSubmit}>
+              <span className='font-weight-bold mr-1'>Sign up</span>
+              <FlightTakeoffSharpIcon />
+            </button>
+          </div>
         </Form>
       </Container>
 

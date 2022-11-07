@@ -100,7 +100,7 @@ const BookingDeatils = () => {
           payment={true}
           confirm={true}
         />
-        <div className='booking-details-container'>
+        <div className='booking-details-container border'>
           <div className='col-12 bg-light py-3' style={{ height: "auto" }}>
             <div>
               <div className='px-1 booking-flight-list-header1'>

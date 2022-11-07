@@ -27,3 +27,11 @@
     max-width: 100%;
   }
 }
+@media only screen and (max-width: 485px) {
+  .summery-container {
+    padding: 0px !important;
+  }
+  .show-summery-div {
+    max-width: 100%;
+  }
+}

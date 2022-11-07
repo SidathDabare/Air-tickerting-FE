@@ -1,9 +1,10 @@
 /** @format */
 
-import React, { useEffect, useState } from "react"
-import { Alert, Button, Container, Form, Row } from "react-bootstrap"
-import { useSelector, useDispatch } from "react-redux"
+import React, { useState } from "react"
+import { Container, Form, Row } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 import "../style/LogInPage.css"
+import BigLogo from "../assets/logo1.png"
 
 import FlightTakeoffSharpIcon from "@mui/icons-material/FlightTakeoffSharp"
 import Footer from "../components/Footer"
@@ -61,11 +62,8 @@ const LogInPage = () => {
     <div>
       <div className='login-nav-div'>
         <Container className='d-flex justify-content-between align-items-center text-white login-nav-section01'>
-          <div className='login-nav-left-div '>
-            <h4>TICKETING </h4>
-            <span className='pb-2 ml-2'>
-              <FlightTakeoffSharpIcon />
-            </span>
+          <div className='logo-div' onClick={() => navigate("/")}>
+            <img src={BigLogo} alt='logo' />
           </div>
         </Container>
       </div>
@@ -92,8 +90,8 @@ const LogInPage = () => {
             </div>
           )}
         </Row>
-        <Row className='col-12 '>
-          <div className='col-6'>
+        <Row className='col-12'>
+          <div className='col-12 col-xs-12 col-md-6 mx-auto'>
             <Form onSubmit={handleSubmit}>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Email address</Form.Label>
@@ -112,22 +110,21 @@ const LogInPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group className='mb-3' controlId='formBasicCheckbox'>
+              {/* <Form.Group className='mb-3' controlId='formBasicCheckbox'>
                 <Form.Check type='checkbox' label='Check me out' />
-              </Form.Group>
-              <Button
-                variant='warning btn-block'
+              </Form.Group> */}
+              <button
+                className='btn btn-outline-info btn-block'
                 type='submit'
                 onClick={handleSubmit}>
                 <span className='font-weight-bold mr-1'>Log in</span>
                 <FlightTakeoffSharpIcon />
-              </Button>
-              <div className='text-center mt-3 register-div'>
+              </button>
+              <div className='text-center mt-3 goto-register-div'>
                 <p onClick={() => navigate("/register")}>Click here to join</p>
               </div>
             </Form>
           </div>
-          <div className='col-6 px-5'></div>
         </Row>
       </Container>
 

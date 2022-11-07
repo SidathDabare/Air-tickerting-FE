@@ -10,20 +10,16 @@
   margin-bottom: 70px;
 }
 .flight-list-header1 {
-  /* background-color: #002741f0; */
-  background-color: aliceblue;
+  background-color: #002741f0;
   border: 0.1px solid #002741f0;
-  /* color: var(--font-color); */
-  color: #002741f0;
+  color: var(--font-color);
   border-radius: 4px 4px 0 0;
   margin-bottom: 5px;
 }
 .flight-list-header2 {
-  /* background-color: #002741f0; */
-  background-color: aliceblue;
+  background-color: #002741f0;
   border: 0.1px solid #002741f0;
-  /* color: var(--font-color); */
-  color: #002741f0;
+  color: var(--font-color);
   border-radius: 4px 4px 0 0;
   margin-bottom: 5px;
 }

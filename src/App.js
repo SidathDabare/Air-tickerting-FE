@@ -16,6 +16,7 @@ import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminDashBoard from "./pages/AdminDashBoard"
 import PermissionDenied from "./pages/PermissionDenied"
 import AdminOnlyRoutes from "./utils/AdminOnlyRoutes"
+import ContactUsPage from "./pages/ContactUsPage"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/search-result' element={<SearchResultPage />} />
 
+          <Route path='/contact-us' element={<ContactUsPage />} />
           <Route path='/login' element={<LogInPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/unauthorized' element={<PermissionDenied />} />

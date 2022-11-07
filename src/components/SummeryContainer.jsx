@@ -50,8 +50,8 @@ const SummeryContainer = () => {
               </span>
             </div>
           </div>
-          <div className='d-flex col-8 col-xs-8 col-md-6 justify-content-end align-items-center'>
-            <h6 className='mr-2 mb-0'>
+          <div className='d-flex flex-column col-8 col-xs-8 col-md-6 justify-content-between align-items-end'>
+            <h6 className='mr-2 mb-1'>
               <span>Cost </span>
               <span>{selectedTicket.price.currency} </span>
               <span>{selectedTicket.price.total}</span>
