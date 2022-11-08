@@ -39,7 +39,7 @@ const DashboardPage = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState(loggedUser.password)
-  const [role, setRole] = useState("Admin")
+  const [role, setRole] = useState("User")
   const [avatar, setAvatar] = useState("")
 
   const [showDashboard, setShowDashboard] = useState(false)
