@@ -151,12 +151,13 @@
   max-height: 92vh;
   background-color: #6c6c6c00;
 }
-/* .admin-user-div {
-  height: 73vh;
+.admin-user-div {
+  background-color: rgb(0, 40, 60);
+  /* height: 73vh;
   overflow-y: hidden;
   border: 0.5px solid rgba(128, 128, 128, 0.293);
-  border-radius: 4px;
-} */
+  border-radius: 4px; */
+}
 .user-name-display {
   height: 65vh;
   overflow-y: auto;

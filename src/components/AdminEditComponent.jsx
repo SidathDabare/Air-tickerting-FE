@@ -10,14 +10,15 @@ const AdminEditComponent = (props) => {
   const user = useSelector((state) => state.selectedUserReducer.selectedUser)
   const admin = useSelector((state) => state.userReducer)
   const dispatch = useDispatch()
-
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  // const [password, setPassword] = useState(user.password)
-  const [role, setRole] = useState("Admin")
-  const [avatar, setAvatar] = useState("")
-  console.log(firstName, lastName, email, role, avatar)
+  // console.log(user)
+  // console.log(admin)
+  const [firstName, setFirstName] = useState(admin.loggedInUser.firstName)
+  const [lastName, setLastName] = useState(admin.loggedInUser.lastName)
+  const [email, setEmail] = useState(admin.loggedInUser.email)
+  // const [password, setPassword] = useState(admin.loggedInUser.password)
+  const [role, setRole] = useState(admin.loggedInUser.role)
+  const [avatar, setAvatar] = useState(admin.loggedInUser.avatar)
+  // console.log(firstName, lastName, email, role, avatar)
   const addImage = async (e) => {
     let str = e.target.files[0]
     let url = `${process.env.REACT_APP_BE_URL}/files/cloudinary`
@@ -141,23 +142,22 @@ const AdminEditComponent = (props) => {
                     />
                   </Form.Group>
                   <div className='admin-btn-div col-12 col-xs-12 col-md-6 px-1'>
+                    <div className='col-12 d-flex'>
+                      <small className='text-info text-truncate'>
+                        {avatar ? avatar : ""}
+                      </small>
+                    </div>
                     <button
                       disabled={
                         firstName && lastName && email && avatar ? false : true
                       }
                       type='submit'
-                      className='btn btn-outline-info btn-block'
+                      className='btn btn-outline-info btn-block mt-3'
                       onClick={editAdminDetails}>
                       Edit Details
                     </button>
                   </div>
                 </div>
-                <div className='col-12 d-flex'>
-                  <small className='text-info text-truncate'>
-                    {avatar ? avatar : ""}
-                  </small>
-                </div>
-                <div className='col-12 py-2 mt-1 d-flex'></div>
               </div>
             </div>
           </div>

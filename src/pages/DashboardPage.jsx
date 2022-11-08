@@ -35,12 +35,12 @@ const DashboardPage = () => {
   const [orders, setOrders] = useState([])
   const [user, setUser] = useState({})
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState(loggedUser.firstName)
+  const [lastName, setLastName] = useState(loggedUser.lastName)
+  const [email, setEmail] = useState(loggedUser.email)
   const [password, setPassword] = useState(loggedUser.password)
-  const [role, setRole] = useState("User")
-  const [avatar, setAvatar] = useState("")
+  const [role, setRole] = useState(loggedUser.role)
+  const [avatar, setAvatar] = useState(loggedUser.avatar)
 
   const [showDashboard, setShowDashboard] = useState(false)
   const [showEditProfile, setShowEditProfile] = useState(false)
@@ -402,7 +402,13 @@ const DashboardPage = () => {
                             onChange={addImage}
                           />
                         </Form.Group>
+
                         <div className='admin-btn-div col-12 col-xs-12 col-md-6 px-1'>
+                          <div className='col-12 d-flex'>
+                            <small className='text-info text-truncate'>
+                              {avatar ? avatar : ""}
+                            </small>
+                          </div>
                           <button
                             disabled={
                               firstName && lastName && email && avatar
@@ -410,18 +416,12 @@ const DashboardPage = () => {
                                 : true
                             }
                             type='submit'
-                            className='btn btn-outline-info btn-block'
+                            className='btn btn-outline-info btn-block mt-3'
                             onClick={editAdminDetails}>
                             Edit Details
                           </button>
                         </div>
                       </div>
-                      <div className='col-12 d-flex'>
-                        <small className='text-info text-truncate'>
-                          {avatar ? avatar : ""}
-                        </small>
-                      </div>
-                      <div className='col-12 py-2 mt-1 d-flex'></div>
                     </div>
                   </div>
                 </div>

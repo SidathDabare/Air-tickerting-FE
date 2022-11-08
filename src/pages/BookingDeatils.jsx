@@ -70,7 +70,6 @@ const BookingDeatils = () => {
       )
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" })
-
         saveAs(pdfBlob, `${newBookedTicketId._id}`)
       })
   }

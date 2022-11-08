@@ -208,13 +208,28 @@ const MyNavbar = () => {
                 </h6>
 
                 <small className='py-2'>{loggedUser.email}</small>
-                <div
+                {loggedUser ? (
+                  <button
+                    className='btn btn-outline-info'
+                    onClick={() => {
+                      navigate(
+                        loggedUser.role === "Admin"
+                          ? "../admin"
+                          : "../dashboard"
+                      )
+                    }}>
+                    Go to dashboard
+                  </button>
+                ) : (
+                  ""
+                )}
+                <button
                   className='btn btn-outline-info mt-3'
                   onClick={() => {
                     userLogOut()
                   }}>
                   Logout
-                </div>
+                </button>
               </div>
             </div>
           ) : (
