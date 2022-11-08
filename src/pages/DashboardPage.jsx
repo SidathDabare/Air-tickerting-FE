@@ -244,7 +244,7 @@ const DashboardPage = () => {
                     <MonetizationOnIcon className='user-display-icon-big text-success' />
                   </div>
                   <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-success'>
-                    <p className='mb-0'>Revenue</p>
+                    <p className='mb-0'>Paid</p>
                     <h4>
                       {/* {orders.length} */}
                       <span className='mr-1'>
@@ -404,6 +404,11 @@ const DashboardPage = () => {
                         </Form.Group>
                         <div className='admin-btn-div col-12 col-xs-12 col-md-6 px-1'>
                           <button
+                            disabled={
+                              firstName && lastName && email && avatar
+                                ? false
+                                : true
+                            }
                             type='submit'
                             className='btn btn-outline-info btn-block'
                             onClick={editAdminDetails}>

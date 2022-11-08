@@ -17,7 +17,7 @@ const AdminDisplayComponent = () => {
   const token = useSelector((state) => state.userReducer.token)
 
   const [orders, setOrders] = useState([])
-  console.log(orders)
+  // console.log(orders)
   const [users, setUsers] = useState([])
 
   const getOrders = async () => {

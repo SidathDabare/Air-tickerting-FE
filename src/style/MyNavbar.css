@@ -36,10 +36,11 @@
 .nav-menu-div {
   width: 50%;
   display: flex;
+  justify-content: end;
   align-items: center;
 }
 .nav-menu {
-  width: 66%;
+  width: 33%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -57,7 +58,8 @@
 }
 .nav-menu p:hover {
   text-decoration: none;
-  color: var(--font-hover-color);
+  color: rgb(0, 157, 255);
+  /* color: var(--font-hover-color); */
   background-color: var(--bg-hover-color);
   transition: 0.5s ease;
 }
@@ -245,20 +247,25 @@
     justify-content: center;
     align-items: center;
   }
-  .nav-menu-small-profile-div {
-    height: 70vh;
-    background-color: #001531;
-  }
+
   .small-nav-menu-items {
     color: var(--font-color);
     text-decoration: none;
     cursor: pointer;
   }
   .small-nav-menu-items:hover {
-    color: var(--font-hover-color);
+    /* color: var(--font-hover-color); */
     background-color: #001531;
+    color: rgb(0, 157, 255);
+  }
+  .nav-menu-small-profile-div {
+    position: relative;
+    height: 80vh;
+    /* background-color: #001531; */
+    margin: 0 auto;
   }
   .nav-menu-small-profile {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,6 +278,7 @@
     border-radius: 50%;
   }
   .small-menu-profile-info {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;

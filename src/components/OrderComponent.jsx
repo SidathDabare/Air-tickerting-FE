@@ -24,7 +24,7 @@ const OrderComponent = (props) => {
         className={
           showInfo
             ? "col-11 mx-auto d-flex py-2 my-2 px-0 text-dark order-item add-thick-border add-background"
-            : "col-11 mx-auto d-flex py-2 my-2 px-0 text-dark order-item border"
+            : "col-11 mx-auto d-flex py-2 my-2 px-0 text-dark order-item"
         }>
         <div className='col-3 d-flex justify-content-center align-items-center'>
           <span>
@@ -83,7 +83,7 @@ const OrderComponent = (props) => {
                 <h6 className='mb-0 mx-2'>Outbound,</h6>
               </div>
 
-              <Col xs={12} className='bg-light text-dark'>
+              <Col xs={12} className='bg-light text-dark add-thick-border'>
                 <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                   <div className='pl-3'>
                     <small className='font-weight-bold'>
@@ -186,7 +186,7 @@ const OrderComponent = (props) => {
                     <FlightTakeoffSharpIcon />
                     <h6 className='mb-0 mx-2'>Intbound,</h6>
                   </div>
-                  <Col xs={12} className='bg-light text-dark'>
+                  <Col xs={12} className='bg-light text-dark add-thick-border'>
                     <Row className='d-flex justify-content-between align-items-center section01 pt-1 pb-3'>
                       <div className='pl-3'>
                         <small className='font-weight-bold'>

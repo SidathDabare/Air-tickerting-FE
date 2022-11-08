@@ -46,7 +46,7 @@ const MyNavbar = () => {
             <Link to='/' className='nav-menu-items'>
               Home
             </Link> */}
-            <p
+            {/* <p
               className='nav-menu-items mb-0'
               onClick={() => {
                 navigate(
@@ -54,7 +54,7 @@ const MyNavbar = () => {
                 )
               }}>
               Dashboard
-            </p>
+            </p> */}
             <p
               className='nav-menu-items mb-0'
               onClick={() => {
@@ -175,7 +175,7 @@ const MyNavbar = () => {
               : "nav-menu-small show-nav-menu"
           }>
           <div className='nav-menu-small-item'>
-            <span
+            {/* <span
               className='small-nav-menu-items'
               onClick={() => {
                 navigate(
@@ -183,7 +183,7 @@ const MyNavbar = () => {
                 )
               }}>
               Dashboard
-            </span>
+            </span> */}
             <span
               className='small-nav-menu-items'
               onClick={() => {

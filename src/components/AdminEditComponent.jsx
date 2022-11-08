@@ -17,7 +17,7 @@ const AdminEditComponent = (props) => {
   // const [password, setPassword] = useState(user.password)
   const [role, setRole] = useState("Admin")
   const [avatar, setAvatar] = useState("")
-
+  console.log(firstName, lastName, email, role, avatar)
   const addImage = async (e) => {
     let str = e.target.files[0]
     let url = `${process.env.REACT_APP_BE_URL}/files/cloudinary`
@@ -142,6 +142,9 @@ const AdminEditComponent = (props) => {
                   </Form.Group>
                   <div className='admin-btn-div col-12 col-xs-12 col-md-6 px-1'>
                     <button
+                      disabled={
+                        firstName && lastName && email && avatar ? false : true
+                      }
                       type='submit'
                       className='btn btn-outline-info btn-block'
                       onClick={editAdminDetails}>

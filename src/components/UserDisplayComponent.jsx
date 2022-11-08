@@ -75,7 +75,7 @@ const UserDisplayComponent = (props) => {
                       <MonetizationOnIcon className='user-display-icon-big text-success' />
                     </div>
                     <div className='col-6 px-0 d-flex flex-column align-items-end justify-content-center text-success'>
-                      <p className='mb-0'>Revenue</p>
+                      <p className='mb-0'>Paid</p>
                       <h4>
                         {" "}
                         {user.orders
