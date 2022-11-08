@@ -14,7 +14,7 @@ const AdminEditComponent = (props) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState(user.password)
+  // const [password, setPassword] = useState(user.password)
   const [role, setRole] = useState("Admin")
   const [avatar, setAvatar] = useState("")
 
@@ -51,7 +51,7 @@ const AdminEditComponent = (props) => {
           firstName,
           lastName,
           email,
-          password,
+          // password,
           role,
           avatar,
         }),
