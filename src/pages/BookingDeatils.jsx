@@ -62,7 +62,7 @@ const BookingDeatils = () => {
       .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
       .then(() =>
         axios.get(
-          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}`,
+          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}.pdf`,
           {
             responseType: "blob",
           }
