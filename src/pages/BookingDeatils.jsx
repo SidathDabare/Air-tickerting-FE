@@ -58,20 +58,50 @@ const BookingDeatils = () => {
     id: newBookedTicketId._id,
   }
   const createAndDownloadPdf = () => {
-    axios
-      .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
-      .then(() =>
-        axios.get(
-          `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}.pdf`,
-          {
-            responseType: "blob",
-          }
-        )
-      )
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: "application/pdf" })
-        saveAs(pdfBlob, `${newBookedTicketId._id}`)
+    try {
+      fetch(`${process.env.REACT_APP_BE_URL}/files/pdf`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          body: details,
+        }),
       })
+        .then(() => {
+          fetch(
+            `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}`,
+            {
+              method: "GET",
+              responseType: "blob",
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          )
+        })
+        .then((res) => {
+          let pdfBlob = new Blob([res.data], { type: "application/pdf" })
+          saveAs(pdfBlob, `${newBookedTicketId._id}`)
+        })
+    } catch (err) {
+      console.log(err)
+    }
+    // axios
+    //   .post(`${process.env.REACT_APP_BE_URL}/files/pdf`, details)
+    //   .then(() =>
+    //     axios.get(
+    //       `${process.env.REACT_APP_BE_URL}/files/fetch-pdf/${newBookedTicketId._id}.pdf`,
+    //       {
+    //         responseType: "blob",
+    //       }
+    //     )
+    //   )
+    //   .then((res) => {
+    //     const pdfBlob = new Blob([res.data], { type: "application/pdf" })
+    //     saveAs(pdfBlob, `${newBookedTicketId._id}`)
+    //   })
   }
 
   const sendEmailWithAttachmhment = async () => {

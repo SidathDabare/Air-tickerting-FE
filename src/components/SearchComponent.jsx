@@ -256,7 +256,7 @@ const SearchComponent = () => {
                     className={
                       searchDisabled
                         ? "w-100 h-100 bg-secondary border-0 py-3"
-                        : "w-100 h-100 bg-info font-weight-bold"
+                        : "w-100 h-100 bg-info font-weight-bold py-3"
                     }
                     onClick={handleSearch}>
                     <span className='mr-2'>Show flights</span>
